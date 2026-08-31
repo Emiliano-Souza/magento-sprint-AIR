@@ -1,0 +1,6 @@
+src/
+compose.versions.yaml
+
+# Local setup artifacts
+compose.healthcheck.yaml.bak
+docker-magento-rootCA.pem
