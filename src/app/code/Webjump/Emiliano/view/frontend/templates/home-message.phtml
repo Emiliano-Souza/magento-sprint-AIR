@@ -1,0 +1,49 @@
+<?php
+/** @var \Magento\Framework\View\Element\Template $block */
+/** @var \Webjump\Emiliano\ViewModel\HomeMessage $viewModel */
+
+$viewModel = $block->getData('view_model');
+?>
+
+<section class="oak-barrel-feature">
+    <div class="oak-barrel-feature__content">
+
+        <span class="oak-barrel-feature__eyebrow">
+            <?= $block->escapeHtml($viewModel->getEyebrow()) ?>
+        </span>
+
+        <h2 class="oak-barrel-feature__title">
+            <?= $block->escapeHtml($viewModel->getTitle()) ?>
+        </h2>
+
+        <p class="oak-barrel-feature__description">
+            <?= $block->escapeHtml($viewModel->getMessage()) ?>
+        </p>
+
+        <a
+            class="oak-barrel-feature__cta"
+            href="<?= $block->escapeUrl($viewModel->getCtaUrl()) ?>"
+        >
+            <?= $block->escapeHtml($viewModel->getCtaLabel()) ?>
+        </a>
+
+        <div class="oak-barrel-feature__highlights">
+            <?php foreach ($viewModel->getHighlights() as $highlight): ?>
+                <div class="oak-barrel-feature__highlight">
+                    <strong>
+                        <?= $block->escapeHtml($highlight['title']) ?>
+                    </strong>
+
+                    <span>
+                        <?= $block->escapeHtml($highlight['text']) ?>
+                    </span>
+                </div>
+            <?php endforeach; ?>
+        </div>
+
+    </div>
+
+    <div class="oak-barrel-feature__visual" aria-hidden="true">
+        <span class="oak-barrel-feature__monogram">O&B</span>
+    </div>
+</section>
