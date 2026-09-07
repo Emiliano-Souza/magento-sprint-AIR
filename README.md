@@ -1,10 +1,12 @@
 # Magento Sprint AIR
 
-Projeto desenvolvido durante a Sprint 6 do Programa de Estágio da Webjump, com foco em Magento 2 / Adobe Commerce.
+Projeto desenvolvido durante a **Sprint 6 do Programa de Estágio da Webjump**, com foco em Magento 2 / Adobe Commerce.
 
-O objetivo da sprint é configurar um ambiente local de desenvolvimento, explorar o catálogo e o CMS do Magento e desenvolver módulos utilizando os mecanismos oficiais de extensão da plataforma.
+Durante a sprint foram trabalhados configuração de ambiente, catálogo, CMS e desenvolvimento de módulos utilizando os mecanismos oficiais de extensão do Magento.
 
-## Tecnologias
+---
+
+## 🛠️ Tecnologias
 
 - Magento Open Source 2.4.8-p1
 - PHP
@@ -19,13 +21,15 @@ O objetivo da sprint é configurar um ambiente local de desenvolvimento, explora
 - RabbitMQ
 - Nginx
 
-## Ambiente local
+---
+
+## 🚀 Ambiente local
 
 O projeto utiliza o [docker-magento](https://github.com/markshust/docker-magento) para executar os serviços necessários ao Magento em containers Docker.
 
-No Windows, o projeto é executado dentro do WSL2.
+No Windows, o projeto é executado dentro do **WSL2**, com os arquivos mantidos no filesystem Linux.
 
-### Diretório do projeto
+### Diretório
 
 ```text
 ~/Sites/magento
@@ -43,15 +47,23 @@ https://magento.test
 https://magento.test/admin/
 ```
 
-## Comandos básicos do ambiente
+### Modo
 
-### Iniciar
+```text
+developer
+```
+
+---
+
+## ⚙️ Comandos principais
+
+### Iniciar o ambiente
 
 ```bash
 bin/start
 ```
 
-### Parar
+### Parar o ambiente
 
 ```bash
 bin/stop
@@ -63,37 +75,23 @@ bin/stop
 bin/restart
 ```
 
-### Verificar containers
-
-```bash
-docker ps
-```
-
-## Comandos Magento mais utilizados
-
-### Atualizar a estrutura do Magento
+### Atualizar estrutura dos módulos
 
 ```bash
 bin/magento setup:upgrade
 ```
 
-Utilizado principalmente após alterações estruturais em módulos.
-
-### Limpar o cache
+### Limpar cache
 
 ```bash
 bin/magento cache:clean
 ```
 
-Utilizado quando uma alteração foi realizada, mas ainda não apareceu na aplicação.
-
-### Reconstruir os índices
+### Reconstruir índices
 
 ```bash
 bin/magento indexer:reindex
 ```
-
-Reconstrói os índices utilizados pelo Magento para otimizar consultas de catálogo, produtos, preços e outras informações.
 
 ### Verificar o modo da aplicação
 
@@ -101,408 +99,219 @@ Reconstrói os índices utilizados pelo Magento para otimizar consultas de catá
 bin/magento deploy:mode:show
 ```
 
-O ambiente local está configurado no modo:
+---
 
-```text
-developer
-```
+# 📚 Desafios
+
+## ✅ 12.1 — Ambiente Magento no ar
+
+O primeiro desafio teve como objetivo preparar o ambiente local completo utilizando **Docker + WSL2**.
+
+Foram configurados e validados:
+
+- Magento Open Source 2.4.8-p1;
+- storefront;
+- painel administrativo;
+- usuário administrativo próprio;
+- autenticação em dois fatores;
+- modo `developer`;
+- MySQL;
+- Redis;
+- RabbitMQ;
+- OpenSearch;
+- HTTPS local confiável.
+
+Durante o setup também foram resolvidos problemas relacionados a:
+
+- ProFTPD;
+- memória do WSL;
+- conflito da porta `3306`;
+- healthcheck do OpenSearch;
+- certificado SSL local.
+
+📄 [Documentação completa do exercício 12.1](docs/12.1-magento-environment.md)
 
 ---
 
-# Desafios
+## ✅ 12.2 — Explorando a loja e o catálogo
 
-## 12.1 — Ambiente Magento no ar
+O desafio 12.2 teve como objetivo explorar o Magento Admin e entender o funcionamento do catálogo, CMS e configurações da loja.
 
-### Objetivo
+Foi utilizada a identidade fictícia **Oak & Barrel**, uma loja especializada em whiskies.
 
-Configurar o Magento Open Source localmente utilizando Docker e WSL2, garantindo acesso à storefront e ao painel administrativo.
+Foram criados:
 
-### Resultado
+- categoria `Whiskies`;
+- produto simples `Highland Reserve 12 Years`;
+- associação do produto à categoria;
+- página CMS `About Oak & Barrel`;
+- CMS Block `Oak & Barrel Special Selection`;
+- exibição do CMS Block na storefront.
 
-- Magento Open Source 2.4.8-p1 instalado
-- Storefront funcionando
-- Admin funcionando
-- Usuário administrativo próprio criado
-- Modo developer ativo
-- SSL local configurado
-- Containers essenciais funcionando
-
-### Preparação do Ubuntu
-
-As dependências necessárias para o ambiente foram instaladas:
-
-```bash
-sudo apt update
-sudo apt install -y curl libnss3-tools unzip rsync bc jq dos2unix
-```
-
-O Git dentro do WSL foi configurado para utilizar final de linha LF:
-
-```bash
-git config --global core.autocrlf false
-git config --global core.eol lf
-```
-
-### Criação do projeto
-
-O projeto foi criado dentro do filesystem Linux do WSL:
-
-```bash
-mkdir -p ~/Sites/magento
-cd ~/Sites/magento
-```
-
-A estrutura do docker-magento foi criada com:
-
-```bash
-curl -s https://raw.githubusercontent.com/markshust/docker-magento/master/lib/template | bash
-```
-
-Para evitar problemas de quebra de linha entre Windows e Linux, os arquivos de `bin/` e `env/` foram normalizados:
-
-```bash
-find ./bin -type f -exec sed -i 's/\r$//' {} +
-find ./env -type f -exec sed -i 's/\r$//' {} +
-```
-
-Foi utilizada a configuração de desenvolvimento otimizada para Linux:
-
-```bash
-cp compose.dev-linux.yaml compose.dev.yaml
-```
-
-### Download do Magento
-
-O Magento Open Source 2.4.8-p1 foi baixado utilizando:
-
-```bash
-bin/download community 2.4.8-p1
-```
-
-A autenticação do Composer foi realizada utilizando as Access Keys do Magento Marketplace.
-
-Nenhuma credencial utilizada durante a instalação é versionada no repositório.
-
-### Configuração do domínio local
-
-Foi adicionada a seguinte entrada no arquivo `hosts` do WSL:
+Também foi alterada uma configuração em:
 
 ```text
-127.0.0.1 magento.test
+Stores → Configuration → Catalog → Catalog → Storefront
 ```
 
-A mesma entrada também foi adicionada ao arquivo `hosts` do Windows:
+O `List Mode` passou de:
 
 ```text
-C:\Windows\System32\drivers\etc\hosts
+Grid (default) / List
 ```
 
-### Instalação
-
-A instalação foi executada com:
-
-```bash
-bin/setup magento.test
-```
-
-Após a instalação, os ambientes ficaram disponíveis em:
-
-**Storefront**
+para:
 
 ```text
-https://magento.test
+List (default) / Grid
 ```
 
-**Admin**
+e o efeito foi validado diretamente na storefront.
 
-```text
-https://magento.test/admin/
-```
+📄 [Documentação completa do exercício 12.2](docs/12.2-store-catalog.md)
 
-### Usuário administrativo próprio
-
-Foi criado um usuário administrativo próprio utilizando:
-
-```bash
-bin/magento admin:user:create
-```
-
-O usuário foi validado no painel administrativo e a autenticação em dois fatores foi configurada com sucesso.
-
-### Modo developer
-
-O modo da aplicação foi validado com:
-
-```bash
-bin/magento deploy:mode:show
-```
-
-Resultado:
-
-```text
-Current application mode: developer
-```
-
-### Comandos validados
-
-Durante a configuração do ambiente, os seguintes comandos foram executados e validados:
-
-```bash
-bin/magento setup:upgrade
-bin/magento cache:clean
-bin/magento indexer:reindex
-```
-
-#### `setup:upgrade`
-
-Atualiza a estrutura e as configurações do Magento após alterações relacionadas a módulos.
-
-#### `cache:clean`
-
-Limpa os caches do Magento quando uma alteração realizada ainda não está sendo refletida na aplicação.
-
-#### `indexer:reindex`
-
-Reconstrói os índices utilizados pelo Magento para otimizar consultas relacionadas ao catálogo, produtos, preços e outras informações.
-
-## Problemas encontrados durante o setup
-
-### 1. Configuração inválida do ProFTPD
-
-Durante a preparação do Ubuntu, o pacote `proftpd-core` apresentava erro de configuração e impedia o `dpkg` de finalizar corretamente.
-
-Foram encontradas diretivas inválidas no arquivo:
-
-```text
-/etc/proftpd/proftpd.conf
-```
-
-Entre os problemas encontrados estavam configurações como:
-
-```text
-DefaultRoot~
-```
-
-e:
-
-```text
-RequireValidShell~
-```
-
-As diretivas foram corrigidas para valores válidos.
-
-Depois disso, a configuração do ProFTPD foi validada e o sistema de pacotes foi reparado com:
-
-```bash
-sudo dpkg --configure -a
-sudo apt --fix-broken install
-```
-
-Após a correção, o `apt` voltou a funcionar normalmente.
-
-### 2. Memória insuficiente para o Docker
-
-Durante o download do Magento, o docker-magento informou que era necessário disponibilizar pelo menos 6 GB de memória para o Docker.
-
-O WSL estava limitado a aproximadamente 4 GB.
-
-O arquivo:
-
-```text
-C:\Users\<usuario>\.wslconfig
-```
-
-foi alterado para disponibilizar 8 GB ao WSL:
-
-```ini
-[wsl2]
-memory=8GB
-swap=2GB
-```
-
-Após a alteração, o WSL foi encerrado com:
-
-```powershell
-wsl --shutdown
-```
-
-e iniciado novamente.
-
-### 3. Conflito na porta 3306
-
-Durante a inicialização dos containers, o banco de dados do Magento não conseguia iniciar porque a porta `3306` já estava sendo utilizada no Windows.
-
-Foi identificado um serviço MySQL existente:
-
-```text
-MySQL80
-```
-
-O serviço foi parado com:
-
-```powershell
-Stop-Service -Name MySQL80
-```
-
-Após liberar a porta `3306`, o container do banco do Magento conseguiu iniciar normalmente.
-
-### 4. OpenSearch unhealthy
-
-Durante o setup, o container do OpenSearch era marcado como `unhealthy` antes de terminar completamente sua inicialização.
-
-A configuração do sistema foi verificada com:
-
-```bash
-sysctl vm.max_map_count
-```
-
-Resultado:
-
-```text
-vm.max_map_count = 262144
-```
-
-Os logs também mostraram que o OpenSearch conseguia iniciar e que o cluster posteriormente atingia:
-
-```text
-GREEN
-```
-
-O problema estava relacionado ao tempo permitido pelo healthcheck.
-
-O arquivo:
-
-```text
-compose.healthcheck.yaml
-```
-
-foi ajustado para aumentar a quantidade de tentativas do healthcheck do OpenSearch:
-
-```yaml
-retries: 30
-```
-
-Após o ajuste, o container passou a atingir o estado:
-
-```text
-healthy
-```
-
-e o setup pôde continuar normalmente.
-
-### 5. Certificado SSL não confiável no Windows
-
-Após executar:
-
-```bash
-bin/setup-ssl magento.test
-```
-
-o HTTPS funcionava, porém o Chrome ainda apresentava o site como não confiável.
-
-Foi identificado que existiam duas autoridades certificadoras diferentes:
-
-- uma CA criada pelo `mkcert` do WSL;
-- uma CA utilizada internamente pelo ambiente docker-magento.
-
-O certificado de `magento.test` havia sido assinado pela CA utilizada dentro do container.
-
-A CA correta foi copiada do container para o projeto:
-
-```bash
-docker cp "$(bin/docker-compose ps -q app):/root/.local/share/mkcert/rootCA.pem" ./docker-magento-rootCA.pem
-```
-
-A autoridade certificadora foi validada com:
-
-```bash
-openssl x509 -in docker-magento-rootCA.pem -noout -subject
-```
-
-Depois, o certificado foi importado no repositório de autoridades certificadoras confiáveis do Windows.
-
-Após reiniciar completamente o Chrome, o navegador passou a reconhecer:
-
-```text
-https://magento.test
-```
-
-como uma conexão confiável.
-
-> O certificado utilizado apenas para configuração local não é versionado no repositório.
-
-## Validação final do ambiente
-
-Ao final do desafio, foram validados:
-
-- Docker funcionando
-- WSL2 funcionando
-- Magento rodando dentro do filesystem Linux
-- Storefront acessível
-- Admin acessível
-- Usuário administrativo próprio funcionando
-- 2FA configurado
-- Modo developer ativo
-- MySQL funcionando em container
-- Redis funcionando
-- RabbitMQ funcionando
-- OpenSearch funcionando
-- SSL local confiável
-- Cache funcionando
-- Indexadores funcionando
+📄 [Website, Store e Store View](docs/12.2-website-store-store-view.md)
 
 ---
 
-## 12.2 — Explorando a loja e o catálogo
+## ✅ 13.1 — Primeiro módulo com bloco na Home
 
-Em desenvolvimento.
+No desafio 13.1 foi criado do zero o módulo:
+
+```text
+Webjump_Emiliano
+```
+
+O módulo adiciona um bloco próprio na página inicial da loja, mantendo a lógica separada da camada de apresentação.
+
+### Estrutura
+
+```text
+src/app/code/Webjump/Emiliano/
+├── registration.php
+├── etc/
+│   └── module.xml
+├── ViewModel/
+│   └── HomeMessage.php
+└── view/
+    └── frontend/
+        ├── layout/
+        │   └── cms_index_index.xml
+        ├── templates/
+        │   └── home-message.phtml
+        └── web/
+            └── css/
+                └── home-message.css
+```
+
+O fluxo utilizado é:
+
+```text
+Layout XML
+↓
+ViewModel
+↓
+Template .phtml
+↓
+HTML
+```
+
+### Responsabilidades
+
+- `registration.php` registra o módulo no Magento;
+- `module.xml` declara o módulo;
+- `cms_index_index.xml` adiciona o bloco à Home;
+- `HomeMessage.php` fornece os dados através de um ViewModel;
+- `home-message.phtml` é responsável apenas pela apresentação;
+- `home-message.css` contém o estilo próprio do componente.
+
+As saídas dinâmicas são tratadas com:
+
+```text
+escapeHtml()
+escapeUrl()
+```
+
+O bloco recebeu identidade visual baseada na **Oak & Barrel** e também possui adaptação responsiva para dispositivos móveis.
+
+O módulo foi validado com:
+
+```bash
+bin/magento module:status Webjump_Emiliano
+```
+
+e a sintaxe dos arquivos PHP foi verificada dentro do container.
+
+📄 [Documentação completa do exercício 13.1](docs/13.1-first-module.md)
 
 ---
 
-## 13.1 — Primeiro módulo com bloco na home
+## 🟡 13.2 — Estendendo o comportamento do catálogo
 
-Em desenvolvimento.
+Próximo desafio da Sprint.
+
+O exercício utilizará os mecanismos oficiais de extensão do Magento para modificar comportamentos sem alterar o núcleo da plataforma.
+
+Serão implementados:
+
+- plugin do tipo `after`;
+- declaração em `di.xml`;
+- observer;
+- declaração em `events.xml`;
+- evento do catálogo;
+- registro de mensagem em log.
+
+Nenhum arquivo dentro de `vendor/` será modificado.
 
 ---
 
-## 13.2 — Estendendo o comportamento do catálogo
+# 📁 Documentação
 
-Em desenvolvimento.
-
----
-
-# Documentação
-
-O `README.md` é utilizado como documentação principal do projeto.
-
-Caso seja necessário adicionar documentação mais extensa durante o desenvolvimento, será utilizada a pasta:
+A documentação detalhada de cada exercício está organizada em:
 
 ```text
 docs/
+├── 12.1-magento-environment.md
+├── 12.2-store-catalog.md
+├── 12.2-website-store-store-view.md
+├── 13.1-first-module.md
+└── images/
+    ├── 12.1/
+    ├── 12.2/
+    ├── 13.1/
+    └── 13.2/
 ```
 
-A estrutura poderá ser organizada conforme a necessidade:
+O `README.md` funciona como ponto de entrada do projeto, enquanto os arquivos em `docs/` concentram procedimentos, explicações, troubleshooting e evidências de cada desafio.
+
+---
+
+# 🔒 Segurança e boas práticas
+
+Durante o projeto:
+
+- nenhum arquivo dentro de `vendor/` é alterado;
+- o código customizado fica em `src/app/code/`;
+- Access Keys do Magento não são versionadas;
+- credenciais do Composer não são versionadas;
+- `auth.json` permanece fora do Git;
+- certificados e chaves privadas permanecem locais;
+- arquivos gerados pelo Magento não são versionados;
+- a lógica de apresentação fica em ViewModels;
+- templates `.phtml` mantêm somente responsabilidades de apresentação;
+- toda saída dinâmica é escapada;
+- cada exercício é desenvolvido em branch própria;
+- são utilizados commits semânticos e Pull Requests revisados.
+
+---
+
+# 📌 Status da Sprint
 
 ```text
-docs/
-├── environment/
-├── catalog/
-├── modules/
-└── troubleshooting/
+Sprint 6
+├── 12.1 — Ambiente Magento                ✅
+├── 12.2 — Loja e catálogo                 ✅
+├── 13.1 — Primeiro módulo                 ✅
+├── 13.2 — Extensão do catálogo            🟡
+└── Shopify / AEM / Magento — Comparativo  ⏳
 ```
-
-A criação dessas pastas será feita somente quando houver documentação suficiente para justificar a separação do conteúdo.
-
-# Segurança
-
-Os seguintes tipos de arquivos não devem ser versionados:
-
-- Access Keys do Magento Marketplace
-- credenciais do Composer
-- `auth.json`
-- certificados privados
-- chaves privadas
-- arquivos específicos do ambiente local
-- arquivos temporários de troubleshooting
-
-Credenciais e outros dados sensíveis devem permanecer somente no ambiente local.
