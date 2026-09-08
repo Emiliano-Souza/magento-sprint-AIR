@@ -1,0 +1,12 @@
+:root {
+    --oak-bg: #1f1713;
+    --oak-bg-secondary: #33231a;
+    --oak-accent: #d9a15e;
+    --oak-button: #b97732;
+    --oak-button-hover: #cf8c45;
+    --oak-text: #ffffff;
+    --oak-text-muted: #d8cec5;
+    --oak-text-soft: #afa39a;
+    --oak-border: rgba(255, 255, 255, 0.08);
+    --oak-radius: 18px;
+}
