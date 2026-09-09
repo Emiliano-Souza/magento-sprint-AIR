@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+
+    <default>
+        <webjump_emiliano>
+            <home>
+                <message>
+                    Uma seleção pensada para quem aprecia origem, tempo e personalidade em cada garrafa.
+                </message>
+            </home>
+        </webjump_emiliano>
+    </default>
+
+</config>

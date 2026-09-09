@@ -4,10 +4,22 @@ declare(strict_types=1);
 
 namespace Webjump\Emiliano\ViewModel;
 
+use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\View\Element\Block\ArgumentInterface;
+use Magento\Store\Model\ScopeInterface;
 
 class HomeMessage implements ArgumentInterface
 {
+    private const XML_PATH_MESSAGE = 'webjump_emiliano/home/message';
+
+    private const DEFAULT_MESSAGE =
+        'Uma seleção pensada para quem aprecia origem, tempo e personalidade em cada garrafa.';
+
+    public function __construct(
+        private readonly ScopeConfigInterface $scopeConfig
+    ) {
+    }
+
     public function getEyebrow(): string
     {
         return 'Oak & Barrel';
@@ -20,7 +32,14 @@ class HomeMessage implements ArgumentInterface
 
     public function getMessage(): string
     {
-        return 'Uma seleção pensada para quem aprecia origem, tempo e personalidade em cada garrafa.';
+        $message = (string) $this->scopeConfig->getValue(
+            self::XML_PATH_MESSAGE,
+            ScopeInterface::SCOPE_STORE
+        );
+
+        return trim($message) !== ''
+            ? $message
+            : self::DEFAULT_MESSAGE;
     }
 
     public function getCtaLabel(): string
