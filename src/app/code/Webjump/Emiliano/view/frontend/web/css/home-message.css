@@ -4,10 +4,18 @@
     min-height: 380px;
     margin: 40px 0;
     overflow: hidden;
-    border-radius: 18px;
+    border-radius: var(--oak-radius);
     background:
-        radial-gradient(circle at 85% 20%, rgba(188, 124, 52, 0.22), transparent 30%),
-        linear-gradient(135deg, #1f1713 0%, #33231a 100%);
+        radial-gradient(
+            circle at 85% 20%,
+            rgba(188, 124, 52, 0.22),
+            transparent 30%
+        ),
+        linear-gradient(
+            135deg,
+            var(--oak-bg) 0%,
+            var(--oak-bg-secondary) 100%
+        );
     color: #f7f1e8;
 }
 
@@ -20,7 +28,7 @@
 
 .oak-barrel-feature__eyebrow {
     margin-bottom: 14px;
-    color: #d9a15e;
+    color: var(--oak-accent);
     font-size: 13px;
     font-weight: 700;
     letter-spacing: 0.18em;
@@ -30,7 +38,7 @@
 .oak-barrel-feature__title {
     max-width: 720px;
     margin: 0 0 18px;
-    color: #ffffff;
+    color: var(--oak-text);
     font-size: clamp(32px, 4vw, 48px);
     font-weight: 600;
     line-height: 1.1;
@@ -39,7 +47,7 @@
 .oak-barrel-feature__description {
     max-width: 640px;
     margin: 0 0 30px;
-    color: #d8cec5;
+    color: var(--oak-text-muted);
     font-size: 17px;
     line-height: 1.6;
 }
@@ -53,8 +61,8 @@
     min-height: 46px;
     padding: 0 24px;
     border-radius: 6px;
-    background: #b97732;
-    color: #ffffff;
+    background: var(--oak-button);
+    color: var(--oak-text);
     font-weight: 600;
     text-decoration: none;
     transition:
@@ -64,8 +72,8 @@
 
 .oak-barrel-feature a.oak-barrel-feature__cta:hover,
 .oak-barrel-feature a.oak-barrel-feature__cta:focus {
-    background: #cf8c45;
-    color: #ffffff;
+    background: var(--oak-button-hover);
+    color: var(--oak-text);
     text-decoration: none;
     transform: translateY(-1px);
 }
@@ -84,12 +92,12 @@
 }
 
 .oak-barrel-feature__highlight strong {
-    color: #ffffff;
+    color: var(--oak-text);
     font-size: 15px;
 }
 
 .oak-barrel-feature__highlight span {
-    color: #afa39a;
+    color: var(--oak-text-soft);
     font-size: 13px;
 }
 
@@ -99,7 +107,7 @@
     align-items: center;
     justify-content: center;
     min-height: 100%;
-    border-left: 1px solid rgba(255, 255, 255, 0.08);
+    border-left: 1px solid var(--oak-border);
 }
 
 .oak-barrel-feature__visual::before {
@@ -123,7 +131,7 @@
 .oak-barrel-feature__monogram {
     position: relative;
     z-index: 1;
-    color: #d9a15e;
+    color: var(--oak-accent);
     font-size: 42px;
     font-weight: 600;
     letter-spacing: 0.08em;
@@ -140,7 +148,7 @@
 
     .oak-barrel-feature__visual {
         min-height: 180px;
-        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        border-top: 1px solid var(--oak-border);
         border-left: 0;
     }
 

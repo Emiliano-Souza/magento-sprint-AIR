@@ -246,22 +246,145 @@ e a sintaxe dos arquivos PHP foi verificada dentro do container.
 
 ---
 
-## 🟡 13.2 — Estendendo o comportamento do catálogo
+## ✅ 13.2 — Estendendo o comportamento do catálogo
 
-Próximo desafio da Sprint.
+No desafio 13.2, o módulo `Webjump_Emiliano` foi evoluído utilizando mecanismos oficiais de extensão do Magento.
 
-O exercício utilizará os mecanismos oficiais de extensão do Magento para modificar comportamentos sem alterar o núcleo da plataforma.
+Foram implementados:
 
-Serão implementados:
+- Plugin do tipo `after`;
+- declaração do Plugin em `di.xml`;
+- Observer;
+- declaração do Observer em `events.xml`;
+- evento `catalog_product_save_after`;
+- Dependency Injection com `LoggerInterface`;
+- registro de informações no log do Magento.
 
-- plugin do tipo `after`;
-- declaração em `di.xml`;
-- observer;
-- declaração em `events.xml`;
-- evento do catálogo;
-- registro de mensagem em log.
+### Plugin
 
-Nenhum arquivo dentro de `vendor/` será modificado.
+Foi criado:
+
+```text
+Plugin/ProductNamePlugin.php
+```
+
+O Plugin intercepta:
+
+```text
+Magento\Catalog\Model\Product::getName()
+```
+
+através de:
+
+```text
+afterGetName()
+```
+
+O nome:
+
+```text
+Highland Reserve 12 Years
+```
+
+passa a ser exibido como:
+
+```text
+Highland Reserve 12 Years [Oak & Barrel]
+```
+
+sem alteração da classe original do Magento.
+
+### Observer
+
+Foi criado:
+
+```text
+Observer/ProductSaveObserver.php
+```
+
+O Observer reage ao evento:
+
+```text
+catalog_product_save_after
+```
+
+e registra no `system.log` informações como:
+
+```text
+product_id
+sku
+name
+```
+
+A execução foi validada após salvar o produto através do Magento Admin.
+
+### Plugin x Observer
+
+Neste exercício:
+
+```text
+Plugin
+→ intercepta um método
+→ modifica seu resultado
+
+Observer
+→ escuta um evento
+→ reage quando esse evento acontece
+```
+
+Isso permitiu praticar dois mecanismos diferentes de extensão sem modificar arquivos do núcleo da plataforma.
+
+### Refinamento visual da categoria Whiskies
+
+Como melhoria adicional, a categoria `Whiskies` recebeu uma identidade visual alinhada à Oak & Barrel.
+
+Foram adicionados:
+
+```text
+view/frontend/
+├── layout/
+│   ├── default.xml
+│   ├── cms_index_index.xml
+│   └── catalog_category_view.xml
+└── web/
+    └── css/
+        ├── oak-barrel-base.css
+        ├── home-message.css
+        └── whisky-category.css
+```
+
+O arquivo:
+
+```text
+oak-barrel-base.css
+```
+
+centraliza variáveis compartilhadas da identidade visual, permitindo reutilização entre a Home e a categoria.
+
+A página `Whiskies` recebeu ajustes em:
+
+- cabeçalho;
+- toolbar;
+- sidebar;
+- card do produto;
+- imagem;
+- preço;
+- CTA;
+- links;
+- espaçamento;
+- responsividade.
+
+Os estilos específicos foram limitados através de:
+
+```css
+body.category-whiskies
+```
+
+evitando alterações nas demais categorias da loja.
+
+A página também foi validada em desktop e mobile.
+
+📄 [Documentação completa do exercício 13.2](docs/13.2-catalog-extension.md)
 
 ---
 
@@ -275,6 +398,7 @@ docs/
 ├── 12.2-store-catalog.md
 ├── 12.2-website-store-store-view.md
 ├── 13.1-first-module.md
+├── 13.2-catalog-extension.md
 └── images/
     ├── 12.1/
     ├── 12.2/
@@ -300,6 +424,8 @@ Durante o projeto:
 - a lógica de apresentação fica em ViewModels;
 - templates `.phtml` mantêm somente responsabilidades de apresentação;
 - toda saída dinâmica é escapada;
+- Plugins e Observers são utilizados para estender comportamentos sem alterar o núcleo;
+- dependências são recebidas através de Dependency Injection;
 - cada exercício é desenvolvido em branch própria;
 - são utilizados commits semânticos e Pull Requests revisados.
 
@@ -312,6 +438,7 @@ Sprint 6
 ├── 12.1 — Ambiente Magento                ✅
 ├── 12.2 — Loja e catálogo                 ✅
 ├── 13.1 — Primeiro módulo                 ✅
-├── 13.2 — Extensão do catálogo            🟡
+├── 13.2 — Extensão do catálogo            ✅
+├── 13.3 — Configuração no Admin           ⏳
 └── Shopify / AEM / Magento — Comparativo  ⏳
 ```

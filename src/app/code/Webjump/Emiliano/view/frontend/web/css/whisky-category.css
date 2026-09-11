@@ -1,0 +1,654 @@
+/* =========================================================
+   Oak & Barrel — Whisky Category
+   ========================================================= */
+
+/* Page */
+
+body.category-whiskies .page-main {
+    padding-top: 32px;
+}
+
+
+/* =========================================================
+   Category Header
+   ========================================================= */
+
+body.category-whiskies .page-title-wrapper {
+    margin-bottom: 48px;
+    padding: 42px 48px;
+    overflow: hidden;
+    border-radius: var(--oak-radius);
+    background:
+        radial-gradient(
+            circle at 90% 20%,
+            rgba(188, 124, 52, 0.18),
+            transparent 30%
+        ),
+        linear-gradient(
+            135deg,
+            var(--oak-bg) 0%,
+            var(--oak-bg-secondary) 100%
+        );
+}
+
+body.category-whiskies .page-title {
+    margin: 0;
+}
+
+body.category-whiskies .page-title .base {
+    color: var(--oak-text);
+    font-size: clamp(32px, 4vw, 46px);
+    font-weight: 600;
+    line-height: 1.1;
+}
+
+body.category-whiskies .page-title-wrapper::before {
+    display: block;
+    margin-bottom: 12px;
+    color: var(--oak-accent);
+    content: "Oak & Barrel";
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+}
+
+body.category-whiskies .page-title-wrapper::after {
+    display: block;
+    max-width: 620px;
+    margin-top: 14px;
+    color: var(--oak-text-muted);
+    content: "Uma seleção de whiskies escolhidos por origem, tempo e personalidade.";
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   Main Layout
+   Corrige os floats e o deslocamento lateral do Luma
+   ========================================================= */
+
+body.category-whiskies .columns {
+    display: grid;
+    grid-template-columns: 250px minmax(0, 1fr);
+    gap: 32px;
+    align-items: start;
+}
+
+/* Main content */
+
+body.category-whiskies .column.main {
+    grid-column: 2;
+    grid-row: 1;
+
+    float: none !important;
+    width: auto !important;
+    min-width: 0;
+    padding-left: 0 !important;
+}
+
+/* Sidebar */
+
+body.category-whiskies .sidebar-additional {
+    grid-column: 1;
+    grid-row: 1;
+
+    float: none !important;
+    width: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+
+/* =========================================================
+   Sidebar
+   ========================================================= */
+
+body.category-whiskies .sidebar-additional .block {
+    margin: 0 0 20px;
+    padding: 22px;
+
+    border: 1px solid rgba(31, 23, 19, 0.08);
+    border-radius: 12px;
+
+    background: #faf8f5;
+}
+
+body.category-whiskies .sidebar-additional .block-title {
+    margin: 0 0 14px;
+    padding: 0 0 12px;
+
+    border-bottom: 1px solid rgba(31, 23, 19, 0.08);
+}
+
+body.category-whiskies .sidebar-additional .block-title strong {
+    color: var(--oak-bg-secondary);
+    font-size: 18px;
+    font-weight: 600;
+}
+
+body.category-whiskies .sidebar-additional .block-content {
+    color: #6f625a;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+body.category-whiskies .sidebar-additional a,
+body.category-whiskies .sidebar-additional a:visited {
+    color: var(--oak-button);
+    text-decoration: none;
+}
+
+body.category-whiskies .sidebar-additional a:hover {
+    color: var(--oak-button-hover);
+}
+
+
+/* =========================================================
+   Toolbar
+   ========================================================= */
+
+body.category-whiskies .toolbar-products {
+    display: flex;
+    align-items: center;
+    min-height: 64px;
+
+    margin-bottom: 30px;
+    padding: 14px 18px;
+
+    box-sizing: border-box;
+
+    border: 1px solid rgba(31, 23, 19, 0.08);
+    border-radius: 12px;
+
+    background: #faf8f5;
+}
+
+body.category-whiskies .toolbar-amount,
+body.category-whiskies .sorter-label {
+    color: var(--oak-bg-secondary);
+    font-weight: 600;
+}
+
+body.category-whiskies .sorter-options {
+    border-color: rgba(31, 23, 19, 0.14);
+    border-radius: 6px;
+
+    background: #ffffff;
+}
+
+
+/* =========================================================
+   Product List
+   ========================================================= */
+
+body.category-whiskies .products-list {
+    margin-top: 0;
+}
+
+body.category-whiskies .products-list .product-item {
+    width: 100%;
+    margin-bottom: 28px;
+}
+
+
+/* =========================================================
+   Product Card
+   ========================================================= */
+
+body.category-whiskies .products-list .product-item-info {
+    display: grid;
+    grid-template-columns: 280px minmax(0, 1fr);
+    gap: 42px;
+
+    width: 100% !important;
+    max-width: none !important;
+
+    margin: 0;
+    padding: 34px;
+
+    box-sizing: border-box;
+
+    border-radius: var(--oak-radius);
+
+    background:
+        radial-gradient(
+            circle at 90% 15%,
+            rgba(188, 124, 52, 0.12),
+            transparent 28%
+        ),
+        linear-gradient(
+            135deg,
+            var(--oak-bg) 0%,
+            var(--oak-bg-secondary) 100%
+        );
+
+    color: var(--oak-text);
+}
+
+
+/* =========================================================
+   Product Image
+   ========================================================= */
+
+body.category-whiskies .products-list .product-item-photo {
+    position: static !important;
+    float: none !important;
+
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+
+    width: 280px !important;
+    min-width: 280px;
+    max-width: 280px !important;
+    height: 300px;
+
+    margin: 0 !important;
+    padding: 24px !important;
+
+    box-sizing: border-box;
+
+    border-radius: 14px;
+    background: #ffffff;
+}
+
+body.category-whiskies .products-list .product-image-container {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 100%;
+}
+
+body.category-whiskies .products-list .product-image-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    height: 100% !important;
+
+    padding: 0 !important;
+}
+
+body.category-whiskies .products-list .product-image-photo {
+    position: static !important;
+
+    display: block;
+
+    width: auto !important;
+    max-width: 100% !important;
+
+    height: auto !important;
+    max-height: 250px;
+
+    margin: auto;
+
+    object-fit: contain;
+}
+
+
+/* =========================================================
+   Product Content
+   ========================================================= */
+
+body.category-whiskies .products-list .product-item-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    min-width: 0;
+    padding: 0;
+}
+
+body.category-whiskies .products-list .product-item-name {
+    margin: 0 0 12px;
+}
+
+body.category-whiskies .products-list .product-item-name a,
+body.category-whiskies .products-list .product-item-name a:visited {
+    color: var(--oak-text);
+
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 1.3;
+
+    text-decoration: none;
+}
+
+body.category-whiskies .products-list .product-item-name a:hover {
+    color: var(--oak-accent);
+}
+
+
+/* =========================================================
+   Price
+   ========================================================= */
+
+body.category-whiskies .products-list .price-box {
+    margin: 0 0 16px;
+}
+
+body.category-whiskies .products-list .price {
+    color: var(--oak-accent);
+    font-size: 24px;
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   Product Actions
+   ========================================================= */
+
+body.category-whiskies .products-list .product-item-actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+
+    margin: 0 0 4px;
+}
+
+
+/* Add to Cart */
+
+body.category-whiskies .products-list .action.tocart.primary {
+    min-height: 46px;
+    padding: 0 24px;
+
+    border: 0;
+    border-radius: 6px;
+
+    background: var(--oak-button);
+    color: var(--oak-text);
+
+    font-weight: 600;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+body.category-whiskies .products-list .action.tocart.primary:hover,
+body.category-whiskies .products-list .action.tocart.primary:focus {
+    background: var(--oak-button-hover);
+    color: var(--oak-text);
+
+    transform: translateY(-1px);
+}
+
+
+/* Wishlist / Compare */
+
+body.category-whiskies .products-list .actions-secondary .action {
+    color: var(--oak-text-muted);
+}
+
+body.category-whiskies .products-list .actions-secondary .action:hover {
+    color: var(--oak-accent);
+}
+
+
+/* =========================================================
+   Product Description
+   ========================================================= */
+
+body.category-whiskies .products-list .product-item-description {
+    margin-top: 18px;
+
+    color: var(--oak-text-muted);
+
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+body.category-whiskies .products-list .product-item-description a,
+body.category-whiskies .products-list .product-item-description a:visited {
+    color: var(--oak-accent);
+
+    font-weight: 600;
+    text-decoration: none;
+}
+
+body.category-whiskies .products-list .product-item-description a:hover {
+    color: var(--oak-button-hover);
+}
+
+/* Toolbar alignment */
+
+body.category-whiskies .toolbar-products .modes {
+    float: none;
+    margin: 0 18px 0 0;
+}
+
+body.category-whiskies .toolbar-products .toolbar-amount {
+    float: none;
+    margin: 0;
+}
+
+body.category-whiskies .toolbar-products .sorter {
+    float: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: auto;
+}
+
+body.category-whiskies .toolbar-products .sorter-label {
+    margin: 0;
+}
+
+body.category-whiskies .toolbar-products .sorter-action {
+    margin-left: 2px;
+}
+
+
+/* =========================================================
+   Bottom Toolbar
+   ========================================================= */
+
+body.category-whiskies .toolbar-products:last-child {
+    margin-top: 28px;
+    margin-bottom: 0;
+}
+
+
+/* =========================================================
+   Tablet
+   ========================================================= */
+
+@media (max-width: 1024px) {
+    body.category-whiskies .columns {
+        grid-template-columns: 210px minmax(0, 1fr);
+        gap: 24px;
+    }
+
+    body.category-whiskies .products-list .product-item-info {
+        grid-template-columns: 230px minmax(0, 1fr);
+        gap: 30px;
+
+        padding: 28px;
+    }
+
+    body.category-whiskies .products-list .product-item-photo {
+        width: 230px !important;
+        min-width: 230px;
+        max-width: 230px !important;
+        height: 270px;
+    }
+}
+
+
+/* =========================================================
+   Mobile
+   ========================================================= */
+
+@media (max-width: 768px) {
+    body.category-whiskies .page-main {
+        padding-top: 20px;
+    }
+
+    body.category-whiskies .page-title-wrapper {
+        margin-bottom: 28px;
+        padding: 32px 28px;
+    }
+
+    body.category-whiskies .columns {
+        display: flex;
+        flex-direction: column;
+
+        gap: 24px;
+    }
+
+    body.category-whiskies .column.main {
+        order: 1;
+
+        width: 100% !important;
+        padding: 0 !important;
+    }
+
+    body.category-whiskies .sidebar-additional {
+        order: 2;
+
+        width: 100% !important;
+        padding: 0 !important;
+    }
+
+    body.category-whiskies .products-list .product-item-info {
+        grid-template-columns: 1fr;
+        gap: 24px;
+
+        padding: 24px;
+    }
+
+    body.category-whiskies .products-list .product-item-photo {
+        width: 100% !important;
+        min-width: 0;
+        max-width: 100% !important;
+        height: 280px;
+    }
+
+    body.category-whiskies .products-list .product-item-name a {
+        font-size: 20px;
+    }
+
+    body.category-whiskies .toolbar-products {
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    body.category-whiskies .toolbar-products .sorter {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    body.category-whiskies .page-title-wrapper {
+        margin-bottom: 24px;
+    }
+
+    body.category-whiskies .columns {
+        margin-top: 0 !important;
+        padding-top: 0 !important;
+    }
+
+    body.category-whiskies .column.main {
+        margin-top: 0 !important;
+        padding-top: 0 !important;
+    }
+
+    body.category-whiskies .toolbar-products {
+        margin-top: 0 !important;
+    }
+
+    body.category-whiskies .products {
+        margin-top: 0 !important;
+    }
+
+    /* Mobile toolbar */
+
+    body.category-whiskies .toolbar-products {
+        position: static !important;
+
+        display: flex !important;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 14px;
+
+        width: 100%;
+        min-height: auto;
+
+        margin: 0 0 28px !important;
+        padding: 16px 18px !important;
+
+        box-sizing: border-box;
+
+        border: 1px solid rgba(31, 23, 19, 0.08);
+        border-radius: 12px;
+
+        background: #faf8f5;
+    }
+
+    body.category-whiskies .toolbar-products .modes {
+        display: none !important;
+    }
+
+    body.category-whiskies .toolbar-products .toolbar-amount {
+        position: static !important;
+        float: none !important;
+
+        display: block !important;
+
+        width: auto;
+        margin: 0 !important;
+        padding: 0 !important;
+
+        line-height: normal;
+        text-align: left;
+    }
+
+    body.category-whiskies .toolbar-products .sorter {
+        position: static !important;
+        top: auto !important;
+        right: auto !important;
+        bottom: auto !important;
+        left: auto !important;
+
+        float: none !important;
+
+        display: flex !important;
+        align-items: center;
+        gap: 8px;
+
+        width: auto;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    body.category-whiskies .toolbar-products .sorter-label {
+        display: inline-block !important;
+        margin: 0 !important;
+        white-space: nowrap;
+    }
+
+    body.category-whiskies .toolbar-products .sorter-options {
+        width: 125px;
+        min-width: 125px;
+        margin: 0;
+    }
+
+    body.category-whiskies .toolbar-products .sorter-action {
+        position: static !important;
+        margin: 0 0 0 2px;
+    }
+
+    /* Remove a segunda toolbar no mobile */
+
+    body.category-whiskies .products.wrapper + .toolbar-products {
+        display: none !important;
+    }
+}
