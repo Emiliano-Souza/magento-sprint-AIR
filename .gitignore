@@ -1,6 +1,24 @@
-src/
+# Magento source
+src/*
+
+# Custom Magento modules
+!src/app/
+src/app/*
+
+!src/app/code/
+!src/app/code/**
+
+# Magento module configuration
+!src/app/etc/
+src/app/etc/*
+!src/app/etc/config.php
+
+# Docker generated/local files
 compose.versions.yaml
 
 # Local setup artifacts
 compose.healthcheck.yaml.bak
 docker-magento-rootCA.pem
+
+# Local IDE settings
+.vscode/settings.json
