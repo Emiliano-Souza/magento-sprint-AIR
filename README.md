@@ -1,8 +1,8 @@
 # 🛒 Magento Sprint AIR
 
-Projeto desenvolvido durante a **Sprint 6 do Programa de Estágio da Webjump**, com foco em Magento 2 / Adobe Commerce.
+Projeto desenvolvido durante o **Programa de Estágio da Webjump**, com foco em Magento 2 / Adobe Commerce.
 
-A sprint aborda configuração de ambiente, catálogo, CMS e desenvolvimento de módulos utilizando os mecanismos oficiais de extensão do Magento.
+O repositório reúne as atividades das **Sprints 6 e 7**, abordando configuração de ambiente, catálogo, CMS, desenvolvimento de módulos, extensão do Magento, EAV, banco de dados, Service Contracts e interfaces administrativas.
 
 ---
 
@@ -47,7 +47,7 @@ bin/magento indexer:reindex
 
 ---
 
-# 📚 Desafios
+# 📚 Sprint 6
 
 ## ✅ 12.1 — Ambiente Magento
 
@@ -86,7 +86,7 @@ Também foram estudados os conceitos de **Website, Store e Store View**.
 
 ---
 
-## ✅ 13.1 — Primeiro módulo
+## ✅ 13.1 — Primeiro Módulo
 
 Foi criado o módulo:
 
@@ -123,7 +123,7 @@ HTML
 
 ## ✅ 13.2 — Extensão do Catálogo
 
-O módulo `Webjump_Emiliano` foi evoluído utilizando os mecanismos oficiais de extensão do Magento.
+O módulo `Webjump_Emiliano` foi evoluído utilizando mecanismos oficiais de extensão do Magento.
 
 Foram implementados:
 
@@ -209,9 +209,66 @@ A alteração feita no Admin foi validada na storefront e, caso o campo seja sal
 
 ## ✅ Comparativo de Plataformas
 
-Como entrega final da Sprint, foi elaborado um breve comparativo entre **Shopify, AEM e Magento**, destacando semelhanças e diferenças observadas durante as atividades.
+Como entrega final da Sprint 6, foi elaborado um breve comparativo entre **Shopify, AEM e Magento**, destacando semelhanças e diferenças observadas durante as atividades.
 
 📄 [Shopify, AEM e Magento — Comparativo](docs/platform-comparison.md)
+
+---
+
+# 🚀 Sprint 7
+
+## ✅ 14.1 — Atributo de Produto por Código
+
+Foi criado o módulo:
+
+```text
+Webjump_ProductReviews
+```
+
+como base para as atividades da Sprint 7.
+
+O primeiro desafio adiciona ao catálogo o atributo:
+
+```text
+Selo Sustentável
+```
+
+Principais recursos:
+
+- atributo `sustainable_seal`;
+- criação por Data Patch;
+- `EavSetupFactory`;
+- escopo global;
+- registro em `patch_list`;
+- campo booleano disponível no Admin;
+- exibição condicional na página do produto;
+- template `.phtml`;
+- CSS próprio;
+- tratamento para produtos sem o selo marcado.
+
+O escopo `GLOBAL` foi escolhido porque o atributo representa uma característica do produto/SKU, e não uma informação específica de Website ou Store View.
+
+Diferenças de estoque, quantidade ou lote pertencem a outras responsabilidades do domínio e não alteram necessariamente a identidade do produto. Caso existam versões realmente diferentes, com características de sustentabilidade distintas, a modelagem mais adequada seria tratá-las como produtos/SKUs diferentes ou utilizar uma entidade específica para essa variação.
+
+Fluxo:
+
+```text
+setup:upgrade
+      ↓
+Data Patch
+      ↓
+Atributo EAV
+      ↓
+Produto
+      ↓
+Layout XML
+      ↓
+Template
+      ↓
+Selo na PDP
+```
+
+📄 [Documentação do 14.1](docs/14.1-product-attribute.md)
 
 ---
 
@@ -226,31 +283,39 @@ docs/
 ├── 13.2-catalog-extension.md
 ├── 13.3-admin-configuration.md
 ├── platform-comparison.md
+├── 14.1-product-attribute.md
 └── images/
     ├── 12.1/
     ├── 12.2/
     ├── 13.1/
     ├── 13.2/
-    └── 13.3/
+    ├── 13.3/
+    └── 14.1/
 ```
 
-O `README.md` apresenta uma visão geral da Sprint, enquanto os arquivos em `docs/` concentram as implementações e evidências.
+O `README.md` apresenta uma visão geral das entregas, enquanto os arquivos em `docs/` concentram as decisões técnicas, validações e evidências.
 
 ---
 
-# 🔒 Boas práticas
+# 🔒 Boas Práticas
 
 - código customizado em `src/app/code/`;
 - nenhum arquivo em `vendor/` alterado;
 - credenciais e chaves não versionadas;
 - lógica separada da apresentação;
 - saídas dinâmicas escapadas;
-- uso de Plugin e Observer para extensão;
+- uso de mecanismos oficiais de extensão do Magento;
 - Dependency Injection;
 - configuração administrável pelo Magento;
 - branches por exercício;
 - commits semânticos;
-- Pull Requests revisados.
+- Pull Requests revisados;
+- alterações de banco e atributos reproduzíveis por código;
+- Data Patches para mudanças de dados;
+- decisões de escopo justificadas pelo cenário;
+- menor escopo possível para customizações;
+- consultas com paginação e limite quando houver possibilidade de crescimento;
+- validação final em base limpa.
 
 ---
 
@@ -258,10 +323,19 @@ O `README.md` apresenta uma visão geral da Sprint, enquanto os arquivos em `doc
 
 ```text
 Sprint 6
+
 ├── 12.1 — Ambiente Magento                ✅
 ├── 12.2 — Loja e catálogo                 ✅
 ├── 13.1 — Primeiro módulo                 ✅
 ├── 13.2 — Extensão do catálogo            ✅
 ├── 13.3 — Configuração no Admin           ✅
 └── Shopify / AEM / Magento — Comparativo  ✅
+
+
+Sprint 7
+
+├── 14.1 — Atributo de produto por código  ✅
+├── 14.2 — Entidade e Repository           ⏳
+├── 15.1 — Grid administrativo             ⏳
+└── 15.2 — Formulário e exportação         ⏳
 ```
