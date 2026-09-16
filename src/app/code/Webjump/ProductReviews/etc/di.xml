@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <preference
+        for="Webjump\ProductReviews\Api\ProductReviewRepositoryInterface"
+        type="Webjump\ProductReviews\Model\ProductReviewRepository"
+    />
+
+    <preference
+        for="Webjump\ProductReviews\Api\Data\ProductReviewInterface"
+        type="Webjump\ProductReviews\Model\ProductReview"
+    />
+
+    <preference
+        for="Webjump\ProductReviews\Api\Data\ProductReviewSearchResultsInterface"
+        type="Webjump\ProductReviews\Model\ProductReviewSearchResults"
+    />
+
+</config>
