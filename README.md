@@ -272,6 +272,73 @@ Selo na PDP
 
 ---
 
+## ✅ 14.2 — Entidade Própria e Repository
+
+O módulo `Webjump_ProductReviews` foi evoluído com uma entidade própria para armazenar avaliações de produtos.
+
+Foi criada a tabela:
+
+```text
+webjump_product_review
+```
+
+com:
+
+```text
+review_id
+product_id
+author
+comment
+rating
+approved
+created_at
+```
+
+Principais recursos:
+
+- Declarative Schema;
+- `db_schema_whitelist.json`;
+- Model;
+- ResourceModel;
+- Collection;
+- Service Contracts;
+- Repository;
+- Dependency Injection;
+- `SearchCriteria`;
+- paginação e limite;
+- Data Patch com 5 avaliações de exemplo.
+
+A utilização de uma **tabela própria** foi escolhida porque avaliações representam vários registros independentes relacionados a um produto, e não uma característica única que deveria ser armazenada como atributo EAV.
+
+Fluxo:
+
+```text
+RepositoryInterface
+        ↓
+Repository
+        ↓
+Model / ResourceModel / Collection
+        ↓
+webjump_product_review
+```
+
+O Repository implementa:
+
+```text
+save()
+getById()
+delete()
+getList()
+```
+
+O `getList()` utiliza `SearchCriteriaInterface`, permitindo filtros e paginação, com limite padrão para evitar consultas ilimitadas em uma tabela que pode crescer.
+
+As `preference` configuradas em `di.xml` relacionam apenas interfaces e implementações do próprio módulo, sem substituir classes do núcleo do Magento.
+
+📄 [Documentação do 14.2](docs/14.2-product-reviews-entity.md)
+
+---
+
 # 📁 Documentação
 
 ```text
@@ -284,13 +351,15 @@ docs/
 ├── 13.3-admin-configuration.md
 ├── platform-comparison.md
 ├── 14.1-product-attribute.md
+├── 14.2-product-reviews-entity.md
 └── images/
     ├── 12.1/
     ├── 12.2/
     ├── 13.1/
     ├── 13.2/
     ├── 13.3/
-    └── 14.1/
+    ├── 14.1/
+    └── 14.2/
 ```
 
 O `README.md` apresenta uma visão geral das entregas, enquanto os arquivos em `docs/` concentram as decisões técnicas, validações e evidências.
@@ -312,8 +381,10 @@ O `README.md` apresenta uma visão geral das entregas, enquanto os arquivos em `
 - Pull Requests revisados;
 - alterações de banco e atributos reproduzíveis por código;
 - Data Patches para mudanças de dados;
-- decisões de escopo justificadas pelo cenário;
-- menor escopo possível para customizações;
+- Declarative Schema para estrutura de banco;
+- Service Contracts para acesso às entidades;
+- decisões técnicas justificadas pelo cenário;
+- nenhuma `preference` substituindo classe do núcleo;
 - consultas com paginação e limite quando houver possibilidade de crescimento;
 - validação final em base limpa.
 
@@ -335,7 +406,7 @@ Sprint 6
 Sprint 7
 
 ├── 14.1 — Atributo de produto por código  ✅
-├── 14.2 — Entidade e Repository           ⏳
+├── 14.2 — Entidade e Repository           ✅
 ├── 15.1 — Grid administrativo             ⏳
 └── 15.2 — Formulário e exportação         ⏳
 ```
