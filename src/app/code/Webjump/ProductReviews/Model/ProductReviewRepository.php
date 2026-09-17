@@ -31,14 +31,10 @@ class ProductReviewRepository implements ProductReviewRepositoryInterface
     public function save(
         ProductReviewInterface $productReview
     ): ProductReviewInterface {
-        if (!$productReview instanceof ProductReview) {
-            throw new CouldNotSaveException(
-                __('Invalid product review implementation.')
-            );
-        }
+        $model = $this->getPersistableModel($productReview);
 
         try {
-            $this->resource->save($productReview);
+            $this->resource->save($model);
         } catch (\Throwable $exception) {
             throw new CouldNotSaveException(
                 __('Could not save the product review.'),
@@ -46,7 +42,7 @@ class ProductReviewRepository implements ProductReviewRepositoryInterface
             );
         }
 
-        return $productReview;
+        return $model;
     }
 
     public function getById(int $reviewId): ProductReviewInterface
@@ -67,14 +63,25 @@ class ProductReviewRepository implements ProductReviewRepositoryInterface
     public function delete(
         ProductReviewInterface $productReview
     ): bool {
-        if (!$productReview instanceof ProductReview) {
+        $reviewId = $productReview->getReviewId();
+
+        if ($reviewId === null) {
             throw new CouldNotDeleteException(
-                __('Invalid product review implementation.')
+                __('Product review ID is required for deletion.')
+            );
+        }
+
+        $model = $this->productReviewFactory->create();
+        $this->resource->load($model, $reviewId);
+
+        if (!$model->getId()) {
+            throw new CouldNotDeleteException(
+                __('Product review with ID "%1" does not exist.', $reviewId)
             );
         }
 
         try {
-            $this->resource->delete($productReview);
+            $this->resource->delete($model);
         } catch (\Throwable $exception) {
             throw new CouldNotDeleteException(
                 __('Could not delete the product review.'),
@@ -90,14 +97,14 @@ class ProductReviewRepository implements ProductReviewRepositoryInterface
     ): ProductReviewSearchResultsInterface {
         $collection = $this->collectionFactory->create();
 
+        if ($searchCriteria->getPageSize() === null) {
+            $searchCriteria->setPageSize(self::DEFAULT_PAGE_SIZE);
+        }
+
         $this->collectionProcessor->process(
             $searchCriteria,
             $collection
         );
-
-        if (!$searchCriteria->getPageSize()) {
-            $collection->setPageSize(self::DEFAULT_PAGE_SIZE);
-        }
 
         $searchResults = $this->searchResultsFactory->create();
 
@@ -106,5 +113,41 @@ class ProductReviewRepository implements ProductReviewRepositoryInterface
         $searchResults->setTotalCount((int) $collection->getSize());
 
         return $searchResults;
+    }
+
+    private function getPersistableModel(
+        ProductReviewInterface $productReview
+    ): ProductReview {
+        if ($productReview instanceof ProductReview) {
+            return $productReview;
+        }
+
+        $model = $this->productReviewFactory->create();
+
+        if ($productReview->getReviewId() !== null) {
+            $model->setReviewId($productReview->getReviewId());
+        }
+
+        if ($productReview->getProductId() !== null) {
+            $model->setProductId($productReview->getProductId());
+        }
+
+        if ($productReview->getAuthor() !== null) {
+            $model->setAuthor($productReview->getAuthor());
+        }
+
+        $model->setComment($productReview->getComment());
+
+        if ($productReview->getRating() !== null) {
+            $model->setRating($productReview->getRating());
+        }
+
+        $model->setApproved($productReview->isApproved());
+
+        if ($productReview->getCreatedAt() !== null) {
+            $model->setCreatedAt($productReview->getCreatedAt());
+        }
+
+        return $model;
     }
 }
