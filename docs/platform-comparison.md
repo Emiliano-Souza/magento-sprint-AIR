@@ -1,0 +1,5 @@
+# 🔄 Shopify, AEM e Magento — Comparativo
+
+s três plataformas estudadas ao longo das sprints, AEM, Shopify e Magento possuem o mesmo objetivo de permitir a construcao de experiencias digitais no e-commerce; contudo, trabalham diferente. O Shopify oferece uma estrutura mais pronta e simples, com menor necessidade de configuração. O AEM possui um foco maior em gestão de conteúdo, utilizando fortemente componentes reutilizáveis e separação forte entre autoria e apresentação. O Magento oferece grande controle sobre estrutura de loja, catálogo, regras de negócio, etc; contudo, possui uma estrutura de código mais complexa e maiores problemas de configuração.
+
+Durante as atividades foi possível perceber conceitos semelhantes entre as plataformas, mesmo com implementações diferentes. Configurações editáveis pelo usuário aparecem como settings no Shopify, dialogs/configurações no AEM e Stores → Configuration no Magento. Da mesma forma, todas buscam separar conteúdo, apresentação e lógica, mas o Magento exige maior conhecimento da arquitetura interna e dos mecanismos de extensão, oferecendo em troca maior segurança. 

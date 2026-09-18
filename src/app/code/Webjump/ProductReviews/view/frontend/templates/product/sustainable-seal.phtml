@@ -1,0 +1,13 @@
+<?php
+
+/** @var \Magento\Catalog\Block\Product\View $block */
+
+$product = $block->getProduct();
+$isSustainable = (bool) $product->getData('sustainable_seal');
+?>
+
+<?php if ($isSustainable): ?>
+    <div class="webjump-sustainable-seal">
+        <?= $block->escapeHtml(__('Selo Sustentável')) ?>
+    </div>
+<?php endif; ?>
