@@ -8,8 +8,20 @@ use Magento\Catalog\Model\Product;
 
 class ProductNamePlugin
 {
-    public function afterGetName(Product $subject, string $result): string
-    {
-        return $result . ' [Oak & Barrel]';
+    private const SUFFIX = ' [Oak & Barrel]';
+
+    public function afterGetName(
+        Product $subject,
+        ?string $result
+    ): ?string {
+        if ($result === null || $result === '') {
+            return $result;
+        }
+
+        if (str_ends_with($result, self::SUFFIX)) {
+            return $result;
+        }
+
+        return $result . self::SUFFIX;
     }
 }
