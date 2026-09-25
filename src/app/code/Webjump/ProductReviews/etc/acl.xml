@@ -20,6 +20,10 @@
                         title="Export Reviews"
                         sortOrder="20"/>
 
+                    <resource id="Webjump_ProductReviews::config"
+                        title="Product Reviews Configuration"
+                        sortOrder="30"/>
+
                 </resource>
             </resource>
         </resources>
