@@ -101,7 +101,7 @@ Principais recursos:
 - Layout XML;
 - ViewModel;
 - template `.phtml`;
-- CSS próprio;
+- LESS próprio;;
 - escape de saídas dinâmicas;
 - bloco responsivo na Home.
 
@@ -155,7 +155,7 @@ Como melhoria adicional, a categoria `Whiskies` recebeu uma identidade visual al
 - toolbar;
 - sidebar;
 - card de produto;
-- CSS compartilhado;
+- Less compartilhado;
 - responsividade desktop e mobile.
 
 📄 [Documentação do 13.2](docs/13.2-catalog-extension.md)
@@ -336,6 +336,111 @@ O `getList()` utiliza `SearchCriteriaInterface`, permitindo filtros e paginaçã
 As `preference` configuradas em `di.xml` relacionam apenas interfaces e implementações do próprio módulo, sem substituir classes do núcleo do Magento.
 
 📄 [Documentação do 14.2](docs/14.2-product-reviews-entity.md)
+
+---
+
+## ✅ 15.1 — Grid Administrativo
+
+O módulo `Webjump_ProductReviews` foi evoluído com uma interface administrativa para consulta e gerenciamento das avaliações cadastradas.
+
+Foi criada uma nova área no Admin:
+
+```text
+Product Reviews
+└── Reviews
+```
+
+Principais recursos:
+
+- rota administrativa;
+- item de menu;
+- ACL;
+- Controller protegido por `ADMIN_RESOURCE`;
+- UI Component Listing;
+- Grid Collection;
+- filtros;
+- ordenação;
+- paginação;
+- seleção de registros;
+- ação em massa para aprovação.
+
+O grid utiliza a tabela:
+
+```text
+webjump_product_review
+```
+
+e apresenta:
+
+```text
+ID
+Product ID
+Author
+Comment
+Rating
+Approved
+Created At
+```
+
+Foram configurados filtros de:
+
+```text
+texto
+→ Author
+→ Comment
+
+faixa numérica
+→ ID
+→ Product ID
+→ Rating
+→ Approved
+
+data
+→ Created At
+```
+
+A ação em massa:
+
+```text
+Approve
+```
+
+permite selecionar avaliações e atualizar:
+
+```text
+approved = 1
+```
+
+através do próprio Repository.
+
+As permissões administrativas foram separadas em:
+
+```text
+Webjump_ProductReviews::reviews
+Webjump_ProductReviews::reviews_export
+```
+
+Também foi realizado um teste com usuário restrito. O acesso direto ao grid foi bloqueado corretamente pelo ACL.
+
+Fluxo:
+
+```text
+Menu
+  ↓
+Controller
+  ↓
+Layout
+  ↓
+UI Component
+  ↓
+DataSource
+  ↓
+Grid Collection
+  ↓
+webjump_product_review
+```
+
+📄 [Documentação do 15.1](docs/15.1-admin-grid.md)
 
 ---
 

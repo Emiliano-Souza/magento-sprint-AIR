@@ -1,0 +1,138 @@
+<?xml version="1.0"?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">
+                webjump_product_review_listing.webjump_product_review_listing_data_source
+            </item>
+        </item>
+    </argument>
+
+    <settings>
+        <spinner>webjump_product_review_columns</spinner>
+
+        <deps>
+            <dep>
+                webjump_product_review_listing.webjump_product_review_listing_data_source
+            </dep>
+        </deps>
+    </settings>
+
+    <dataSource name="webjump_product_review_listing_data_source"
+                component="Magento_Ui/js/grid/provider">
+
+        <settings>
+            <storageConfig>
+                <param name="indexField" xsi:type="string">
+                    review_id
+                </param>
+            </storageConfig>
+
+            <updateUrl path="mui/index/render"/>
+        </settings>
+
+        <aclResource>Webjump_ProductReviews::reviews</aclResource>
+
+        <dataProvider
+            name="webjump_product_review_listing_data_source"
+            class="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+
+            <settings>
+                <requestFieldName>review_id</requestFieldName>
+                <primaryFieldName>review_id</primaryFieldName>
+            </settings>
+
+        </dataProvider>
+
+    </dataSource>
+
+    <listingToolbar name="listing_top">
+
+        <bookmark name="bookmarks"/>
+
+        <columnsControls name="columns_controls"/>
+
+        <filters name="listing_filters"/>
+
+        <paging name="listing_paging"/>
+
+        <massaction name="listing_massaction">
+            <action name="approve">
+                <settings>
+                    <type>approve</type>
+                    <label translate="true">Approve</label>
+                    <url path="webjump_productreviews/review/massApprove"/>
+                </settings>
+            </action>
+        </massaction>
+
+    </listingToolbar>
+
+    <columns name="webjump_product_review_columns">
+
+        <selectionsColumn name="ids">
+            <settings>
+                <indexField>review_id</indexField>
+            </settings>
+        </selectionsColumn>
+
+        <column name="review_id">
+            <settings>
+                <filter>textRange</filter>
+                <sorting>asc</sorting>
+                <label translate="true">ID</label>
+            </settings>
+        </column>
+
+        <column name="product_id">
+            <settings>
+                <filter>textRange</filter>
+                <label translate="true">Product ID</label>
+            </settings>
+        </column>
+
+        <column name="author">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Author</label>
+            </settings>
+        </column>
+
+        <column name="comment">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Comment</label>
+            </settings>
+        </column>
+
+        <column name="rating">
+            <settings>
+                <filter>textRange</filter>
+                <label translate="true">Rating</label>
+            </settings>
+        </column>
+
+        <column name="approved">
+            <settings>
+                <filter>textRange</filter>
+                <label translate="true">Approved</label>
+            </settings>
+        </column>
+
+        <column name="created_at"
+                class="Magento\Ui\Component\Listing\Columns\Date"
+                component="Magento_Ui/js/grid/columns/date">
+
+            <settings>
+                <filter>dateRange</filter>
+                <dataType>date</dataType>
+                <label translate="true">Created At</label>
+            </settings>
+
+        </column>
+
+    </columns>
+
+</listing>

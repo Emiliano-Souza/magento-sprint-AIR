@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+
+    <menu>
+        <add
+            id="Webjump_ProductReviews::product_reviews"
+            title="Product Reviews"
+            module="Webjump_ProductReviews"
+            sortOrder="100"
+            resource="Webjump_ProductReviews::product_reviews"/>
+
+        <add
+            id="Webjump_ProductReviews::reviews"
+            title="Reviews"
+            module="Webjump_ProductReviews"
+            sortOrder="10"
+            parent="Webjump_ProductReviews::product_reviews"
+            action="webjump_productreviews/review/index"
+            resource="Webjump_ProductReviews::reviews"/>
+    </menu>
+
+</config>
