@@ -534,6 +534,93 @@ Nenhuma `preference` foi criada sobre classes do núcleo do Magento.
 
 ---
 
+## ✅ 15.3 — Exportação Customizada
+
+A exportação de `Webjump_ProductReviews` foi evoluída para entregar os dados no formato solicitado pelo cliente.
+
+Foram adicionadas as seguintes transformações:
+
+```text
+Approved
+0 / 1
+→ Sim / Não
+
+Created At
+→ formato brasileiro
+
+Product ID
+→ Product Name
+```
+
+A customização está disponível nos formatos:
+
+```text
+CSV
+Excel XML
+```
+
+e continua respeitando os filtros aplicados no grid.
+
+Foi criada uma camada específica de formatação:
+
+```text
+ProductReviewExportFormatter
+```
+
+utilizada pelos conversores próprios do módulo:
+
+```text
+Webjump\ProductReviews\Model\Export\ConvertToCsv
+
+Webjump\ProductReviews\Model\Export\ConvertToXml
+```
+
+### Estratégia de isolamento
+
+Foi escolhida uma exportação específica para o módulo, sem criar `preference` global sobre:
+
+```text
+Magento\Ui\Model\Export\ConvertToCsv
+Magento\Ui\Model\Export\ConvertToXml
+```
+
+Assim, somente os controllers de exportação de `Webjump_ProductReviews` utilizam os conversores customizados.
+
+Fluxo:
+
+```text
+Product Reviews
+       ↓
+ExportCsv / ExportXml
+       ↓
+Conversores do módulo
+       ↓
+ProductReviewExportFormatter
+```
+
+Os grids do núcleo continuam utilizando os conversores nativos do Magento:
+
+```text
+Orders
+→ exportação nativa
+
+Customers
+→ exportação nativa
+```
+
+Essa estratégia evita que regras específicas de avaliações sejam aplicadas globalmente a outros grids administrativos.
+
+Foram realizados testes de regressão em:
+
+```text
+Sales → Orders
+Customers → All Customers
+```
+
+com exportação em CSV e Excel XML funcionando normalmente.
+
+📄 [Documentação do 15.3](docs/15.3-custom-export.md)
+
 # 📁 Documentação
 
 ```text
@@ -547,6 +634,9 @@ docs/
 ├── platform-comparison.md
 ├── 14.1-product-attribute.md
 ├── 14.2-product-reviews-entity.md
+├── 15.1-admin-grid.md
+├── 15.2-form-config-export.md
+├── 15.3-custom-export.md
 └── images/
     ├── 12.1/
     ├── 12.2/
@@ -554,7 +644,10 @@ docs/
     ├── 13.2/
     ├── 13.3/
     ├── 14.1/
-    └── 14.2/
+    ├── 14.2/
+    ├── 15.1/
+    ├── 15.2/
+    └── 15.3/
 ```
 
 O `README.md` apresenta uma visão geral das entregas, enquanto os arquivos em `docs/` concentram as decisões técnicas, validações e evidências.

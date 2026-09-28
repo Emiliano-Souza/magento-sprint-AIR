@@ -6,7 +6,7 @@ namespace Webjump\ProductReviews\Controller\Adminhtml\Review;
 
 use Magento\Backend\App\Action;
 use Magento\Framework\App\Response\Http\FileFactory;
-use Magento\Ui\Model\Export\ConvertToCsv;
+use Webjump\ProductReviews\Model\Export\ConvertToCsv;
 
 class ExportCsv extends Action
 {

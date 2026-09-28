@@ -6,7 +6,7 @@ namespace Webjump\ProductReviews\Controller\Adminhtml\Review;
 
 use Magento\Backend\App\Action;
 use Magento\Framework\App\Response\Http\FileFactory;
-use Magento\Ui\Model\Export\ConvertToXml;
+use Webjump\ProductReviews\Model\Export\ConvertToXml;
 
 class ExportXml extends Action
 {
