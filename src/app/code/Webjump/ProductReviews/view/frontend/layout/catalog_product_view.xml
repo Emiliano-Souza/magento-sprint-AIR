@@ -5,6 +5,16 @@
             <block class="Magento\Catalog\Block\Product\View"
                    name="webjump.product.sustainable.seal"
                    template="Webjump_ProductReviews::product/sustainable-seal.phtml"/>
+            <block class="Magento\Catalog\Block\Product\View"
+                name="webjump.product.reviews"
+                template="Webjump_ProductReviews::product/reviews.phtml">
+                <arguments>
+                    <argument name="view_model"
+                            xsi:type="object">
+                        Webjump\ProductReviews\ViewModel\ProductReviews
+                    </argument>
+                </arguments>
+            </block>
         </referenceContainer>
     </body>
 

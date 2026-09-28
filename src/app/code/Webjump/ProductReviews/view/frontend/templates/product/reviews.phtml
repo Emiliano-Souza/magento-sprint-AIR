@@ -1,0 +1,53 @@
+<?php
+
+declare(strict_types=1);
+
+use Magento\Catalog\Block\Product\View;
+use Magento\Framework\Escaper;
+use Webjump\ProductReviews\ViewModel\ProductReviews;
+
+/** @var View $block */
+/** @var Escaper $escaper */
+
+$viewModel = $block->getData('view_model');
+
+if (!$viewModel instanceof ProductReviews || !$viewModel->isEnabled()) {
+    return;
+}
+
+$product = $block->getProduct();
+
+if (!$product || !$product->getId()) {
+    return;
+}
+
+$reviews = $viewModel->getReviews((int) $product->getId());
+
+if ($reviews === []) {
+    return;
+}
+?>
+
+<div class="webjump-product-reviews">
+    <h2><?= $escaper->escapeHtml(__('Product Reviews')) ?></h2>
+
+    <?php foreach ($reviews as $review): ?>
+        <div class="webjump-product-review">
+            <strong>
+                <?= $escaper->escapeHtml($review->getAuthor()) ?>
+            </strong>
+
+            <div>
+                <?= $escaper->escapeHtml(
+                    __('Rating: %1/5', $review->getRating())
+                ) ?>
+            </div>
+
+            <?php if ($review->getComment()): ?>
+                <p>
+                    <?= $escaper->escapeHtml($review->getComment()) ?>
+                </p>
+            <?php endif; ?>
+        </div>
+    <?php endforeach; ?>
+</div>

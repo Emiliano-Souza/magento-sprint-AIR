@@ -243,7 +243,7 @@ Principais recursos:
 - campo booleano disponível no Admin;
 - exibição condicional na página do produto;
 - template `.phtml`;
-- CSS próprio;
+- Less próprio;
 - tratamento para produtos sem o selo marcado.
 
 O escopo `GLOBAL` foi escolhido porque o atributo representa uma característica do produto/SKU, e não uma informação específica de Website ou Store View.
@@ -441,6 +441,96 @@ webjump_product_review
 ```
 
 📄 [Documentação do 15.1](docs/15.1-admin-grid.md)
+
+---
+
+## ✅ 15.2 — Formulário, Configuração e Exportação
+
+O módulo `Webjump_ProductReviews` foi finalizado com um CRUD administrativo completo, configuração no Admin e exportação dos registros.
+
+Principais recursos:
+
+- formulário de criação e edição com UI Components;
+- `DataProvider` próprio;
+- validação no frontend e backend;
+- criação, edição e exclusão de avaliações;
+- persistência através do `ProductReviewRepository`;
+- botões `Back`, `Save Review` e `Delete Review`;
+- configuração em `Stores → Configuration`;
+- valores padrão definidos em `config.xml`;
+- controle de exibição no storefront;
+- limite configurável de avaliações;
+- exportação CSV;
+- exportação Excel XML;
+- exportação respeitando os filtros do grid.
+
+A configuração foi adicionada em:
+
+```text
+Stores
+→ Configuration
+→ Catalog
+→ Product Reviews
+```
+
+com:
+
+```text
+Enabled
+Reviews Limit
+```
+
+O valor `Enabled` controla a exibição das avaliações customizadas na página do produto, enquanto `Reviews Limit` define a quantidade máxima de registros apresentados.
+
+O fluxo de exibição no storefront ficou:
+
+```text
+Stores → Configuration
+        ↓
+Model/Config
+        ↓
+ProductReviews ViewModel
+        ↓
+Repository
+        ↓
+reviews.phtml
+        ↓
+PDP
+```
+
+Somente avaliações:
+
+```text
+approved = 1
+```
+
+relacionadas ao produto atual são exibidas.
+
+A exportação foi integrada diretamente ao grid administrativo nos formatos:
+
+```text
+CSV
+Excel XML
+```
+
+utilizando:
+
+```text
+Magento\Ui\Model\Export\ConvertToCsv
+Magento\Ui\Model\Export\ConvertToXml
+```
+
+A permissão de exportação permanece separada:
+
+```text
+Webjump_ProductReviews::reviews_export
+```
+
+Foi validado que os arquivos exportados respeitam os filtros aplicados no grid. Com `Rating = 5`, apenas as avaliações de Ana Souza e Mariana Alves foram exportadas.
+
+Nenhuma `preference` foi criada sobre classes do núcleo do Magento.
+
+📄 [Documentação do 15.2](docs/15.2-form-config-export.md)
 
 ---
 

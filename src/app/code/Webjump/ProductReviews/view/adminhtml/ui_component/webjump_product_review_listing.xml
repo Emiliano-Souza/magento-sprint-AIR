@@ -11,6 +11,14 @@
     </argument>
 
     <settings>
+        <buttons>
+            <button name="add">
+                <url path="webjump_productreviews/review/new"/>
+                <class>primary</class>
+                <label translate="true">New Review</label>
+            </button>
+        </buttons>
+
         <spinner>webjump_product_review_columns</spinner>
 
         <deps>
@@ -53,6 +61,36 @@
         <bookmark name="bookmarks"/>
 
         <columnsControls name="columns_controls"/>
+
+        <exportButton name="export_button">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+
+                    <item name="selectProvider" xsi:type="string">
+                        webjump_product_review_listing.webjump_product_review_listing.webjump_product_review_columns.ids
+                    </item>
+
+                    <item name="options" xsi:type="array">
+                        <item name="csv" xsi:type="array">
+                            <item name="value" xsi:type="string">csv</item>
+                            <item name="label" xsi:type="string" translate="true">CSV</item>
+                            <item name="url" xsi:type="string">
+                                webjump_productreviews/review/exportCsv
+                            </item>
+                        </item>
+
+                        <item name="xml" xsi:type="array">
+                            <item name="value" xsi:type="string">xml</item>
+                            <item name="label" xsi:type="string" translate="true">Excel XML</item>
+                            <item name="url" xsi:type="string">
+                                webjump_productreviews/review/exportXml
+                            </item>
+                        </item>
+                    </item>
+
+                </item>
+            </argument>
+        </exportButton>
 
         <filters name="listing_filters"/>
 
@@ -132,6 +170,14 @@
             </settings>
 
         </column>
+
+        <actionsColumn name="actions"
+                       class="Webjump\ProductReviews\Ui\Component\Listing\Column\ProductReviewActions">
+            <settings>
+                <indexField>review_id</indexField>
+                <label translate="true">Actions</label>
+            </settings>
+        </actionsColumn>
 
     </columns>
 
