@@ -621,6 +621,70 @@ com exportação em CSV e Excel XML funcionando normalmente.
 
 📄 [Documentação do 15.3](docs/15.3-custom-export.md)
 
+---
+
+## ✅ 16.1 — Tema Noite Assombrada
+
+Foi criado o tema frontend:
+
+```text
+Webjump/noite-assombrada
+```
+
+herdando de:
+
+```text
+Magento/luma
+```
+
+O tema aplica a identidade de Halloween da **Oak & Barrel** sem alterar arquivos do Luma ou de `vendor/`.
+
+Principais entregas:
+
+- `registration.php` e `theme.xml`;
+- preview do tema;
+- logo customizada via layout XML;
+- paleta e tipografia configuradas em `_theme.less`;
+- estilos adicionais organizados a partir do `_extend.less`;
+- fontes próprias `Creepster` e `Fraunces`;
+- customização de header, footer, botões, links, categoria e página de produto;
+- responsividade com `.media-width`.
+
+As principais variáveis da Magento UI Library sobrescritas foram:
+
+```text
+@primary__color
+@secondary__color
+@page__background-color
+@text__color
+@heading__color__base
+@link__color
+@link__hover__color
+@button-primary__background
+@border-color__base
+@form-element-input__background
+```
+
+As alterações centralizam a identidade da campanha e mantêm contraste e legibilidade em toda a loja.
+
+Os estilos adicionais foram separados por responsabilidade:
+
+```text
+_catalog.less
+_elements.less
+_fonts.less
+_footer.less
+_global.less
+_header.less
+_home.less
+_product.less
+_responsive.less
+```
+
+A identidade foi validada na Home, categoria `Whiskies`, página de produto e em desktop/mobile.
+
+---
+
 # 📁 Documentação
 
 ```text
@@ -637,6 +701,7 @@ docs/
 ├── 15.1-admin-grid.md
 ├── 15.2-form-config-export.md
 ├── 15.3-custom-export.md
+├── 16.1-noite-assombrada.md
 └── images/
     ├── 12.1/
     ├── 12.2/
@@ -646,8 +711,9 @@ docs/
     ├── 14.1/
     ├── 14.2/
     ├── 15.1/
-    ├── 15.2/
-    └── 15.3/
+    ├── 15.2/        
+    ├── 15.3/
+    └── 16.1/
 ```
 
 O `README.md` apresenta uma visão geral das entregas, enquanto os arquivos em `docs/` concentram as decisões técnicas, validações e evidências.
@@ -695,6 +761,12 @@ Sprint 7
 
 ├── 14.1 — Atributo de produto por código  ✅
 ├── 14.2 — Entidade e Repository           ✅
-├── 15.1 — Grid administrativo             ⏳
-└── 15.2 — Formulário e exportação         ⏳
+├── 15.1 — Grid administrativo             ✅
+└── 15.2 — Formulário e exportação         ✅
+
+
+Sprint 8
+
+├── 16.1 — Tema Noite Assombrada           ✅
+└── 16.2 — ???                             
 ```
