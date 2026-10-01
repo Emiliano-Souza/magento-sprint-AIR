@@ -1,0 +1,124 @@
+// =====================================================
+// Footer
+// =====================================================
+
+.page-wrapper > .page-footer {
+    width: 100%;
+
+    border-top: 1px solid fade(@halloween-orange, 38%);
+
+    background:
+        linear-gradient(
+            180deg,
+            @halloween-black 0%,
+            @halloween-black-deep 100%
+        );
+
+    color: @halloween-white;
+}
+
+.page-footer {
+    .footer.content {
+        border-top: 0;
+
+        background: transparent;
+
+        color: @halloween-white;
+
+        a {
+            color: @halloween-muted;
+
+            transition: color .2s ease;
+
+            &:visited {
+                color: @halloween-muted;
+            }
+
+            &:hover {
+                color: @halloween-orange-light;
+            }
+        }
+
+        .links {
+            > li {
+                color: @halloween-muted;
+            }
+        }
+
+        .block.newsletter {
+            .title,
+            .title strong {
+                color: @halloween-white;
+            }
+
+            .form.subscribe {
+                display: flex;
+                align-items: center;
+                gap: 14px;
+            }
+
+            .field.newsletter {
+                display: block;
+                flex: 1;
+            }
+
+            .actions {
+                display: block;
+                width: auto;
+            }
+
+            input {
+                border: 1px solid @halloween-border;
+                border-radius: @halloween-radius-pill;
+
+                background: @halloween-surface-light;
+
+                color: @halloween-black;
+
+                &:focus {
+                    border-color: @halloween-orange;
+
+                    box-shadow:
+                        0 0 0 1px fade(@halloween-orange, 18%);
+                }
+            }
+
+            .action.subscribe {
+                border-radius: @halloween-radius-pill;
+
+                background: @halloween-orange;
+                border-color: @halloween-orange;
+
+                color: @halloween-black;
+
+                transition:
+                    background .2s ease,
+                    border-color .2s ease,
+                    box-shadow .2s ease;
+
+                &:hover {
+                    background: @halloween-orange-light;
+                    border-color: @halloween-orange-light;
+
+                    color: @halloween-black;
+
+                    box-shadow:
+                        0 0 14px fade(@halloween-orange, 20%);
+                }
+            }
+        }
+    }
+}
+
+
+// =====================================================
+// Copyright
+// =====================================================
+
+.copyright {
+    border-top: 1px solid fade(@halloween-orange, 15%);
+
+    background: #050505;
+
+    color: @halloween-muted;
+}

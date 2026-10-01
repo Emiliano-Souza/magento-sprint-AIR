@@ -1,0 +1,333 @@
+// =====================================================
+// Sidebar / Filters
+// =====================================================
+
+.sidebar {
+    color: @halloween-white;
+
+    .block {
+        border: 1px solid @halloween-border;
+        border-radius: @border-radius__base;
+
+        background: @halloween-black-soft;
+
+        color: @halloween-white;
+    }
+
+    .block-title {
+        strong {
+            color: @halloween-orange;
+        }
+    }
+
+    .block-content {
+        color: @halloween-muted;
+
+        a {
+            color: @halloween-white;
+
+            &:visited {
+                color: @halloween-white;
+            }
+
+            &:hover {
+                color: @halloween-orange;
+            }
+        }
+    }
+}
+
+.sidebar-main,
+.sidebar-additional {
+    .block {
+        background: @halloween-black-soft;
+        color: @halloween-white;
+    }
+}
+
+.filter-options-title {
+    color: @halloween-white;
+}
+
+.filter-options-content {
+    color: @halloween-muted;
+
+    a {
+        color: @halloween-white;
+
+        &:hover {
+            color: @halloween-orange;
+        }
+    }
+}
+
+
+// =====================================================
+// Toolbar
+// =====================================================
+
+.toolbar-products,
+.toolbar.toolbar-products {
+    border: 1px solid @halloween-border;
+    border-radius: @border-radius__base;
+
+    background: @halloween-black-soft;
+
+    color: @halloween-white;
+
+    .toolbar-amount,
+    .sorter-label,
+    .limiter,
+    .limiter-text {
+        color: @halloween-muted;
+    }
+
+    select {
+        border-color: @halloween-border;
+        border-radius: @border-radius__base;
+
+        background: @halloween-surface-light;
+
+        color: @halloween-black;
+    }
+}
+
+.modes-mode {
+    border-color: @halloween-border;
+
+    background: @halloween-black-soft;
+
+    color: @halloween-muted;
+
+    &:hover,
+    &.active {
+        border-color: @halloween-orange;
+
+        background: @halloween-orange;
+
+        color: @halloween-black;
+    }
+}
+
+
+// =====================================================
+// Toolbar Bottom / Limiter
+// =====================================================
+
+.toolbar-bottom {
+    .toolbar-products {
+        border: 1px solid @halloween-border;
+
+        background: @halloween-black-soft;
+
+        color: @halloween-white;
+    }
+
+    .limiter {
+        color: @halloween-muted;
+
+        .label,
+        .limiter-text {
+            color: @halloween-muted;
+        }
+
+        select {
+            background: @halloween-surface-light;
+
+            color: @halloween-black;
+        }
+    }
+}
+
+
+// =====================================================
+// Product Listing
+// =====================================================
+
+.product-item-info {
+    box-sizing: border-box;
+
+    border: 1px solid @halloween-border;
+    border-radius: @border-radius__base;
+
+    background:
+        linear-gradient(
+            135deg,
+            @halloween-black-soft 0%,
+            @halloween-brown 100%
+        );
+
+    box-shadow:
+        0 6px 18px rgba(0, 0, 0, .22);
+
+    transition:
+        border-color .2s ease,
+        box-shadow .2s ease,
+        transform .2s ease;
+
+    &:hover {
+        border-color: fade(@halloween-orange, 65%);
+
+        box-shadow:
+            0 10px 28px rgba(0, 0, 0, .35),
+            0 0 16px fade(@halloween-orange, 12%);
+
+        transform: translateY(-2px);
+    }
+}
+
+.product-item-photo {
+    background: @halloween-surface-light;
+}
+
+.product-item-details {
+    color: @halloween-white;
+}
+
+.product-item-name {
+    a {
+        color: @halloween-white;
+
+        &:hover {
+            color: @halloween-orange-light;
+        }
+    }
+}
+
+.price-box {
+    .price {
+        color: @halloween-orange;
+        font-weight: 700;
+    }
+}
+
+.product-item-description {
+    line-height: 1.6;
+}
+
+.product-item-actions {
+    .actions-secondary {
+        a {
+            color: @halloween-muted;
+
+            &:hover {
+                color: @halloween-orange-light;
+            }
+        }
+    }
+}
+
+// =====================================================
+// Sidebar blocks — Compare / Wishlist
+// =====================================================
+
+.catalog-category-view {
+    .sidebar {
+        .block-compare,
+        .block-wishlist {
+            border: 1px solid @halloween-border;
+            border-radius: @border-radius__base;
+
+            background: @halloween-black-soft;
+
+            color: @halloween-white;
+
+            .block-title {
+                border-color: @halloween-border;
+
+                strong {
+                    color: @halloween-orange;
+                }
+            }
+
+            .block-content {
+                color: @halloween-muted;
+
+                .empty {
+                    color: @halloween-muted;
+                }
+
+                a {
+                    color: @halloween-white;
+
+                    &:visited {
+                        color: @halloween-white;
+                    }
+
+                    &:hover {
+                        color: @halloween-orange-light;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// =====================================================
+// Catalog — Luma overrides
+// =====================================================
+
+.catalog-category-view {
+    .sidebar-main,
+    .sidebar-additional {
+        .block-compare,
+        .block-wishlist {
+            border: 1px solid @halloween-border;
+            border-radius: @border-radius__base;
+
+            background: @halloween-black-soft;
+
+            color: @halloween-white;
+
+            .block-title {
+                border-color: @halloween-border;
+
+                strong {
+                    color: @halloween-orange;
+                }
+            }
+
+            .block-content {
+                color: @halloween-muted;
+
+                .empty {
+                    color: @halloween-muted;
+                }
+
+                a {
+                    color: @halloween-white;
+
+                    &:visited {
+                        color: @halloween-white;
+                    }
+
+                    &:hover {
+                        color: @halloween-orange-light;
+                    }
+                }
+            }
+        }
+    }
+
+    .toolbar-products {
+        border: 1px solid @halloween-border;
+        border-radius: @border-radius__base;
+
+        background: @halloween-black-soft;
+
+        color: @halloween-white;
+
+        .toolbar-amount,
+        .sorter-label,
+        .limiter,
+        .limiter-text {
+            color: @halloween-muted;
+        }
+    }
+
+    .toolbar-bottom {
+        .toolbar-products {
+            background: @halloween-black-soft;
+        }
+    }
+}

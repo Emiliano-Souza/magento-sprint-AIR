@@ -1,0 +1,98 @@
+// =====================================================
+// Product Detail Page
+// =====================================================
+
+.catalog-product-view {
+    .product-info-main {
+        box-sizing: border-box;
+
+        border: 1px solid @halloween-border;
+        border-radius: @halloween-radius-large;
+
+        background:
+            linear-gradient(
+                135deg,
+                @halloween-black-soft 0%,
+                @halloween-brown 100%
+            );
+
+        color: @halloween-white;
+
+        box-shadow:
+            0 10px 28px rgba(0, 0, 0, .30),
+            0 0 16px fade(@halloween-orange, 8%);
+    }
+
+    .page-title-wrapper {
+        .page-title {
+            color: @halloween-white;
+        }
+    }
+
+    .product-info-price {
+        border-color: @halloween-border;
+    }
+
+    .price-box {
+        .price {
+            color: @halloween-orange;
+        }
+    }
+
+    .product-info-stock-sku {
+        color: @halloween-muted;
+
+        .stock {
+            color: @halloween-orange-light;
+        }
+    }
+
+    .product.attribute.overview {
+        color: @halloween-muted;
+    }
+
+    .product.media {
+        border: 1px solid @halloween-border;
+        border-radius: @halloween-radius-large;
+
+        background: @halloween-surface-light;
+
+        overflow: hidden;
+    }
+
+    .product-addto-links {
+        a {
+            color: @halloween-muted;
+
+            &:hover {
+                color: @halloween-orange-light;
+            }
+        }
+    }
+
+    .product.info.detailed {
+        .product.data.items {
+            > .item.title {
+                > .switch {
+                    border-color: @halloween-border;
+                    background: @halloween-black-soft;
+                    color: @halloween-white;
+                }
+
+                &.active {
+                    > .switch {
+                        border-color: @halloween-orange;
+                        background: @halloween-orange;
+                        color: @halloween-black;
+                    }
+                }
+            }
+
+            > .item.content {
+                border-color: @halloween-border;
+                background: @halloween-black-soft;
+                color: @halloween-white;
+            }
+        }
+    }
+}

@@ -1,0 +1,80 @@
+// =====================================================
+// Typography
+// =====================================================
+
+.product-item-name,
+.product-info-main .page-title {
+    font-family: @heading__font-family__base;
+}
+
+
+// Fonte temática usada apenas em pontos de destaque
+
+.halloween-accent-title,
+.oak-barrel-feature h1,
+.oak-barrel-feature h2 {
+    font-family: @halloween-accent-font-family;
+    font-weight: 400;
+    letter-spacing: .04em;
+}
+
+.halloween-accent-title {
+    color: @halloween-orange;
+}
+
+
+// =====================================================
+// Buttons
+// =====================================================
+
+.action.primary {
+    border-radius: @border-radius__base;
+
+    box-shadow:
+        0 3px 10px fade(@halloween-orange, 15%);
+
+    transition:
+        background .2s ease,
+        border-color .2s ease,
+        box-shadow .2s ease,
+        transform .2s ease;
+
+    &:hover {
+        box-shadow:
+            0 0 18px fade(@halloween-orange, 35%);
+
+        transform: translateY(-1px);
+    }
+}
+
+
+// =====================================================
+// Forms
+// =====================================================
+
+input[type='text'],
+input[type='email'],
+input[type='password'],
+input[type='search'],
+input[type='number'],
+select,
+textarea {
+    box-sizing: border-box;
+    max-width: 100%;
+
+    border-color: @halloween-border;
+    border-radius: @border-radius__base;
+
+    background: @halloween-surface-light;
+    color: @halloween-black;
+
+    &:focus {
+        border-color: @halloween-orange;
+    }
+}
+
+label,
+.label,
+legend {
+    color: @halloween-white;
+}

@@ -1,0 +1,298 @@
+// =====================================================
+// Responsive — Magento mixins
+// =====================================================
+
+.media-width(@extremum, @break)
+when (@extremum = 'min')
+and (@break = @screen__m) {
+
+    .page-header {
+        .panel.wrapper {
+            background: @halloween-black-deep;
+            border-bottom: 1px solid fade(@halloween-orange, 20%);
+
+            color: @halloween-muted;
+        }
+    }
+
+    .header.panel {
+        > .header.links {
+            > li {
+                color: @halloween-muted;
+
+                > a {
+                    color: @halloween-white;
+
+                    &:visited {
+                        color: @halloween-white;
+                    }
+
+                    &:hover {
+                        color: @halloween-orange-light;
+                    }
+                }
+            }
+        }
+    }
+
+
+    // =====================================================
+    // Desktop Navigation
+    // =====================================================
+
+    .nav-sections {
+        background: @halloween-orange;
+
+        border-top: 1px solid fade(@halloween-orange-light, 25%);
+        border-bottom: 1px solid fade(@halloween-black, 35%);
+    }
+
+    .navigation {
+        background: @halloween-orange;
+
+        .level0 {
+            > .level-top {
+                color: @halloween-black;
+                font-weight: 600;
+
+                transition:
+                    color .2s ease,
+                    background .2s ease;
+
+                &:hover,
+                &.ui-state-focus {
+                    background: fade(@halloween-black, 8%);
+
+                    color: @halloween-black;
+                }
+            }
+
+            &.active,
+            &.has-active {
+                > .level-top {
+                    color: @halloween-black;
+                }
+            }
+        }
+    }
+
+
+    // =====================================================
+    // Desktop Catalog
+    // =====================================================
+
+    .catalog-category-view {
+
+        // Sidebar
+
+        .sidebar,
+        .sidebar-main,
+        .sidebar-additional {
+            .block.block-compare,
+            .block.block-wishlist {
+                border: 1px solid @halloween-border;
+                border-radius: @border-radius__base;
+
+                background: @halloween-black-soft;
+
+                color: @halloween-white;
+
+                .block-title {
+                    border-color: @halloween-border;
+
+                    strong {
+                        color: @halloween-orange;
+                    }
+                }
+
+                .block-content {
+                    color: @halloween-muted;
+
+                    .empty {
+                        color: @halloween-muted;
+                    }
+
+                    a {
+                        color: @halloween-white;
+
+                        &:visited {
+                            color: @halloween-white;
+                        }
+
+                        &:hover {
+                            color: @halloween-orange-light;
+                        }
+                    }
+                }
+            }
+        }
+
+
+        // Toolbar superior
+
+        .toolbar-products,
+        .toolbar.toolbar-products {
+            border: 1px solid @halloween-border;
+            border-radius: @border-radius__base;
+
+            background: @halloween-black-soft;
+
+            color: @halloween-white;
+
+            .toolbar-amount,
+            .sorter-label,
+            .limiter,
+            .limiter-text {
+                color: @halloween-muted;
+            }
+
+            select {
+                border-color: @halloween-border;
+                border-radius: @border-radius__base;
+
+                background: @halloween-surface-light;
+
+                color: @halloween-black;
+            }
+        }
+
+
+        // Toolbar inferior
+
+        .toolbar-bottom {
+            .toolbar-products,
+            .toolbar.toolbar-products {
+                border: 1px solid @halloween-border;
+                border-radius: @border-radius__base;
+
+                background: @halloween-black-soft;
+
+                color: @halloween-white;
+            }
+
+            .limiter {
+                color: @halloween-muted;
+
+                .label,
+                .limiter-text {
+                    color: @halloween-muted;
+                }
+
+                select {
+                    border-color: @halloween-border;
+
+                    background: @halloween-surface-light;
+
+                    color: @halloween-black;
+                }
+            }
+        }
+    }
+}
+
+
+.media-width(@extremum, @break)
+when (@extremum = 'max')
+and (@break = @screen__m) {
+
+    // =====================================================
+    // Mobile Navigation
+    // =====================================================
+
+    .nav-sections,
+    .navigation {
+        background: @halloween-black-soft;
+    }
+
+    .navigation {
+        .level0 {
+            > .level-top {
+                color: @halloween-white;
+            }
+        }
+    }
+
+
+    // =====================================================
+    // Mobile Sidebar
+    // =====================================================
+
+    .catalog-category-view {
+        .sidebar,
+        .sidebar-main,
+        .sidebar-additional {
+            .block.block-compare,
+            .block.block-wishlist {
+                border: 1px solid @halloween-border;
+                border-radius: @border-radius__base;
+
+                background: @halloween-black-soft;
+
+                color: @halloween-white;
+
+                .block-title {
+                    border-color: @halloween-border;
+
+                    strong {
+                        color: @halloween-orange;
+                    }
+                }
+
+                .block-content {
+                    color: @halloween-muted;
+
+                    .empty {
+                        color: @halloween-muted;
+                    }
+
+                    a {
+                        color: @halloween-white;
+
+                        &:visited {
+                            color: @halloween-white;
+                        }
+
+                        &:hover {
+                            color: @halloween-orange-light;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+
+    // =====================================================
+    // Mobile Footer
+    // =====================================================
+
+    .page-footer {
+        .footer.content {
+            .links {
+                > li {
+                    border-top: 1px solid @halloween-border;
+
+                    background: transparent;
+
+                    color: @halloween-muted;
+
+                    > a {
+                        color: @halloween-muted;
+
+                        &:visited {
+                            color: @halloween-muted;
+                        }
+
+                        &:hover {
+                            color: @halloween-orange-light;
+                        }
+                    }
+
+                    &:last-child {
+                        border-bottom: 1px solid @halloween-border;
+                    }
+                }
+            }
+        }
+    }
+}
