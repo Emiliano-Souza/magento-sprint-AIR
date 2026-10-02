@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+
+    <body>
+
+        <referenceContainer name="page.top">
+            <block class="Magento\Framework\View\Element\Template"
+                   name="halloween.campaign.strip"
+                   before="-"
+                   template="Magento_Theme::html/campaign-strip.phtml"/>
+        </referenceContainer>
+
+        <referenceBlock name="catalog.compare.sidebar" remove="true"/>
+
+        <move element="navigation.sections"
+              destination="header-wrapper"
+              after="top.search"/>
+
+        <referenceBlock name="logo">
+            <arguments>
+
+                <argument name="logo_file"
+                          xsi:type="string">
+                    images/logo-halloween.png
+                </argument>
+
+                <argument name="logo_alt"
+                          xsi:type="string">
+                    Oak &amp; Barrel
+                </argument>
+
+            </arguments>
+        </referenceBlock>
+
+    </body>
+
+</page>

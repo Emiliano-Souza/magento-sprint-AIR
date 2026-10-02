@@ -5,6 +5,19 @@ src/*
 !src/app/
 src/app/*
 
+# Custom Magento themes
+!src/app/design/
+src/app/design/*
+
+!src/app/design/frontend/
+src/app/design/frontend/*
+
+!src/app/design/frontend/Webjump/
+src/app/design/frontend/Webjump/*
+
+!src/app/design/frontend/Webjump/noite-assombrada/
+!src/app/design/frontend/Webjump/noite-assombrada/**
+
 !src/app/code/
 !src/app/code/**
 

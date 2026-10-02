@@ -1,0 +1,210 @@
+// =====================================================
+// Header
+// =====================================================
+
+.page-header {
+    position: relative;
+
+    border-bottom: 1px solid fade(@halloween-orange, 22%);
+
+    background:
+        linear-gradient(
+            135deg,
+            @halloween-black-deep 0%,
+            @halloween-black 52%,
+            @halloween-brown 100%
+        );
+
+    color: @halloween-white;
+
+    box-shadow:
+        0 4px 18px rgba(0, 0, 0, .30);
+
+    .panel.wrapper {
+        border-bottom: 1px solid fade(@halloween-orange, 12%);
+
+        background: @halloween-black-deep;
+
+        color: @halloween-muted;
+    }
+}
+
+
+// =====================================================
+// Header Content
+// =====================================================
+
+.header.content {
+    box-sizing: border-box;
+
+    padding-top: 18px;
+    padding-bottom: 18px;
+}
+
+
+// =====================================================
+// Header Panel
+// =====================================================
+
+.header.panel {
+    .welcome {
+        color: @halloween-muted;
+    }
+
+    > .header.links {
+        > li {
+            color: @halloween-muted;
+
+            > a {
+                color: @halloween-white;
+
+                &:visited {
+                    color: @halloween-white;
+                }
+
+                &:hover {
+                    color: @halloween-orange-light;
+                }
+            }
+        }
+    }
+}
+
+
+// =====================================================
+// Logo
+// =====================================================
+
+.logo {
+    img {
+        width: 180px;
+        height: auto;
+    }
+}
+
+
+// =====================================================
+// Search
+// =====================================================
+
+.block-search {
+    input {
+        min-height: 38px;
+
+        border-color: @halloween-border;
+        border-radius: @halloween-radius-pill;
+
+        background: @halloween-surface-light;
+
+        color: @halloween-black;
+
+        &::placeholder {
+            color: @halloween-placeholder;
+        }
+
+        &:focus {
+            border-color: @halloween-orange;
+        }
+    }
+
+    .action.search {
+        &:before {
+            color: @halloween-black;
+        }
+
+        &:hover:before {
+            color: @halloween-orange;
+        }
+    }
+}
+
+
+// =====================================================
+// Minicart
+// =====================================================
+
+.minicart-wrapper {
+    .action.showcart {
+        &:before {
+            color: @halloween-white;
+        }
+
+        &:hover:before {
+            color: @halloween-orange;
+        }
+
+        .counter.qty {
+            background: @halloween-orange;
+
+            color: @halloween-black;
+        }
+    }
+}
+
+
+// =====================================================
+// Navigation
+// =====================================================
+
+.nav-sections {
+    border-top: 1px solid fade(@halloween-orange, 24%);
+    border-bottom: 1px solid fade(@halloween-orange, 30%);
+}
+
+.navigation {
+    .level0 {
+        > .level-top {
+            font-weight: 600;
+        }
+    }
+
+    .submenu {
+        border-color: fade(@halloween-orange, 20%);
+
+        background: @halloween-black-submenu;
+
+        a {
+            color: @halloween-white;
+
+            &:hover {
+                background: @halloween-orange;
+
+                color: @halloween-black;
+            }
+        }
+
+        .active > a,
+        .has-active > a,
+        .ui-state-focus,
+        .ui-menu-item-wrapper.ui-state-active {
+            background: @halloween-orange;
+
+            color: @halloween-black;
+        }
+    }
+}
+
+
+// =====================================================
+// Breadcrumbs
+// =====================================================
+
+.breadcrumbs {
+    color: @halloween-muted;
+
+    a {
+        color: @halloween-orange;
+
+        &:visited {
+            color: @halloween-orange;
+        }
+
+        &:hover {
+            color: @halloween-orange-light;
+        }
+    }
+
+    strong {
+        color: @halloween-white;
+    }
+}
