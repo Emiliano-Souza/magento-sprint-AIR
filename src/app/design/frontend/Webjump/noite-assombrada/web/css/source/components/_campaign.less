@@ -1,0 +1,180 @@
+// =====================================================
+// Halloween Campaign Strip
+// =====================================================
+
+.halloween-campaign-strip {
+    position: relative;
+    isolation: isolate;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 46px;
+
+    padding: @indent__s @indent__base;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at 50% 120%,
+            fade(@halloween-orange, 24%) 0%,
+            transparent 48%
+        ),
+        linear-gradient(
+            90deg,
+            @halloween-black-deep 0%,
+            @halloween-brown 30%,
+            @halloween-brown-soft 50%,
+            @halloween-brown 70%,
+            @halloween-black-deep 100%
+        );
+
+    border-top: 1px solid fade(@halloween-orange, 35%);
+    border-bottom: 1px solid fade(@halloween-orange, 60%);
+
+    box-shadow:
+        inset 0 1px 0 fade(@halloween-gold, 10%),
+        inset 0 -1px 0 fade(@halloween-orange, 15%),
+        0 4px 20px fade(@halloween-black, 45%);
+
+    color: @halloween-orange-light;
+
+    font-family: @heading__font-family__base;
+    font-size: @font-size__s;
+    font-weight: 600;
+
+    letter-spacing: .08em;
+    text-align: center;
+    text-transform: uppercase;
+
+    // Halloween texture
+    &::before {
+        content: '';
+
+        position: absolute;
+        z-index: -2;
+
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+
+        background:
+            url('@{baseDir}images/halloween-header-bg.png')
+            center 43% / cover no-repeat;
+
+        opacity: .12;
+        pointer-events: none;
+    }
+
+    // Animated orange light
+    &::after {
+        content: '';
+
+        position: absolute;
+        z-index: -1;
+
+        top: -80%;
+        left: -35%;
+
+        width: 30%;
+        height: 260%;
+
+        background: linear-gradient(
+            90deg,
+            transparent 0%,
+            fade(@halloween-orange-light, 5%) 25%,
+            fade(@halloween-orange-light, 22%) 50%,
+            fade(@halloween-orange-light, 5%) 75%,
+            transparent 100%
+        );
+
+        transform: rotate(18deg);
+        filter: blur(8px);
+
+        animation: halloween-campaign-glow 7s ease-in-out infinite;
+
+        pointer-events: none;
+    }
+
+    span {
+        position: relative;
+        z-index: 1;
+
+        color: @halloween-orange-light;
+
+        text-shadow:
+            0 0 8px fade(@halloween-orange, 35%),
+            0 0 18px fade(@halloween-orange, 15%);
+
+        // Decorative lines beside the text
+        &::before,
+        &::after {
+            content: '';
+
+            display: inline-block;
+
+            width: 42px;
+            height: 1px;
+
+            margin: 0 @indent__s;
+
+            vertical-align: middle;
+
+            background: linear-gradient(
+                90deg,
+                transparent,
+                @halloween-orange,
+                transparent
+            );
+
+            box-shadow: 0 0 8px fade(@halloween-orange, 55%);
+        }
+    }
+}
+
+
+// -----------------------------------------------------
+// Animation
+// -----------------------------------------------------
+
+@keyframes halloween-campaign-glow {
+    0% {
+        left: -35%;
+        opacity: 0;
+    }
+
+    15% {
+        opacity: .7;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    85% {
+        opacity: .7;
+    }
+
+    100% {
+        left: 110%;
+        opacity: 0;
+    }
+}
+
+
+// -----------------------------------------------------
+// Accessibility
+// -----------------------------------------------------
+
+@media (prefers-reduced-motion: reduce) {
+    .halloween-campaign-strip {
+        &::after {
+            animation: none;
+        }
+    }
+}

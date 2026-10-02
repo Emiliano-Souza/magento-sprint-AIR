@@ -5,6 +5,19 @@
 
     <body>
 
+        <referenceContainer name="page.top">
+            <block class="Magento\Framework\View\Element\Template"
+                   name="halloween.campaign.strip"
+                   before="-"
+                   template="Magento_Theme::html/campaign-strip.phtml"/>
+        </referenceContainer>
+
+        <referenceBlock name="catalog.compare.sidebar" remove="true"/>
+
+        <move element="navigation.sections"
+              destination="header-wrapper"
+              after="top.search"/>
+
         <referenceBlock name="logo">
             <arguments>
 

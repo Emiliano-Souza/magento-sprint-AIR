@@ -6,12 +6,126 @@
 when (@extremum = 'min')
 and (@break = @screen__m) {
 
+    // =====================================================
+    // Halloween Campaign Strip - Desktop
+    // =====================================================
+
+    .halloween-campaign-strip {
+        width: calc(~'100% - 80px');
+        max-width: 1380px;
+        min-height: 58px;
+
+        margin:
+            @indent__base
+            auto
+            (@indent__base * 2);
+
+        padding: @indent__s (@indent__base * 2);
+
+        border-radius: @border-radius__base;
+
+        font-size: 14px;
+        line-height: 1.5;
+        letter-spacing: .07em;
+
+        span {
+            &::before,
+            &::after {
+                width: 70px;
+                margin: 0 @indent__base;
+            }
+        }
+    }
+
+
+    // =====================================================
+    // Desktop Logo
+    // =====================================================
+
+    .logo {
+        float: none;
+
+        grid-column: 1;
+        grid-row: 1 / 3;
+
+        align-self: center;
+
+        margin: 0;
+
+        img {
+            width: 235px;
+            height: auto;
+        }
+    }
+
+
+    // =====================================================
+    // Desktop Header
+    // =====================================================
+
     .page-header {
+        position: relative;
+
+        border-bottom: 0;
+
+        background:
+            radial-gradient(
+                circle at 82% 55%,
+                fade(@halloween-orange, 7%) 0%,
+                transparent 34%
+            ),
+            linear-gradient(
+                135deg,
+                @halloween-black-deep 0%,
+                @halloween-black 58%,
+                @halloween-brown 100%
+            );
+
+        box-shadow: none;
+
         .panel.wrapper {
-            background: @halloween-black-deep;
-            border-bottom: 1px solid fade(@halloween-orange, 20%);
+            border-bottom: 1px solid fade(@halloween-orange, 12%);
+
+            background:
+                linear-gradient(
+                    90deg,
+                    @halloween-black-deep 0%,
+                    @halloween-black 50%,
+                    @halloween-black-deep 100%
+                );
 
             color: @halloween-muted;
+        }
+    }
+
+    .header.content {
+        display: grid;
+
+        grid-template-columns:
+            280px
+            minmax(0, 920px)
+            56px;
+
+        grid-template-rows:
+            48px
+            42px;
+
+        column-gap: 28px;
+        row-gap: 8px;
+
+        align-items: center;
+        justify-content: center;
+
+        box-sizing: border-box;
+
+        width: 100%;
+        max-width: 1540px;
+
+        margin: 0 auto;
+        padding: 22px 32px 18px;
+
+        &::after {
+            display: none;
         }
     }
 
@@ -41,18 +155,51 @@ and (@break = @screen__m) {
     // =====================================================
 
     .nav-sections {
-        background: @halloween-orange;
+        position: static;
+        z-index: auto;
 
-        border-top: 1px solid fade(@halloween-orange-light, 25%);
-        border-bottom: 1px solid fade(@halloween-black, 35%);
+        grid-column: 2;
+        grid-row: 2;
+
+        width: 100%;
+        max-width: 600px;
+        min-width: 0;
+
+        margin: 0;
+
+        border: 0;
+
+        background: transparent;
+
+        box-shadow: none;
     }
 
     .navigation {
-        background: @halloween-orange;
+        width: 100%;
+        max-width: none;
+
+        margin: 0;
+        padding: 0;
+
+        background: transparent;
+
+        > ul {
+            text-align: center;
+        }
 
         .level0 {
+            margin-right: 28px;
+
             > .level-top {
-                color: @halloween-black;
+                position: relative;
+
+                padding-left: 0;
+                padding-right: 0;
+
+                border: 0;
+                border-bottom: 0;
+
+                color: @halloween-white;
                 font-weight: 600;
 
                 transition:
@@ -61,16 +208,54 @@ and (@break = @screen__m) {
 
                 &:hover,
                 &.ui-state-focus {
-                    background: fade(@halloween-black, 8%);
+                    background: transparent;
 
-                    color: @halloween-black;
+                    color: @halloween-orange-light;
+                }
+
+                &::after {
+                    content: '';
+
+                    position: absolute;
+
+                    right: 0;
+                    bottom: 2px;
+                    left: 0;
+
+                    height: 2px;
+
+                    background: @halloween-orange;
+
+                    opacity: 0;
+
+                    transform: scaleX(.5);
+
+                    transition:
+                        opacity .2s ease,
+                        transform .2s ease;
+                }
+
+                &:hover::after,
+                &.ui-state-focus::after {
+                    opacity: .7;
+
+                    transform: scaleX(1);
                 }
             }
 
             &.active,
             &.has-active {
                 > .level-top {
-                    color: @halloween-black;
+                    border: 0;
+                    border-bottom: 0;
+
+                    color: @halloween-orange-light;
+
+                    &::after {
+                        opacity: 1;
+
+                        transform: scaleX(1);
+                    }
                 }
             }
         }
@@ -188,12 +373,133 @@ and (@break = @screen__m) {
             }
         }
     }
+
+
+    // =====================================================
+    // Desktop Search
+    // =====================================================
+
+    .block-search {
+        float: none;
+
+        grid-column: 2;
+        grid-row: 1;
+
+        justify-self: stretch;
+
+        width: 100%;
+        max-width: 600px;
+
+        margin: 0;
+        padding: 0;
+
+        input {
+            height: 46px;
+            min-height: 46px;
+
+            padding-right: 54px;
+
+            border: 1px solid fade(@halloween-orange, 35%);
+            border-radius: 6px;
+
+            background: @halloween-surface-light;
+
+            color: @halloween-form-text;
+
+            box-shadow:
+                0 6px 18px rgba(0, 0, 0, .18);
+
+            &::placeholder {
+                color: @halloween-placeholder;
+            }
+
+            &:focus {
+                border-color: @halloween-orange;
+
+                box-shadow:
+                    0 0 0 1px fade(@halloween-orange, 20%),
+                    0 6px 20px rgba(0, 0, 0, .22);
+            }
+        }
+
+        .action.search {
+            right: 6px;
+
+            width: 42px;
+            height: 42px;
+
+            &:before {
+                color: @halloween-orange-dark;
+            }
+
+            &:hover:before {
+                color: @halloween-orange;
+            }
+        }
+    }
+
+
+    // =====================================================
+    // Desktop Minicart
+    // =====================================================
+
+    .minicart-wrapper {
+        float: none;
+
+        grid-column: 2;
+        grid-row: 1;
+
+        align-self: center;
+        justify-self: start;
+
+        margin: 0 0 0 min(618px, 100%);
+
+        .action.showcart {
+            &:before {
+                font-size: 30px;
+                line-height: 44px;
+            }
+        }
+    }
 }
 
 
 .media-width(@extremum, @break)
 when (@extremum = 'max')
 and (@break = @screen__m) {
+
+    // =====================================================
+    // Halloween Campaign Strip
+    // =====================================================
+
+    .halloween-campaign-strip {
+        min-height: 0;
+
+        margin-bottom: @indent__xs;
+        padding: @indent__s @indent__base;
+
+        font-size: 12px;
+        line-height: 1.4;
+        letter-spacing: .04em;
+
+        span {
+            display: block;
+
+            width: 100%;
+            max-width: 300px;
+
+            margin: 0 auto;
+
+            text-align: center;
+            text-wrap: balance;
+
+            &::before,
+            &::after {
+                display: none;
+            }
+        }
+    }
+
 
     // =====================================================
     // Mobile Navigation
