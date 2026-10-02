@@ -685,6 +685,55 @@ A identidade foi validada na Home, categoria `Whiskies`, página de produto e em
 
 ---
 
+## ✅ 16.2 — Estrutura, Textos e E-mail
+
+O tema `Webjump/noite-assombrada` foi evoluído para levar a identidade da campanha também para a estrutura da página, textos da loja e e-mails transacionais.
+
+Principais entregas:
+
+- faixa `Noite Assombrada` adicionada através de Layout XML;
+- remoção de `catalog.compare.sidebar`;
+- movimentação de `navigation.sections` para o header;
+- override de `copyright.phtml`;
+- CSV `pt_BR` com seis termos personalizados;
+- override de `Magento_Sales/email/order_new.html`;
+- estilização do e-mail através de `_email-extend.less`;
+- e-mail de novo pedido validado no Mailcatcher;
+- textos dos templates utilizando tradução e escape adequados;
+- nenhum arquivo do núcleo alterado.
+
+Fluxo principal:
+
+```text
+Layout XML
+    ↓
+Templates do tema
+    ↓
+LESS
+    ↓
+Storefront
+
+
+pt_BR.csv
+    ↓
+Magento Translation
+    ↓
+Vocabulário da campanha
+
+
+order_new.html
+    ↓
+_email-extend.less
+    ↓
+E-mail de novo pedido
+    ↓
+Mailcatcher
+```
+
+📄 [Documentação do 16.2](docs/16.2-structure-texts-email.md)
+
+---
+
 # 📁 Documentação
 
 ```text
@@ -713,7 +762,8 @@ docs/
     ├── 15.1/
     ├── 15.2/        
     ├── 15.3/
-    └── 16.1/
+    ├── 16.1/
+    └── 16.2/
 ```
 
 O `README.md` apresenta uma visão geral das entregas, enquanto os arquivos em `docs/` concentram as decisões técnicas, validações e evidências.
@@ -768,5 +818,5 @@ Sprint 7
 Sprint 8
 
 ├── 16.1 — Tema Noite Assombrada           ✅
-└── 16.2 — ???                             
+└── 16.2 — Estrutura, textos e email       ✅                  
 ```
