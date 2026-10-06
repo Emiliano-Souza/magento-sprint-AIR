@@ -9,7 +9,14 @@
             <block class="Magento\Framework\View\Element\Template"
                    name="halloween.campaign.strip"
                    before="-"
-                   template="Magento_Theme::html/campaign-strip.phtml"/>
+                   template="Magento_Theme::html/campaign-strip.phtml">
+
+                <block class="Magento\Framework\View\Element\Template"
+                       name="halloween.countdown"
+                       as="countdown"
+                       template="Magento_Theme::html/countdown.phtml"/>
+
+            </block>
         </referenceContainer>
 
         <referenceBlock name="catalog.compare.sidebar" remove="true"/>
