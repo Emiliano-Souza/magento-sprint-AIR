@@ -1,0 +1,499 @@
+// =====================================================
+// Cart — Noite Assombrada
+// =====================================================
+
+.checkout-cart-index {
+
+    // =================================================
+    // Page Title
+    // =================================================
+
+    .page-title-wrapper {
+        .page-title {
+            color: @halloween-orange;
+
+            font-family: @halloween-accent-font-family;
+            font-weight: 400;
+            letter-spacing: .04em;
+
+            text-shadow:
+                0 0 10px fade(@halloween-orange, 18%);
+        }
+    }
+
+
+    // =================================================
+    // Container
+    // =================================================
+
+    .cart-container {
+        box-sizing: border-box;
+
+        padding: 24px;
+
+        border: 1px solid fade(@halloween-orange, 14%);
+        border-radius: @halloween-radius-large;
+
+        background:
+            linear-gradient(
+                135deg,
+                @halloween-black-soft 0%,
+                @halloween-black 65%,
+                @halloween-brown 100%
+            );
+
+        color: @halloween-white;
+
+        box-shadow:
+            0 10px 28px rgba(0, 0, 0, .22);
+    }
+
+
+    // =================================================
+    // Cart Items
+    // =================================================
+
+    .form-cart {
+        color: @halloween-white;
+    }
+
+    .cart.table-wrapper {
+        border-color: @halloween-border;
+
+        .cart {
+            thead {
+                tr {
+                    border-color: @halloween-border;
+                }
+
+                th {
+                    padding-bottom: 14px;
+
+                    color: @halloween-white;
+                }
+            }
+
+            tbody {
+                border-color: @halloween-border;
+
+                tr {
+                    border-color: @halloween-border;
+                }
+            }
+        }
+
+        .item {
+            border-color: @halloween-border;
+
+            .product-item-photo {
+                overflow: hidden;
+
+                border-radius: @border-radius__base;
+
+                background: @halloween-surface-light;
+            }
+
+            .product-item-details {
+                padding-left: 18px;
+
+                color: @halloween-white;
+            }
+
+            .product-item-name {
+                margin-top: 4px;
+
+                a {
+                    color: @halloween-white;
+
+                    &:visited {
+                        color: @halloween-white;
+                    }
+
+                    &:hover {
+                        color: @halloween-orange-light;
+                    }
+                }
+            }
+
+            .item-options {
+                color: @halloween-muted;
+            }
+
+            .price {
+                color: @halloween-orange-light;
+                font-weight: 700;
+            }
+        }
+
+        .col {
+            color: @halloween-muted;
+
+            &.price,
+            &.subtotal {
+                .price {
+                    color: @halloween-orange-light;
+                    font-weight: 700;
+                }
+            }
+
+            &.qty {
+                .label {
+                    color: @halloween-muted;
+                }
+
+                .input-text {
+                    border-color: @halloween-border;
+                    border-radius: @border-radius__base;
+
+                    background: @halloween-surface-light;
+
+                    color: @halloween-black;
+                }
+            }
+        }
+
+        .actions-toolbar {
+            .action {
+                color: @halloween-muted;
+
+                &::before {
+                    color: @halloween-muted;
+                }
+
+                &:hover {
+                    color: @halloween-orange-light;
+
+                    &::before {
+                        color: @halloween-orange-light;
+                    }
+                }
+            }
+        }
+    }
+
+
+    // =================================================
+    // Cart Actions
+    // =================================================
+
+    .cart.main.actions {
+        padding-top: 18px;
+
+        border-top: 1px solid @halloween-border;
+
+        .action {
+            min-height: 38px;
+
+            padding: 8px 14px;
+
+            border: 1px solid @halloween-border;
+            border-radius: @border-radius__base;
+
+            background: @halloween-black-soft;
+
+            color: @halloween-white;
+
+            transition:
+                border-color .2s ease,
+                background .2s ease,
+                color .2s ease;
+
+            &:hover {
+                border-color: @halloween-orange;
+
+                background: @halloween-brown;
+
+                color: @halloween-orange-light;
+            }
+        }
+
+        .action.update {
+            border-color: fade(@halloween-orange, 35%);
+        }
+    }
+
+
+    // =================================================
+    // Summary
+    // =================================================
+
+    .cart-summary {
+        border: 1px solid fade(@halloween-orange, 30%);
+        border-radius: @border-radius__base;
+
+        background:
+            linear-gradient(
+                135deg,
+                @halloween-black-soft 0%,
+                @halloween-brown 100%
+            );
+
+        color: @halloween-white;
+
+        box-shadow:
+            0 8px 24px rgba(0, 0, 0, .30);
+
+        > .title {
+            color: @halloween-white;
+            font-family: @heading__font-family__base;
+        }
+
+        .block {
+            border-color: @halloween-border;
+
+            > .title {
+                border-color: @halloween-border;
+
+                strong {
+                    color: @halloween-orange-light;
+                }
+            }
+        }
+
+        .cart-totals {
+            border-color: @halloween-border;
+
+            th,
+            td {
+                border-color: @halloween-border;
+            }
+
+            .mark {
+                background: transparent;
+
+                color: @halloween-muted;
+            }
+
+            .amount {
+                background: transparent;
+
+                color: @halloween-white;
+
+                .price {
+                    color: @halloween-orange-light;
+                }
+            }
+
+            .grand {
+                .mark,
+                .amount {
+                    color: @halloween-white;
+                    font-weight: 700;
+                }
+
+                .price {
+                    color: @halloween-orange;
+                }
+            }
+        }
+
+        .checkout-methods-items {
+            .action.primary.checkout {
+                width: 100%;
+
+                border-color: @halloween-orange;
+
+                background: @halloween-orange;
+
+                color: @halloween-black;
+
+                &:hover {
+                    border-color: @halloween-orange-light;
+
+                    background: @halloween-orange-light;
+
+                    color: @halloween-black;
+                }
+            }
+
+            .action.multicheckout {
+                color: @halloween-orange-light;
+
+                &:visited {
+                    color: @halloween-orange-light;
+                }
+
+                &:hover {
+                    color: @halloween-white;
+                }
+            }
+        }
+    }
+
+
+    // =================================================
+    // Discount
+    // =================================================
+
+    .cart-discount {
+        margin-top: 18px;
+        padding-top: 14px;
+
+        border-top: 1px solid fade(@halloween-orange, 15%);
+
+        .block.discount {
+            .title {
+                strong {
+                    color: @halloween-orange;
+                }
+
+                &::after {
+                    color: @halloween-orange;
+                }
+            }
+
+            .content {
+                color: @halloween-muted;
+            }
+
+            input {
+                border-color: @halloween-border;
+                border-radius: @border-radius__base;
+
+                background: @halloween-surface-light;
+
+                color: @halloween-black;
+            }
+
+            .action.apply {
+                border-color: @halloween-orange;
+
+                background: @halloween-orange;
+
+                color: @halloween-black;
+
+                &:hover {
+                    border-color: @halloween-orange-light;
+
+                    background: @halloween-orange-light;
+
+                    color: @halloween-black;
+                }
+            }
+        }
+    }
+}
+
+
+// =====================================================
+// Haunted Mode
+// =====================================================
+
+html.haunted-mode-active {
+    .checkout-cart-index {
+
+        .cart-container {
+            border-color: fade(@halloween-orange, 18%);
+
+            background: @haunted-cart-background;
+            background-image: none;
+
+            box-shadow:
+                0 12px 30px @haunted-shadow-medium;
+        }
+
+        .form-cart,
+        .cart.table-wrapper {
+            background: @haunted-cart-background;
+            background-image: none;
+        }
+
+        .cart.table-wrapper {
+            border-color: @haunted-cart-border;
+
+            .cart {
+                thead,
+                tbody,
+                tr {
+                    border-color: @haunted-cart-border;
+                }
+            }
+
+            .item {
+                border-color: @haunted-cart-border;
+            }
+        }
+
+        .cart.main.actions {
+            border-color: @haunted-cart-border;
+
+            .action {
+                border-color: @haunted-action-border;
+
+                background: @haunted-action-background;
+
+                &:hover {
+                    border-color: @halloween-orange;
+
+                    background: @haunted-action-hover-background;
+                }
+            }
+        }
+
+        .cart-discount {
+            border-color: @haunted-cart-border;
+        }
+
+        .cart-summary {
+            border-color: fade(@halloween-orange, 22%);
+
+            background:
+                linear-gradient(
+                    135deg,
+                    @haunted-summary-start 0%,
+                    @haunted-summary-end 100%
+                );
+
+            box-shadow:
+                0 10px 32px @haunted-shadow-strong;
+        }
+    }
+}
+
+// =====================================================
+// Mobile
+// =====================================================
+
+.media-width(@extremum, @break)
+when (@extremum = 'max')
+and (@break = @screen__m) {
+
+    .checkout-cart-index {
+
+        .cart-container {
+            padding: 16px;
+
+            border-radius: @border-radius__base;
+        }
+
+        .page-title-wrapper {
+            .page-title {
+                letter-spacing: .03em;
+            }
+        }
+
+        .cart-summary {
+            margin-top: 24px;
+
+            border-radius: @border-radius__base;
+        }
+
+        .cart.table-wrapper {
+            .item {
+                border-color: @halloween-border;
+
+                .product-item-details {
+                    padding-left: 10px;
+                }
+            }
+        }
+
+        .cart.main.actions {
+            .action {
+                width: 100%;
+
+                margin-bottom: 8px;
+            }
+        }
+    }
+}

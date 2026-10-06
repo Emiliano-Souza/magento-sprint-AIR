@@ -1,0 +1,190 @@
+// =====================================================
+// Haunted Mode
+// =====================================================
+
+// -----------------------------------------------------
+// Toggle
+// -----------------------------------------------------
+
+.haunted-mode-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    min-height: 38px;
+
+    padding: 7px 14px;
+
+    border: 1px solid fade(@halloween-orange, 55%);
+    border-radius: @halloween-radius-pill;
+
+    background:
+        linear-gradient(
+            135deg,
+            @halloween-black-soft 0%,
+            @halloween-brown 100%
+        );
+
+    color: @halloween-white;
+
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1.2;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 3px 10px rgba(0, 0, 0, .25);
+
+    transition:
+        background .2s ease,
+        border-color .2s ease,
+        color .2s ease,
+        box-shadow .2s ease;
+
+    &::before {
+        content: '';
+
+        width: 8px;
+        height: 8px;
+
+        flex: 0 0 8px;
+
+        border-radius: 50%;
+
+        background: @halloween-muted;
+
+        transition:
+            background .2s ease,
+            box-shadow .2s ease;
+    }
+
+    &:hover {
+        border-color: @halloween-orange;
+
+        color: @halloween-orange-light;
+    }
+
+    &[aria-pressed='true'] {
+        border-color: @halloween-orange;
+
+        background: @halloween-black-deep;
+
+        color: @halloween-orange-light;
+
+        box-shadow:
+            0 0 12px fade(@halloween-orange, 18%);
+
+        &::before {
+            background: @halloween-orange;
+
+            box-shadow:
+                0 0 8px fade(@halloween-orange, 55%);
+        }
+    }
+}
+
+
+// =====================================================
+// Active Mode
+// =====================================================
+
+html.haunted-mode-active {
+
+    body,
+    .page-wrapper {
+        background: @haunted-page-background;
+    }
+
+    .page-main,
+    .columns,
+    .column.main {
+        background: @haunted-page-background;
+    }
+
+    .page-header {
+        background:
+            linear-gradient(
+                135deg,
+                @haunted-header-start 0%,
+                @haunted-header-mid 55%,
+                @haunted-header-end 100%
+            );
+    }
+
+    .nav-sections,
+    .navigation {
+        background: @haunted-navigation-background;
+    }
+
+    .halloween-campaign-strip {
+        background:
+            linear-gradient(
+                135deg,
+                @haunted-campaign-start 0%,
+                @haunted-campaign-mid 55%,
+                @haunted-campaign-end 100%
+            );
+
+        box-shadow:
+            inset 0 0 24px @haunted-shadow-inset,
+            0 0 18px fade(@halloween-orange, 8%);
+    }
+
+    .product-item-info,
+    .product-info-main {
+        background:
+            linear-gradient(
+                135deg,
+                @haunted-product-start 0%,
+                @haunted-product-end 100%
+            );
+    }
+
+    .sidebar .block,
+    .toolbar-products,
+    .toolbar.toolbar-products {
+        background: @haunted-surface-background;
+    }
+
+    .page-footer {
+        background: @haunted-footer-background;
+    }
+}
+
+
+// =====================================================
+// Desktop
+// =====================================================
+
+.media-width(@extremum, @break)
+when (@extremum = 'min')
+and (@break = @screen__m) {
+
+    .haunted-mode-toggle {
+        grid-column: 3;
+        grid-row: 1;
+
+        justify-self: end;
+        align-self: center;
+
+        white-space: nowrap;
+    }
+}
+
+
+// =====================================================
+// Mobile
+// =====================================================
+
+.media-width(@extremum, @break)
+when (@extremum = 'max')
+and (@break = @screen__m) {
+
+    .haunted-mode-toggle {
+        margin: 8px 0 6px;
+
+        font-size: 11px;
+    }
+}
