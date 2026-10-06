@@ -789,6 +789,66 @@ _sustainable-seal.less
 
 ---
 
+## ✅ 17.2 — Modo Assombrado e Minicart
+
+A campanha **Noite Assombrada** recebeu um modo visual alternativo e comportamento customizado no minicart.
+
+Principais entregas:
+
+- interruptor no header para ativar o Modo Assombrado;
+- alteração visual através da classe `haunted-mode-active`;
+- persistência utilizando `localStorage`;
+- carregamento global através de `deps` no `requirejs-config.js`;
+- minicart estendido através de mixin;
+- `this._super()` preservando o comportamento original;
+- `ko.computed()` para mensagem baseada na quantidade;
+- funcionamento normal ao adicionar, remover e atualizar produtos;
+- visual do minicart integrado à campanha;
+- página completa do carrinho adaptada ao tema;
+- variáveis do Modo Assombrado centralizadas em `_theme.less`.
+
+Foi utilizado um **mixin** porque a necessidade era apenas estender o comportamento do minicart existente.
+
+O uso de `map` substituiria completamente:
+
+```text
+Magento_Checkout/js/view/minicart
+```
+
+aumentando o escopo da customização e o risco de interferir no funcionamento nativo.
+
+Com o mixin, o componente original permanece ativo e apenas o comportamento necessário para a campanha é acrescentado.
+
+Fluxo do modo:
+
+```text
+requirejs-config.js
+        ↓
+deps
+        ↓
+haunted-mode.js
+        ↓
+localStorage
+        ↓
+haunted-mode-active
+```
+
+Fluxo do minicart:
+
+```text
+Magento_Checkout/js/view/minicart
+        ↓
+mixin
+        ↓
+ko.computed()
+        ↓
+mensagem da campanha
+```
+
+📄 [Documentação do 17.2](docs/17.2-haunted-mode-minicart.md)
+
+---
+
 # 📁 Documentação
 
 ```text
