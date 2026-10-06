@@ -2,7 +2,7 @@
 
 Projeto desenvolvido durante o **Programa de Estágio da Webjump**, com foco em Magento 2 / Adobe Commerce.
 
-O repositório reúne as atividades das **Sprints 6 e 7**, abordando configuração de ambiente, catálogo, CMS, desenvolvimento de módulos, extensão do Magento, EAV, banco de dados, Service Contracts e interfaces administrativas.
+O repositório reúne as atividades das **Sprints 6, 7 e 8**, abordando configuração de ambiente, catálogo, CMS, desenvolvimento de módulos, extensão do Magento, EAV, banco de dados, Service Contracts, interfaces administrativas e customização frontend com temas Magento.
 
 ---
 
@@ -101,7 +101,7 @@ Principais recursos:
 - Layout XML;
 - ViewModel;
 - template `.phtml`;
-- LESS próprio;;
+- LESS próprio;
 - escape de saídas dinâmicas;
 - bloco responsivo na Home.
 
@@ -678,8 +678,9 @@ _global.less
 _header.less
 _home.less
 _product.less
-_responsive.less
 ```
+
+As regras responsivas utilizam `.media-width()` e ficam junto ao próprio componente responsável.
 
 A identidade foi validada na Home, categoria `Whiskies`, página de produto e em desktop/mobile.
 
@@ -734,6 +735,60 @@ Mailcatcher
 
 ---
 
+## ✅ 17.1 — Contagem Regressiva e Selo Assombrado
+
+A campanha **Noite Assombrada** foi evoluída com comportamento dinâmico utilizando Knockout e com a reutilização do atributo de produto criado na Sprint 7.
+
+Principais entregas:
+
+- contador regressivo desenvolvido como componente Knockout;
+- `ko.observable()` para controle do tempo restante;
+- `ko.computed()` para formatação da mensagem;
+- atualização automática a cada segundo;
+- inicialização por `x-magento-init`;
+- tratamento da campanha após a data final;
+- integração do contador à faixa global da campanha;
+- tradução dos textos através de `pt_BR.csv`;
+- reutilização do atributo `sustainable_seal`;
+- atributo disponibilizado também na listagem de produtos;
+- selo exibido na PLP e PDP;
+- plugin `after` sem sobrescrever `product/list.phtml`;
+- produto sem o atributo marcado não gera erro ou espaço vazio;
+- estilo do selo isolado em `_sustainable-seal.less`;
+- validação em desktop e mobile.
+
+Fluxo do contador:
+
+```text
+default.xml
+    ↓
+countdown.phtml
+    ↓
+x-magento-init
+    ↓
+countdown.js
+    ↓
+Knockout observable/computed
+    ↓
+countdown.html
+```
+
+Fluxo do selo:
+
+```text
+sustainable_seal
+    ↓
+PLP / PDP
+    ↓
+sustainable-seal.phtml
+    ↓
+_sustainable-seal.less
+```
+
+📄 [Documentação do 17.1](docs/17.1-countdown-haunted-badge.md)
+
+---
+
 # 📁 Documentação
 
 ```text
@@ -751,6 +806,8 @@ docs/
 ├── 15.2-form-config-export.md
 ├── 15.3-custom-export.md
 ├── 16.1-noite-assombrada.md
+├── 16.2-structure-texts-email.md
+├── 17.1-countdown-haunted-badge.md
 └── images/
     ├── 12.1/
     ├── 12.2/
@@ -760,10 +817,11 @@ docs/
     ├── 14.1/
     ├── 14.2/
     ├── 15.1/
-    ├── 15.2/        
+    ├── 15.2/
     ├── 15.3/
     ├── 16.1/
-    └── 16.2/
+    ├── 16.2/
+    └── 17.1/
 ```
 
 O `README.md` apresenta uma visão geral das entregas, enquanto os arquivos em `docs/` concentram as decisões técnicas, validações e evidências.
@@ -799,24 +857,26 @@ O `README.md` apresenta uma visão geral das entregas, enquanto os arquivos em `
 ```text
 Sprint 6
 
-├── 12.1 — Ambiente Magento                ✅
-├── 12.2 — Loja e catálogo                 ✅
-├── 13.1 — Primeiro módulo                 ✅
-├── 13.2 — Extensão do catálogo            ✅
-├── 13.3 — Configuração no Admin           ✅
-└── Shopify / AEM / Magento — Comparativo  ✅
+├── 12.1 — Ambiente Magento                 ✅
+├── 12.2 — Loja e catálogo                  ✅
+├── 13.1 — Primeiro módulo                  ✅
+├── 13.2 — Extensão do catálogo             ✅
+├── 13.3 — Configuração no Admin            ✅
+└── Shopify / AEM / Magento — Comparativo   ✅
 
 
 Sprint 7
 
-├── 14.1 — Atributo de produto por código  ✅
-├── 14.2 — Entidade e Repository           ✅
-├── 15.1 — Grid administrativo             ✅
-└── 15.2 — Formulário e exportação         ✅
+├── 14.1 — Atributo de produto por código   ✅
+├── 14.2 — Entidade e Repository            ✅
+├── 15.1 — Grid administrativo              ✅
+├── 15.2 — Formulário e exportação          ✅
+└── 15.3 — Exportação customizada           ✅
 
 
 Sprint 8
 
-├── 16.1 — Tema Noite Assombrada           ✅
-└── 16.2 — Estrutura, textos e email       ✅                  
+├── 16.1 — Tema Noite Assombrada            ✅
+├── 16.2 — Estrutura, textos e email        ✅
+└── 17.1 — Contagem regressiva e selo       ✅
 ```
