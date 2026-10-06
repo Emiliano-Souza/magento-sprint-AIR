@@ -1,9 +1,16 @@
 <?php
 
-/** @var \Magento\Catalog\Block\Product\View $block */
+/** @var \Magento\Framework\View\Element\Template $block */
 
-$product = $block->getProduct();
-$isSustainable = (bool) $product->getData('sustainable_seal');
+$product = $block->getData('product');
+
+if (!$product && method_exists($block, 'getProduct')) {
+    $product = $block->getProduct();
+}
+
+$isSustainable = $product
+    ? (bool) $product->getData('sustainable_seal')
+    : false;
 ?>
 
 <?php if ($isSustainable): ?>
