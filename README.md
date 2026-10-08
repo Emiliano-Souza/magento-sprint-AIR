@@ -895,6 +895,77 @@ O checkout também recebeu ajustes visuais compatíveis com o tema **Noite Assom
 
 ---
 
+## ✅ 17.4 — Caixão de Ofertas no Page Builder
+
+Foi criado o módulo:
+
+```text
+Webjump_HauntedPageBuilder
+```
+
+para disponibilizar um content type próprio no Page Builder voltado à campanha **Noite Assombrada**.
+
+Principais entregas:
+
+- content type `Caixão de Ofertas`;
+- rótulo em português no painel do Page Builder;
+- suporte a `Row` e `Column`;
+- formulário administrativo próprio;
+- campos configuráveis de título, texto, imagem e link;
+- upload de imagem através do Page Builder;
+- preview configurável no editor;
+- template master para a storefront;
+- classe `pagebuilder-content-type` no elemento externo do preview;
+- página de campanha criada com o componente;
+- visual integrado ao tema Noite Assombrada;
+- responsividade desktop e mobile.
+
+Fluxo:
+
+```text
+Page Builder
+    ↓
+Caixão de Ofertas
+    ↓
+Formulário
+    ↓
+Título + Texto + Imagem + Link
+    ↓
+Preview
+    ↓
+Master
+    ↓
+Storefront
+```
+
+Foi publicada a página:
+
+```text
+Noite Assombrada — Ofertas
+```
+
+em:
+
+```text
+/noite-assombrada-ofertas
+```
+
+Como melhoria adicional, o item `Ofertas` já existente na navegação foi integrado à campanha por meio de um redirecionamento temporário:
+
+```text
+/sale.html
+    ↓
+302
+    ↓
+/noite-assombrada-ofertas
+```
+
+Essa alteração de navegação não era requisito do exercício. Ela foi adicionada para permitir que a página da campanha fosse acessada pelo fluxo normal da loja, sem criar um novo item na navbar.
+
+📄 [Documentação do 17.4](docs/17.4-coffin-offers-page-builder.md)
+
+---
+
 # 📁 Documentação
 
 ```text
@@ -914,6 +985,9 @@ docs/
 ├── 16.1-noite-assombrada.md
 ├── 16.2-structure-texts-email.md
 ├── 17.1-countdown-haunted-badge.md
+├── 17.2-haunted-mode-minicart.md
+├── 17.3-haunted-checkout-message.md
+├── 17.4-coffin-offers-page-builder.md
 └── images/
     ├── 12.1/
     ├── 12.2/
@@ -927,7 +1001,10 @@ docs/
     ├── 15.3/
     ├── 16.1/
     ├── 16.2/
-    └── 17.1/
+    ├── 17.1/
+    ├── 17.2/
+    ├── 17.3/
+    └── 17.4/
 ```
 
 O `README.md` apresenta uma visão geral das entregas, enquanto os arquivos em `docs/` concentram as decisões técnicas, validações e evidências.
@@ -982,7 +1059,10 @@ Sprint 7
 
 Sprint 8
 
-├── 16.1 — Tema Noite Assombrada            ✅
-├── 16.2 — Estrutura, textos e email        ✅
-└── 17.1 — Contagem regressiva e selo       ✅
+├── 16.1 — Tema Noite Assombrada               ✅
+├── 16.2 — Estrutura, textos e email           ✅
+├── 17.1 — Contagem regressiva e selo          ✅
+├── 17.2 — Modo Assombrado e minicart          ✅
+├── 17.3 — Mensagem Assombrada no checkout     ✅
+└── 17.4 — Caixão de Ofertas no Page Builder   ✅
 ```
