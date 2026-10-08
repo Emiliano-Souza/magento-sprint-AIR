@@ -849,6 +849,52 @@ mensagem da campanha
 
 ---
 
+## ✅ 17.3 — Mensagem Assombrada no Checkout
+
+Foi criado o módulo:
+
+```text
+Webjump_HauntedCheckout
+```
+
+para adicionar uma mensagem opcional ao pedido durante o checkout.
+
+Principais entregas:
+
+- campo adicionado por plugin no `LayoutProcessor`;
+- `textarea` integrado ao endereço de entrega;
+- limite máximo de 200 caracteres;
+- mensagem de validação traduzida;
+- envio através de `extension_attributes`;
+- persistência da mensagem no `quote`;
+- cópia do valor para `sales_order`;
+- suporte a pedido sem mensagem;
+- exibição da mensagem na visualização do pedido no Admin;
+- saída escapada no Admin;
+- nenhum arquivo de `Magento_Checkout` alterado diretamente.
+
+Fluxo:
+
+```text
+Checkout
+    ↓
+LayoutProcessor
+    ↓
+Extension Attribute
+    ↓
+Quote
+    ↓
+Sales Order
+    ↓
+Admin
+```
+
+O checkout também recebeu ajustes visuais compatíveis com o tema **Noite Assombrada**, mantendo funcionamento em desktop e mobile.
+
+📄 [Documentação do 17.3](docs/17.3-haunted-checkout-message.md)
+
+---
+
 # 📁 Documentação
 
 ```text
