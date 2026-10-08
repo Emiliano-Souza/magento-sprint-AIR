@@ -385,6 +385,7 @@ return [
         'PayPal_BraintreeGraphQl' => 1,
         'PayPal_BraintreeReward' => 1,
         'Webjump_Emiliano' => 1,
+        'Webjump_HauntedCheckout' => 1,
         'Webjump_ProductReviews' => 1
     ]
 ];
