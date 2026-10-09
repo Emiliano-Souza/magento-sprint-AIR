@@ -3,6 +3,18 @@
 // =====================================================
 
 // -----------------------------------------------------
+// Panel
+// -----------------------------------------------------
+
+.haunted-mode-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+
+// -----------------------------------------------------
 // Toggle
 // -----------------------------------------------------
 
@@ -162,14 +174,30 @@ html.haunted-mode-active {
 when (@extremum = 'min')
 and (@break = @screen__m) {
 
-    .haunted-mode-toggle {
+    .haunted-mode-panel {
+        position: relative;
+
         grid-column: 3;
         grid-row: 1;
 
         justify-self: end;
         align-self: center;
+    }
 
+    .haunted-mode-toggle {
         white-space: nowrap;
+    }
+
+    .haunted-scare-counter {
+        position: absolute;
+
+        top: calc(100% + 5px);
+        left: 0;
+        right: 0;
+
+        width: 100%;
+
+        text-align: center;
     }
 }
 
@@ -182,9 +210,52 @@ and (@break = @screen__m) {
 when (@extremum = 'max')
 and (@break = @screen__m) {
 
-    .haunted-mode-toggle {
-        margin: 8px 0 6px;
+    .haunted-mode-panel {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 5px;
 
-        font-size: 11px;
+        box-sizing: border-box;
+        width: 100%;
+
+        margin: 0;
+        padding: 14px 20px;
+
+        border-bottom: 1px solid fade(@halloween-orange, 20%);
+
+        background: @halloween-black-soft;
+    }
+
+    .haunted-mode-toggle {
+        display: flex;
+        justify-content: flex-start;
+
+        width: 100%;
+        min-height: 38px;
+
+        margin: 0;
+        padding: 8px 12px;
+
+        font-size: 12px;
+        white-space: nowrap;
+    }
+
+    .haunted-scare-counter {
+        position: static;
+
+        width: 100%;
+        margin: 0;
+
+        text-align: left;
+    }
+
+    .haunted-scare-counter__content {
+        justify-content: flex-start;
+
+        width: 100%;
+        padding: 0 12px;
+
+        box-sizing: border-box;
     }
 }

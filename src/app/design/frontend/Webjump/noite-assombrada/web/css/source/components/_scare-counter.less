@@ -1,0 +1,167 @@
+// =====================================================
+// Scare Counter
+// =====================================================
+
+.haunted-scare-counter {
+    margin: 0;
+    padding: 0;
+
+    max-width: none;
+    text-align: center;
+}
+
+.haunted-scare-counter__content {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+
+    padding: 0 7px;
+
+    border: 0;
+    background: transparent;
+
+    color: @halloween-muted;
+
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 1.4;
+    white-space: nowrap;
+}
+
+.haunted-scare-counter__label {
+    color: @halloween-muted;
+    font-weight: 700;
+}
+
+.haunted-scare-counter__total {
+    color: @halloween-orange-light;
+    font-weight: 700;
+}
+
+
+// =====================================================
+// Jumpscare
+// =====================================================
+
+.haunted-jumpscare {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.haunted-jumpscare__backdrop {
+    position: absolute;
+    inset: 0;
+
+    background: fade(#000, 72%);
+    backdrop-filter: blur(2px);
+}
+
+.haunted-jumpscare__card {
+    position: relative;
+    z-index: 1;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: ~"min(320px, calc(100vw - 40px))";
+    padding: 32px 28px;
+
+    border: 1px solid fade(@halloween-orange, 65%);
+    border-radius: 20px;
+
+    background:
+        radial-gradient(
+            circle at top,
+            @halloween-brown-soft 0%,
+            @halloween-black-soft 65%
+        );
+
+    box-shadow:
+        0 20px 70px fade(#000, 75%),
+        0 0 35px fade(@halloween-orange, 18%);
+
+    color: @halloween-white;
+    text-align: center;
+
+    animation: haunted-pop-in 220ms ease-out;
+}
+
+.haunted-jumpscare__ghost {
+    display: block;
+
+    margin-bottom: 10px;
+
+    font-size: 72px;
+    line-height: 1;
+
+    animation: haunted-ghost-bounce 500ms ease-in-out;
+}
+
+.haunted-jumpscare__title {
+    color: @halloween-orange-light;
+
+    font-family: @halloween-accent-font-family;
+    font-size: 32px;
+    line-height: 1.2;
+}
+
+.haunted-jumpscare__text {
+    margin-top: 8px;
+
+    color: @halloween-muted;
+    font-size: 15px;
+}
+
+
+// =====================================================
+// Animations
+// =====================================================
+
+@keyframes haunted-pop-in {
+    0% {
+        opacity: 0;
+        transform: scale(.65);
+    }
+
+    70% {
+        opacity: 1;
+        transform: scale(1.06);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes haunted-ghost-bounce {
+    0% {
+        transform: translateY(12px) scale(.6);
+    }
+
+    60% {
+        transform: translateY(-5px) scale(1.08);
+    }
+
+    100% {
+        transform: translateY(0) scale(1);
+    }
+}
+
+
+// =====================================================
+// Accessibility
+// =====================================================
+
+@media (prefers-reduced-motion: reduce) {
+    .haunted-jumpscare__card,
+    .haunted-jumpscare__ghost {
+        animation: none;
+    }
+}
