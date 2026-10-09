@@ -966,6 +966,36 @@ Essa alteração de navegação não era requisito do exercício. Ela foi adicio
 
 ---
 
+## ✅ 17.5 — Binding próprio do Knockout
+
+Foi criado o binding customizado:
+
+```text
+shake
+```
+
+para aplicar um efeito de tremor reutilizável em elementos Knockout.
+
+O binding aceita os parâmetros:
+
+```text
+intensity
+duration
+```
+
+e foi utilizado em dois pontos distintos:
+
+- contagem regressiva da campanha;
+- mensagem temática do minicart.
+
+Cada uso possui valores diferentes de intensidade e duração, demonstrando que o comportamento pode ser configurado diretamente pelo template sem duplicação de JavaScript.
+
+O binding foi escolhido em vez de um componente completo porque o efeito representa um comportamento visual pequeno e reutilizável aplicado sobre elementos já existentes, sem necessidade de manter estado próprio.
+
+📄 [Documentação do 17.5](docs/17.5-custom-knockout-binding.md)
+
+---
+
 # 📁 Documentação
 
 ```text
@@ -988,6 +1018,7 @@ docs/
 ├── 17.2-haunted-mode-minicart.md
 ├── 17.3-haunted-checkout-message.md
 ├── 17.4-coffin-offers-page-builder.md
+├── 17.5-custom-knockout-binding.md
 └── images/
     ├── 12.1/
     ├── 12.2/
@@ -1004,7 +1035,8 @@ docs/
     ├── 17.1/
     ├── 17.2/
     ├── 17.3/
-    └── 17.4/
+    ├── 17.4/
+    └── 17.5/
 ```
 
 O `README.md` apresenta uma visão geral das entregas, enquanto os arquivos em `docs/` concentram as decisões técnicas, validações e evidências.
@@ -1064,5 +1096,6 @@ Sprint 8
 ├── 17.1 — Contagem regressiva e selo          ✅
 ├── 17.2 — Modo Assombrado e minicart          ✅
 ├── 17.3 — Mensagem Assombrada no checkout     ✅
-└── 17.4 — Caixão de Ofertas no Page Builder   ✅
+├── 17.4 — Caixão de Ofertas no Page Builder   ✅
+└── 17.5 — Binding próprio do Knockout         ✅
 ```
