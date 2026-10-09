@@ -1,6 +1,7 @@
 var config = {
     deps: [
-        'js/haunted-mode'
+        'js/haunted-mode',
+        'js/bindings/shake'
     ],
 
     config: {
