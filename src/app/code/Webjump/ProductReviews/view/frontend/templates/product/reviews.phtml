@@ -37,7 +37,7 @@ if ($reviews === []) {
                 <?= $escaper->escapeHtml($review->getAuthor()) ?>
             </strong>
 
-            <div>
+            <div class="webjump-product-review-rating">
                 <?= $escaper->escapeHtml(
                     __('Rating: %1/5', $review->getRating())
                 ) ?>
