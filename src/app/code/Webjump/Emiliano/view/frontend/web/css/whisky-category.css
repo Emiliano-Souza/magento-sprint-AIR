@@ -13,22 +13,33 @@ body.category-whiskies .page-main {
    Category Header
    ========================================================= */
 
+/* =========================================================
+   Category Header
+   ========================================================= */
+
 body.category-whiskies .page-title-wrapper {
-    margin-bottom: 48px;
-    padding: 42px 48px;
+    margin-bottom: 28px;
+    padding: 24px 30px;
+
     overflow: hidden;
-    border-radius: var(--oak-radius);
+
+    border: 1px solid rgba(188, 124, 52, 0.28);
+    border-radius: 16px;
+
     background:
         radial-gradient(
-            circle at 90% 20%,
-            rgba(188, 124, 52, 0.18),
-            transparent 30%
+            circle at 92% 20%,
+            rgba(188, 124, 52, 0.10),
+            transparent 28%
         ),
         linear-gradient(
             135deg,
             var(--oak-bg) 0%,
             var(--oak-bg-secondary) 100%
         );
+
+    box-shadow:
+        0 8px 24px rgba(0, 0, 0, 0.18);
 }
 
 body.category-whiskies .page-title {
@@ -37,17 +48,22 @@ body.category-whiskies .page-title {
 
 body.category-whiskies .page-title .base {
     color: var(--oak-text);
-    font-size: clamp(32px, 4vw, 46px);
+
+    font-size: clamp(30px, 3vw, 40px);
     font-weight: 600;
     line-height: 1.1;
 }
 
 body.category-whiskies .page-title-wrapper::before {
     display: block;
-    margin-bottom: 12px;
+
+    margin-bottom: 8px;
+
     color: var(--oak-accent);
+
     content: "Oak & Barrel";
-    font-size: 13px;
+
+    font-size: 11px;
     font-weight: 700;
     letter-spacing: 0.18em;
     text-transform: uppercase;
@@ -55,12 +71,16 @@ body.category-whiskies .page-title-wrapper::before {
 
 body.category-whiskies .page-title-wrapper::after {
     display: block;
-    max-width: 620px;
-    margin-top: 14px;
+
+    max-width: 720px;
+    margin-top: 9px;
+
     color: var(--oak-text-muted);
+
     content: "Uma seleção de whiskies escolhidos por origem, tempo e personalidade.";
-    font-size: 16px;
-    line-height: 1.6;
+
+    font-size: 14px;
+    line-height: 1.5;
 }
 
 

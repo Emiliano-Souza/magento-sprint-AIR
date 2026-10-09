@@ -3,8 +3,45 @@
 // =====================================================
 
 .catalog-product-view {
+
+    // =================================================
+    // Page
+    // =================================================
+
+    .page-main {
+        width: 100%;
+        max-width: 1120px;
+
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+
+    // =================================================
+    // Main product area
+    // =================================================
+
+    .product.media {
+        box-sizing: border-box;
+
+        width: 48%;
+        max-width: 520px;
+
+        border: 1px solid @halloween-border;
+        border-radius: @halloween-radius-large;
+
+        background: @halloween-surface-light;
+
+        overflow: hidden;
+    }
+
     .product-info-main {
         box-sizing: border-box;
+
+        width: 47%;
+        max-width: 490px;
+
+        padding: 18px 20px;
 
         border: 1px solid @halloween-border;
         border-radius: @halloween-radius-large;
@@ -19,50 +56,124 @@
         color: @halloween-white;
 
         box-shadow:
-            0 10px 28px rgba(0, 0, 0, .30),
-            0 0 16px fade(@halloween-orange, 8%);
+            0 8px 20px rgba(0, 0, 0, .26),
+            0 0 12px fade(@halloween-orange, 6%);
     }
+
+
+    // =================================================
+    // Product title
+    // =================================================
 
     .page-title-wrapper {
         .page-title {
+            margin-top: 0;
+            margin-bottom: 8px;
+
             color: @halloween-white;
+
+            font-size: 28px;
+            line-height: 1.08;
         }
     }
 
+
+    // =================================================
+    // Review summary
+    // =================================================
+
+    .product-reviews-summary {
+        margin-bottom: 12px;
+
+        font-size: 13px;
+
+        .reviews-actions {
+            a {
+                color: @halloween-orange;
+
+                &:hover {
+                    color: @halloween-orange-light;
+                }
+            }
+        }
+    }
+
+
+    // =================================================
+    // Price / stock
+    // =================================================
+
     .product-info-price {
+        margin-bottom: 12px;
+        padding-bottom: 12px;
+
         border-color: @halloween-border;
     }
 
     .price-box {
         .price {
             color: @halloween-orange;
+
+            font-size: 24px;
+            font-weight: 700;
         }
     }
 
     .product-info-stock-sku {
         color: @halloween-muted;
 
+        font-size: 12px;
+
         .stock {
             color: @halloween-orange-light;
         }
     }
 
-    .product.attribute.overview {
-        color: @halloween-muted;
+
+    // =================================================
+    // Quantity / cart
+    // =================================================
+
+    .box-tocart {
+        margin-top: 14px;
+
+        .field.qty {
+            margin-bottom: 10px;
+        }
+
+        .input-text.qty {
+            width: 56px;
+            min-width: 56px;
+            height: 34px;
+
+            border-radius: @border-radius__base;
+        }
+
+        .action.tocart {
+            min-width: 205px;
+            min-height: 42px;
+
+            padding: 8px 18px;
+
+            border-radius: @border-radius__base;
+
+            font-size: 15px;
+            font-weight: 700;
+        }
     }
 
-    .product.media {
-        border: 1px solid @halloween-border;
-        border-radius: @halloween-radius-large;
 
-        background: @halloween-surface-light;
-
-        overflow: hidden;
-    }
+    // =================================================
+    // Secondary actions
+    // =================================================
 
     .product-addto-links {
+        margin-top: 10px;
+
         a {
             color: @halloween-muted;
+
+            font-size: 12px;
 
             &:hover {
                 color: @halloween-orange-light;
@@ -70,19 +181,120 @@
         }
     }
 
+
+    // =================================================
+    // Product content
+    // =================================================
+
+    .product.attribute.overview {
+        margin-top: 14px;
+
+        color: @halloween-muted;
+
+        font-size: 13px;
+        line-height: 1.5;
+    }
+
+
+    // =================================================
+    // Custom Product Reviews
+    // =================================================
+
+    .webjump-product-reviews {
+        width: 100%;
+
+        margin-top: 18px;
+
+        color: @halloween-white;
+
+        h2 {
+            margin: 0 0 10px;
+            padding-bottom: 8px;
+
+            border-bottom: 1px solid fade(@halloween-orange, 55%);
+
+            color: @halloween-white;
+
+            font-size: 17px;
+            font-weight: 600;
+            line-height: 1.3;
+        }
+    }
+
+    .webjump-product-review {
+        padding: 10px 0;
+
+        border-bottom: 1px solid @halloween-border;
+
+        &:last-child {
+            border-bottom: 0;
+        }
+
+        strong {
+            display: block;
+
+            margin-bottom: 3px;
+
+            color: @halloween-white;
+
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        p {
+            margin: 3px 0 0;
+
+            color: @halloween-muted;
+
+            font-size: 12px;
+            line-height: 1.4;
+        }
+    }
+
+    .webjump-product-review-rating {
+        margin-bottom: 3px;
+
+        color: @halloween-orange-light;
+
+        font-size: 12px;
+        font-weight: 600;
+
+        small {
+            margin-left: 4px;
+
+            color: @halloween-muted;
+
+            font-size: 11px;
+            font-weight: 400;
+        }
+    }
+
+
+    // =================================================
+    // Detailed product information
+    // =================================================
+
     .product.info.detailed {
+        clear: both;
+
+        margin-top: 30px;
+
         .product.data.items {
             > .item.title {
                 > .switch {
                     border-color: @halloween-border;
+
                     background: @halloween-black-soft;
+
                     color: @halloween-white;
                 }
 
                 &.active {
                     > .switch {
                         border-color: @halloween-orange;
+
                         background: @halloween-orange;
+
                         color: @halloween-black;
                     }
                 }
@@ -90,10 +302,469 @@
 
             > .item.content {
                 border-color: @halloween-border;
+
                 background: @halloween-black-soft;
+
                 color: @halloween-white;
             }
         }
     }
 
+
+    // =================================================
+    // Native Magento review form
+    // =================================================
+
+    .block.review-add {
+        clear: both;
+
+        width: 100%;
+        max-width: 620px;
+
+        margin: 30px auto 40px;
+
+        .block-title {
+            margin-bottom: 16px;
+
+            strong {
+                font-size: 22px;
+                font-weight: 500;
+            }
+        }
+
+        .review-form {
+            width: 100%;
+            max-width: 100%;
+        }
+
+        .fieldset {
+            margin-bottom: 16px;
+        }
+
+        .field {
+            margin-bottom: 12px;
+        }
+
+        .field.review-field-nickname,
+        .field.review-field-summary,
+        .field.review-field-text {
+            max-width: 540px;
+        }
+
+        input[type='text'],
+        textarea {
+            width: 100%;
+        }
+
+        textarea {
+            min-height: 90px;
+        }
+
+        .actions-toolbar {
+            margin-top: 14px;
+        }
+
+        .action.submit.primary {
+            min-height: 38px;
+
+            padding: 8px 16px;
+
+            font-size: 13px;
+        }
+    }
+}
+
+
+// =====================================================
+// Desktop
+// =====================================================
+
+.media-width(@extremum, @break)
+when (@extremum = 'min')
+and (@break = @screen__m) {
+
+    .catalog-product-view {
+
+        .product.media {
+            float: left;
+        }
+
+        .product-info-main {
+            float: right;
+        }
+    }
+}
+
+
+// =====================================================
+// Mobile
+// =====================================================
+
+.media-width(@extremum, @break)
+when (@extremum = 'max')
+and (@break = @screen__m) {
+
+    .catalog-product-view {
+
+        // ---------------------------------------------
+        // Page
+        // ---------------------------------------------
+
+        .page-main {
+            box-sizing: border-box;
+
+            width: 100%;
+            max-width: none;
+
+            padding-left: 12px;
+            padding-right: 12px;
+        }
+
+
+        // ---------------------------------------------
+        // Product image
+        // ---------------------------------------------
+
+        .product.media {
+            float: none;
+
+            width: 100%;
+            max-width: none;
+
+            margin: 0 0 14px;
+            padding: 8px;
+
+            border-radius: 14px;
+        }
+
+        // Reduz a galeria do Magento no mobile
+        .fotorama__stage,
+        .fotorama__stage__shaft {
+            max-height: 280px;
+        }
+
+        .fotorama__stage__frame {
+            .fotorama__img {
+                width: auto;
+                max-width: 100%;
+                max-height: 250px;
+
+                object-fit: contain;
+            }
+        }
+
+
+        // ---------------------------------------------
+        // Product information card
+        // ---------------------------------------------
+
+        .product-info-main {
+            float: none;
+
+            width: 100%;
+            max-width: none;
+
+            margin-top: 0;
+            padding: 16px;
+
+            border-radius: 14px;
+        }
+
+
+        // ---------------------------------------------
+        // Title
+        // ---------------------------------------------
+
+        .page-title-wrapper {
+            .page-title {
+                margin-bottom: 8px;
+
+                font-size: 24px;
+                line-height: 1.08;
+            }
+        }
+
+
+        // ---------------------------------------------
+        // Review summary
+        // ---------------------------------------------
+
+        .product-reviews-summary {
+            margin-bottom: 10px;
+
+            font-size: 12px;
+        }
+
+
+        // ---------------------------------------------
+        // Price / stock
+        // ---------------------------------------------
+
+        .product-info-price {
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+        }
+
+        .price-box {
+            .price {
+                font-size: 22px;
+            }
+        }
+
+        .product-info-stock-sku {
+            font-size: 11px;
+        }
+
+
+        // ---------------------------------------------
+        // Quantity + Add to cart
+        // ---------------------------------------------
+
+        .box-tocart {
+            margin-top: 12px;
+
+            .fieldset {
+                display: grid;
+
+                grid-template-columns: 58px minmax(0, 1fr);
+                gap: 10px;
+
+                align-items: end;
+            }
+
+            .field.qty {
+                margin: 0;
+            }
+
+            .input-text.qty {
+                width: 56px;
+                min-width: 56px;
+                height: 36px;
+            }
+
+            .actions {
+                width: 100%;
+            }
+
+            .action.tocart {
+                width: 100%;
+                min-width: 0;
+                min-height: 40px;
+
+                padding: 8px 12px;
+
+                font-size: 13px;
+            }
+        }
+
+
+        // ---------------------------------------------
+        // Wishlist / compare
+        // ---------------------------------------------
+
+        .product-addto-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px 14px;
+
+            margin-top: 12px;
+
+            a {
+                margin: 0;
+
+                font-size: 11px;
+            }
+        }
+
+
+        // ---------------------------------------------
+        // Description
+        // ---------------------------------------------
+
+        .product.attribute.overview {
+            margin-top: 12px;
+
+            font-size: 12px;
+            line-height: 1.5;
+        }
+
+
+        // ---------------------------------------------
+        // Sustainable seal
+        // ---------------------------------------------
+
+        .webjump-sustainable-seal {
+            margin: 10px 0 12px;
+            padding: 5px 10px;
+
+            font-size: 11px;
+        }
+
+
+        // ---------------------------------------------
+        // Custom reviews
+        // ---------------------------------------------
+
+        .webjump-product-reviews {
+            margin-top: 16px;
+
+            h2 {
+                margin-bottom: 8px;
+                padding-bottom: 8px;
+
+                font-size: 16px;
+            }
+        }
+
+        .webjump-product-review {
+            padding: 8px 0;
+
+            strong {
+                font-size: 12px;
+            }
+
+            p {
+                margin-top: 2px;
+
+                font-size: 11px;
+                line-height: 1.4;
+            }
+        }
+
+        .webjump-product-review-rating {
+            margin-bottom: 2px;
+
+            font-size: 11px;
+        }
+
+
+        // ---------------------------------------------
+        // Native review form
+        // ---------------------------------------------
+
+        .block.review-add {
+            box-sizing: border-box;
+
+            width: 100%;
+            max-width: none;
+
+            margin: 18px 0 26px;
+            padding: 16px;
+
+            border: 1px solid @halloween-border;
+            border-radius: 14px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    @halloween-black-soft 0%,
+                    @halloween-brown 100%
+                );
+
+            .block-title {
+                margin-bottom: 14px;
+
+                strong {
+                    font-size: 20px;
+                }
+            }
+
+            .legend {
+                margin-bottom: 14px;
+
+                font-size: 16px;
+                line-height: 1.3;
+            }
+
+            .fieldset {
+                margin-bottom: 14px;
+            }
+
+            .field {
+                margin-bottom: 12px;
+            }
+
+            .field.review-field-nickname,
+            .field.review-field-summary,
+            .field.review-field-text {
+                max-width: none;
+            }
+
+            input[type='text'],
+            textarea {
+                width: 100%;
+            }
+
+            textarea {
+                min-height: 90px;
+            }
+
+            .actions-toolbar {
+                margin-top: 14px;
+
+                .primary {
+                    width: 100%;
+                }
+            }
+
+            .action.submit.primary {
+                width: 100%;
+                min-height: 40px;
+
+                font-size: 13px;
+            }
+        }
+
+
+        // ---------------------------------------------
+        // Rating
+        // Corrige visualmente os ícones quebrados
+        // ---------------------------------------------
+
+        .review-control-vote {
+            height: 30px;
+
+            &:before {
+                content: '☆☆☆☆☆';
+
+                color: @halloween-muted;
+
+                font-family: Arial, sans-serif;
+                font-size: 24px;
+                line-height: 28px;
+                letter-spacing: 2px;
+            }
+
+            label {
+                &:before {
+                    color: @halloween-orange;
+
+                    font-family: Arial, sans-serif;
+                    font-size: 24px;
+                    line-height: 28px;
+                    letter-spacing: 2px;
+                }
+            }
+
+            .rating-1:before {
+                content: '★';
+            }
+
+            .rating-2:before {
+                content: '★★';
+            }
+
+            .rating-3:before {
+                content: '★★★';
+            }
+
+            .rating-4:before {
+                content: '★★★★';
+            }
+
+            .rating-5:before {
+                content: '★★★★★';
+            }
+        }
+    }
 }
