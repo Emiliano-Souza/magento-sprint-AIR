@@ -696,7 +696,7 @@ Principais entregas:
 - remoção de `catalog.compare.sidebar`;
 - movimentação de `navigation.sections` para o header;
 - override de `copyright.phtml`;
-- CSV `pt_BR` com seis termos personalizados;
+- dicionário `pt_BR.csv` ampliado para traduzir textos do tema, catálogo, minicart, carrinho, checkout, avaliações e footer;
 - override de `Magento_Sales/email/order_new.html`;
 - estilização do e-mail através de `_email-extend.less`;
 - e-mail de novo pedido validado no Mailcatcher;
@@ -950,14 +950,22 @@ em:
 /noite-assombrada-ofertas
 ```
 
-Como melhoria adicional, o item `Ofertas` já existente na navegação foi integrado à campanha por meio de um redirecionamento temporário:
+
+por:
+
+Como melhoria adicional, o item `Ofertas` já existente na navegação foi integrado à página da campanha por meio de um URL Rewrite configurado no Magento.
+
+Fluxo:
 
 ```text
-/sale.html
+Ofertas na navegação
     ↓
-302
+URL Rewrite
     ↓
 /noite-assombrada-ofertas
+    ↓
+Página CMS da campanha
+
 ```
 
 Essa alteração de navegação não era requisito do exercício. Ela foi adicionada para permitir que a página da campanha fosse acessada pelo fluxo normal da loja, sem criar um novo item na navbar.
@@ -993,8 +1001,6 @@ Cada uso possui valores diferentes de intensidade e duração, demonstrando que 
 O binding foi escolhido em vez de um componente completo porque o efeito representa um comportamento visual pequeno e reutilizável aplicado sobre elementos já existentes, sem necessidade de manter estado próprio.
 
 📄 [Documentação do 17.5](docs/17.5-custom-knockout-binding.md)
-
----
 
 ---
 
@@ -1051,6 +1057,48 @@ Contador atualizado sem reload
 
 ---
 
+
+## ✅ Extras — Refinamentos finais da Sprint 8
+
+Após a conclusão dos exercícios obrigatórios, foram realizados ajustes adicionais para melhorar a integração, consistência visual e manutenção da loja.
+
+Principais entregas:
+
+- revisão geral do storefront utilizando 100% de zoom como referência;
+- refinamento do header para desktop e mobile;
+- ajustes de escala e responsividade da página de produto;
+- refinamento da categoria `Whiskies`;
+- revisão visual do minicart, carrinho e checkout;
+- ampliação do `pt_BR.csv` para reduzir textos nativos em inglês;
+- integração do item `Ofertas` da navegação com a página da campanha;
+- URL Rewrite apontando para `/noite-assombrada-ofertas`;
+- integração responsiva do Modo Assombrado e contador de sustos;
+- revisão dos overrides utilizados pelo tema;
+- documentação das decisões entre sobrescrever, mesclar e estender;
+- documentação dos arquivos do núcleo copiados para o tema.
+
+Fluxo da navegação de Ofertas:
+
+```text
+Ofertas
+    ↓
+URL Rewrite
+    ↓
+/noite-assombrada-ofertas
+    ↓
+Página CMS
+    ↓
+Caixão de Ofertas
+```
+
+Documentação complementar:
+
+📄 [Decisões de extensão da Sprint 8](docs/sprint-8-extension-decisions.md)
+
+📄 [Overrides do núcleo utilizados na Sprint 8](docs/sprint-8-core-overrides.md)
+
+---
+
 # 📁 Documentação
 
 ```text
@@ -1075,6 +1123,8 @@ docs/
 ├── 17.4-coffin-offers-page-builder.md
 ├── 17.5-custom-knockout-binding.md
 ├── 17.6-customer-data-section.md
+├── sprint-8-extension-decisions.md
+├── sprint-8-core-overrides.md
 └── images/
     ├── 12.1/
     ├── 12.2/
@@ -1155,5 +1205,6 @@ Sprint 8
 ├── 17.3 — Mensagem Assombrada no checkout     ✅
 ├── 17.4 — Caixão de Ofertas no Page Builder   ✅
 ├── 17.5 — Binding próprio do Knockout         ✅
-└── 17.6 — Seção própria de customer-data      ✅
+├── 17.6 — Seção própria de customer-data      ✅
+└── Documentação final da Sprint 8             ✅
 ```
