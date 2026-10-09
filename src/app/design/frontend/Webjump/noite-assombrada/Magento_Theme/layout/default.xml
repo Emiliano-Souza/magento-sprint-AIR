@@ -9,7 +9,14 @@
             <block class="Magento\Framework\View\Element\Template"
                    name="halloween.campaign.strip"
                    before="-"
-                   template="Magento_Theme::html/campaign-strip.phtml"/>
+                   template="Magento_Theme::html/campaign-strip.phtml">
+
+                <block class="Magento\Framework\View\Element\Template"
+                       name="halloween.countdown"
+                       as="countdown"
+                       template="Magento_Theme::html/countdown.phtml"/>
+
+            </block>
         </referenceContainer>
 
         <referenceBlock name="catalog.compare.sidebar" remove="true"/>
@@ -17,6 +24,19 @@
         <move element="navigation.sections"
               destination="header-wrapper"
               after="top.search"/>
+
+       <referenceContainer name="header-wrapper">
+            <container name="halloween.haunted.mode.panel"
+                    htmlTag="div"
+                    htmlClass="haunted-mode-panel"
+                    after="minicart">
+
+                <block class="Magento\Framework\View\Element\Template"
+                    name="halloween.haunted.mode.toggle"
+                    template="Magento_Theme::html/haunted-mode-toggle.phtml"/>
+
+            </container>
+        </referenceContainer>
 
         <referenceBlock name="logo">
             <arguments>

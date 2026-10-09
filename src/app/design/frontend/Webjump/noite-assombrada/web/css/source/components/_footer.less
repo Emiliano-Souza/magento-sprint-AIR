@@ -122,3 +122,43 @@
 
     color: @halloween-muted;
 }
+
+
+
+// =====================================================
+// Responsive
+// =====================================================
+
+// =====================================================
+// Mobile Footer
+// =====================================================
+
+.page-footer {
+    .footer.content {
+        .links {
+            > li {
+                border-top: 1px solid @halloween-border;
+
+                background: transparent;
+
+                color: @halloween-muted;
+
+                > a {
+                    color: @halloween-muted;
+
+                    &:visited {
+                        color: @halloween-muted;
+                    }
+
+                    &:hover {
+                        color: @halloween-orange-light;
+                    }
+                }
+
+                &:last-child {
+                    border-bottom: 1px solid @halloween-border;
+                }
+            }
+        }
+    }
+}

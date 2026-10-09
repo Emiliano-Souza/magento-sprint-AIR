@@ -1,0 +1,19 @@
+<div class="haunted-scare-counter"
+     data-bind="scope: 'hauntedScareCounter'">
+
+    <!-- ko template: getTemplate() --><!-- /ko -->
+</div>
+
+<script type="text/x-magento-init">
+{
+    "*": {
+        "Magento_Ui/js/core/app": {
+            "components": {
+                "hauntedScareCounter": {
+                    "component": "Webjump_HauntedCustomerData/js/view/scare-counter"
+                }
+            }
+        }
+    }
+}
+</script>

@@ -2,7 +2,7 @@
 
 Projeto desenvolvido durante o **Programa de Estágio da Webjump**, com foco em Magento 2 / Adobe Commerce.
 
-O repositório reúne as atividades das **Sprints 6 e 7**, abordando configuração de ambiente, catálogo, CMS, desenvolvimento de módulos, extensão do Magento, EAV, banco de dados, Service Contracts e interfaces administrativas.
+O repositório reúne as atividades das **Sprints 6, 7 e 8**, abordando configuração de ambiente, catálogo, CMS, desenvolvimento de módulos, extensão do Magento, EAV, banco de dados, Service Contracts, interfaces administrativas e customização frontend com temas Magento.
 
 ---
 
@@ -101,7 +101,7 @@ Principais recursos:
 - Layout XML;
 - ViewModel;
 - template `.phtml`;
-- LESS próprio;;
+- LESS próprio;
 - escape de saídas dinâmicas;
 - bloco responsivo na Home.
 
@@ -678,8 +678,9 @@ _global.less
 _header.less
 _home.less
 _product.less
-_responsive.less
 ```
+
+As regras responsivas utilizam `.media-width()` e ficam junto ao próprio componente responsável.
 
 A identidade foi validada na Home, categoria `Whiskies`, página de produto e em desktop/mobile.
 
@@ -695,7 +696,7 @@ Principais entregas:
 - remoção de `catalog.compare.sidebar`;
 - movimentação de `navigation.sections` para o header;
 - override de `copyright.phtml`;
-- CSV `pt_BR` com seis termos personalizados;
+- dicionário `pt_BR.csv` ampliado para traduzir textos do tema, catálogo, minicart, carrinho, checkout, avaliações e footer;
 - override de `Magento_Sales/email/order_new.html`;
 - estilização do e-mail através de `_email-extend.less`;
 - e-mail de novo pedido validado no Mailcatcher;
@@ -734,6 +735,370 @@ Mailcatcher
 
 ---
 
+## ✅ 17.1 — Contagem Regressiva e Selo Assombrado
+
+A campanha **Noite Assombrada** foi evoluída com comportamento dinâmico utilizando Knockout e com a reutilização do atributo de produto criado na Sprint 7.
+
+Principais entregas:
+
+- contador regressivo desenvolvido como componente Knockout;
+- `ko.observable()` para controle do tempo restante;
+- `ko.computed()` para formatação da mensagem;
+- atualização automática a cada segundo;
+- inicialização por `x-magento-init`;
+- tratamento da campanha após a data final;
+- integração do contador à faixa global da campanha;
+- tradução dos textos através de `pt_BR.csv`;
+- reutilização do atributo `sustainable_seal`;
+- atributo disponibilizado também na listagem de produtos;
+- selo exibido na PLP e PDP;
+- plugin `after` sem sobrescrever `product/list.phtml`;
+- produto sem o atributo marcado não gera erro ou espaço vazio;
+- estilo do selo isolado em `_sustainable-seal.less`;
+- validação em desktop e mobile.
+
+Fluxo do contador:
+
+```text
+default.xml
+    ↓
+countdown.phtml
+    ↓
+x-magento-init
+    ↓
+countdown.js
+    ↓
+Knockout observable/computed
+    ↓
+countdown.html
+```
+
+Fluxo do selo:
+
+```text
+sustainable_seal
+    ↓
+PLP / PDP
+    ↓
+sustainable-seal.phtml
+    ↓
+_sustainable-seal.less
+```
+
+📄 [Documentação do 17.1](docs/17.1-countdown-haunted-badge.md)
+
+---
+
+## ✅ 17.2 — Modo Assombrado e Minicart
+
+A campanha **Noite Assombrada** recebeu um modo visual alternativo e comportamento customizado no minicart.
+
+Principais entregas:
+
+- interruptor no header para ativar o Modo Assombrado;
+- alteração visual através da classe `haunted-mode-active`;
+- persistência utilizando `localStorage`;
+- carregamento global através de `deps` no `requirejs-config.js`;
+- minicart estendido através de mixin;
+- `this._super()` preservando o comportamento original;
+- `ko.computed()` para mensagem baseada na quantidade;
+- funcionamento normal ao adicionar, remover e atualizar produtos;
+- visual do minicart integrado à campanha;
+- página completa do carrinho adaptada ao tema;
+- variáveis do Modo Assombrado centralizadas em `_theme.less`.
+
+Foi utilizado um **mixin** porque a necessidade era apenas estender o comportamento do minicart existente.
+
+O uso de `map` substituiria completamente:
+
+```text
+Magento_Checkout/js/view/minicart
+```
+
+aumentando o escopo da customização e o risco de interferir no funcionamento nativo.
+
+Com o mixin, o componente original permanece ativo e apenas o comportamento necessário para a campanha é acrescentado.
+
+Fluxo do modo:
+
+```text
+requirejs-config.js
+        ↓
+deps
+        ↓
+haunted-mode.js
+        ↓
+localStorage
+        ↓
+haunted-mode-active
+```
+
+Fluxo do minicart:
+
+```text
+Magento_Checkout/js/view/minicart
+        ↓
+mixin
+        ↓
+ko.computed()
+        ↓
+mensagem da campanha
+```
+
+📄 [Documentação do 17.2](docs/17.2-haunted-mode-minicart.md)
+
+---
+
+## ✅ 17.3 — Mensagem Assombrada no Checkout
+
+Foi criado o módulo:
+
+```text
+Webjump_HauntedCheckout
+```
+
+para adicionar uma mensagem opcional ao pedido durante o checkout.
+
+Principais entregas:
+
+- campo adicionado por plugin no `LayoutProcessor`;
+- `textarea` integrado ao endereço de entrega;
+- limite máximo de 200 caracteres;
+- mensagem de validação traduzida;
+- envio através de `extension_attributes`;
+- persistência da mensagem no `quote`;
+- cópia do valor para `sales_order`;
+- suporte a pedido sem mensagem;
+- exibição da mensagem na visualização do pedido no Admin;
+- saída escapada no Admin;
+- nenhum arquivo de `Magento_Checkout` alterado diretamente.
+
+Fluxo:
+
+```text
+Checkout
+    ↓
+LayoutProcessor
+    ↓
+Extension Attribute
+    ↓
+Quote
+    ↓
+Sales Order
+    ↓
+Admin
+```
+
+O checkout também recebeu ajustes visuais compatíveis com o tema **Noite Assombrada**, mantendo funcionamento em desktop e mobile.
+
+📄 [Documentação do 17.3](docs/17.3-haunted-checkout-message.md)
+
+---
+
+## ✅ 17.4 — Caixão de Ofertas no Page Builder
+
+Foi criado o módulo:
+
+```text
+Webjump_HauntedPageBuilder
+```
+
+para disponibilizar um content type próprio no Page Builder voltado à campanha **Noite Assombrada**.
+
+Principais entregas:
+
+- content type `Caixão de Ofertas`;
+- rótulo em português no painel do Page Builder;
+- suporte a `Row` e `Column`;
+- formulário administrativo próprio;
+- campos configuráveis de título, texto, imagem e link;
+- upload de imagem através do Page Builder;
+- preview configurável no editor;
+- template master para a storefront;
+- classe `pagebuilder-content-type` no elemento externo do preview;
+- página de campanha criada com o componente;
+- visual integrado ao tema Noite Assombrada;
+- responsividade desktop e mobile.
+
+Fluxo:
+
+```text
+Page Builder
+    ↓
+Caixão de Ofertas
+    ↓
+Formulário
+    ↓
+Título + Texto + Imagem + Link
+    ↓
+Preview
+    ↓
+Master
+    ↓
+Storefront
+```
+
+Foi publicada a página:
+
+```text
+Noite Assombrada — Ofertas
+```
+
+em:
+
+```text
+/noite-assombrada-ofertas
+```
+
+
+por:
+
+Como melhoria adicional, o item `Ofertas` já existente na navegação foi integrado à página da campanha por meio de um URL Rewrite configurado no Magento.
+
+Fluxo:
+
+```text
+Ofertas na navegação
+    ↓
+URL Rewrite
+    ↓
+/noite-assombrada-ofertas
+    ↓
+Página CMS da campanha
+
+```
+
+Essa alteração de navegação não era requisito do exercício. Ela foi adicionada para permitir que a página da campanha fosse acessada pelo fluxo normal da loja, sem criar um novo item na navbar.
+
+📄 [Documentação do 17.4](docs/17.4-coffin-offers-page-builder.md)
+
+---
+
+## ✅ 17.5 — Binding próprio do Knockout
+
+Foi criado o binding customizado:
+
+```text
+shake
+```
+
+para aplicar um efeito de tremor reutilizável em elementos Knockout.
+
+O binding aceita os parâmetros:
+
+```text
+intensity
+duration
+```
+
+e foi utilizado em dois pontos distintos:
+
+- contagem regressiva da campanha;
+- mensagem temática do minicart.
+
+Cada uso possui valores diferentes de intensidade e duração, demonstrando que o comportamento pode ser configurado diretamente pelo template sem duplicação de JavaScript.
+
+O binding foi escolhido em vez de um componente completo porque o efeito representa um comportamento visual pequeno e reutilizável aplicado sobre elementos já existentes, sem necessidade de manter estado próprio.
+
+📄 [Documentação do 17.5](docs/17.5-custom-knockout-binding.md)
+
+---
+
+## ✅ 17.6 — Seção própria de customer-data
+
+Foi criado o módulo:
+
+```text
+Webjump_HauntedCustomerData
+```
+
+para manter um contador individual de sustos por sessão utilizando `customer-data`.
+
+Principais entregas:
+
+- seção própria `haunted-scares`;
+- registro da seção no `di.xml`;
+- implementação de `SectionSourceInterface`;
+- contador armazenado na sessão do visitante;
+- ação `haunted/scare/increment`;
+- invalidação da seção através de `sections.xml`;
+- leitura do valor por componente Knockout;
+- atualização do contador sem recarregar a página;
+- integração com o `Modo Assombrado`;
+- jumpscare exibido ao ativar o modo;
+- valores independentes entre visitantes;
+- nenhum dado individual impresso diretamente pelo PHP;
+- integração do contador ao header no desktop;
+- painel movido para a navegação no mobile.
+
+Fluxo:
+
+```text
+Modo Assombrado
+      ↓
+Jumpscare
+      ↓
+POST haunted/scare/increment
+      ↓
+Sessão +1
+      ↓
+sections.xml
+      ↓
+haunted-scares
+      ↓
+customer-data
+      ↓
+Knockout
+      ↓
+Contador atualizado sem reload
+```
+
+📄 [Documentação do 17.6](docs/17.6-customer-data-section.md)
+
+---
+
+
+## ✅ Extras — Refinamentos finais da Sprint 8
+
+Após a conclusão dos exercícios obrigatórios, foram realizados ajustes adicionais para melhorar a integração, consistência visual e manutenção da loja.
+
+Principais entregas:
+
+- revisão geral do storefront utilizando 100% de zoom como referência;
+- refinamento do header para desktop e mobile;
+- ajustes de escala e responsividade da página de produto;
+- refinamento da categoria `Whiskies`;
+- revisão visual do minicart, carrinho e checkout;
+- ampliação do `pt_BR.csv` para reduzir textos nativos em inglês;
+- integração do item `Ofertas` da navegação com a página da campanha;
+- URL Rewrite apontando para `/noite-assombrada-ofertas`;
+- integração responsiva do Modo Assombrado e contador de sustos;
+- revisão dos overrides utilizados pelo tema;
+- documentação das decisões entre sobrescrever, mesclar e estender;
+- documentação dos arquivos do núcleo copiados para o tema.
+
+Fluxo da navegação de Ofertas:
+
+```text
+Ofertas
+    ↓
+URL Rewrite
+    ↓
+/noite-assombrada-ofertas
+    ↓
+Página CMS
+    ↓
+Caixão de Ofertas
+```
+
+Documentação complementar:
+
+📄 [Decisões de extensão da Sprint 8](docs/sprint-8-extension-decisions.md)
+
+📄 [Overrides do núcleo utilizados na Sprint 8](docs/sprint-8-core-overrides.md)
+
+---
+
 # 📁 Documentação
 
 ```text
@@ -751,6 +1116,15 @@ docs/
 ├── 15.2-form-config-export.md
 ├── 15.3-custom-export.md
 ├── 16.1-noite-assombrada.md
+├── 16.2-structure-texts-email.md
+├── 17.1-countdown-haunted-badge.md
+├── 17.2-haunted-mode-minicart.md
+├── 17.3-haunted-checkout-message.md
+├── 17.4-coffin-offers-page-builder.md
+├── 17.5-custom-knockout-binding.md
+├── 17.6-customer-data-section.md
+├── sprint-8-extension-decisions.md
+├── sprint-8-core-overrides.md
 └── images/
     ├── 12.1/
     ├── 12.2/
@@ -760,10 +1134,16 @@ docs/
     ├── 14.1/
     ├── 14.2/
     ├── 15.1/
-    ├── 15.2/        
+    ├── 15.2/
     ├── 15.3/
     ├── 16.1/
-    └── 16.2/
+    ├── 16.2/
+    ├── 17.1/
+    ├── 17.2/
+    ├── 17.3/
+    ├── 17.4/
+    ├── 17.5/
+    └── 17.6/
 ```
 
 O `README.md` apresenta uma visão geral das entregas, enquanto os arquivos em `docs/` concentram as decisões técnicas, validações e evidências.
@@ -799,24 +1179,32 @@ O `README.md` apresenta uma visão geral das entregas, enquanto os arquivos em `
 ```text
 Sprint 6
 
-├── 12.1 — Ambiente Magento                ✅
-├── 12.2 — Loja e catálogo                 ✅
-├── 13.1 — Primeiro módulo                 ✅
-├── 13.2 — Extensão do catálogo            ✅
-├── 13.3 — Configuração no Admin           ✅
-└── Shopify / AEM / Magento — Comparativo  ✅
+├── 12.1 — Ambiente Magento                 ✅
+├── 12.2 — Loja e catálogo                  ✅
+├── 13.1 — Primeiro módulo                  ✅
+├── 13.2 — Extensão do catálogo             ✅
+├── 13.3 — Configuração no Admin            ✅
+└── Shopify / AEM / Magento — Comparativo   ✅
 
 
 Sprint 7
 
-├── 14.1 — Atributo de produto por código  ✅
-├── 14.2 — Entidade e Repository           ✅
-├── 15.1 — Grid administrativo             ✅
-└── 15.2 — Formulário e exportação         ✅
+├── 14.1 — Atributo de produto por código   ✅
+├── 14.2 — Entidade e Repository            ✅
+├── 15.1 — Grid administrativo              ✅
+├── 15.2 — Formulário e exportação          ✅
+└── 15.3 — Exportação customizada           ✅
 
 
 Sprint 8
 
-├── 16.1 — Tema Noite Assombrada           ✅
-└── 16.2 — Estrutura, textos e email       ✅                  
+├── 16.1 — Tema Noite Assombrada               ✅
+├── 16.2 — Estrutura, textos e email           ✅
+├── 17.1 — Contagem regressiva e selo          ✅
+├── 17.2 — Modo Assombrado e minicart          ✅
+├── 17.3 — Mensagem Assombrada no checkout     ✅
+├── 17.4 — Caixão de Ofertas no Page Builder   ✅
+├── 17.5 — Binding próprio do Knockout         ✅
+├── 17.6 — Seção própria de customer-data      ✅
+└── Documentação final da Sprint 8             ✅
 ```

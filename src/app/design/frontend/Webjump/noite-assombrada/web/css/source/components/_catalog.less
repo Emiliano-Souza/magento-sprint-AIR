@@ -331,3 +331,176 @@
         }
     }
 }
+
+// =====================================================
+// Responsive
+// =====================================================
+
+// =====================================================
+// Desktop
+// =====================================================
+
+.media-width(@extremum, @break)
+when (@extremum = 'min')
+and (@break = @screen__m) {
+
+    .catalog-category-view {
+
+        // Sidebar
+
+        .sidebar,
+        .sidebar-main,
+        .sidebar-additional {
+            .block.block-compare,
+            .block.block-wishlist {
+                border: 1px solid @halloween-border;
+                border-radius: @border-radius__base;
+
+                background: @halloween-black-soft;
+
+                color: @halloween-white;
+
+                .block-title {
+                    border-color: @halloween-border;
+
+                    strong {
+                        color: @halloween-orange;
+                    }
+                }
+
+                .block-content {
+                    color: @halloween-muted;
+
+                    .empty {
+                        color: @halloween-muted;
+                    }
+
+                    a {
+                        color: @halloween-white;
+
+                        &:visited {
+                            color: @halloween-white;
+                        }
+
+                        &:hover {
+                            color: @halloween-orange-light;
+                        }
+                    }
+                }
+            }
+        }
+
+        // Toolbar superior
+
+        .toolbar-products,
+        .toolbar.toolbar-products {
+            border: 1px solid @halloween-border;
+            border-radius: @border-radius__base;
+
+            background: @halloween-black-soft;
+
+            color: @halloween-white;
+
+            .toolbar-amount,
+            .sorter-label,
+            .limiter,
+            .limiter-text {
+                color: @halloween-muted;
+            }
+
+            select {
+                border-color: @halloween-border;
+                border-radius: @border-radius__base;
+
+                background: @halloween-surface-light;
+
+                color: @halloween-black;
+            }
+        }
+
+        // Toolbar inferior
+
+        .toolbar-bottom {
+            .toolbar-products,
+            .toolbar.toolbar-products {
+                border: 1px solid @halloween-border;
+                border-radius: @border-radius__base;
+
+                background: @halloween-black-soft;
+
+                color: @halloween-white;
+            }
+
+            .limiter {
+                color: @halloween-muted;
+
+                .label,
+                .limiter-text {
+                    color: @halloween-muted;
+                }
+
+                select {
+                    border-color: @halloween-border;
+
+                    background: @halloween-surface-light;
+
+                    color: @halloween-black;
+                }
+            }
+        }
+    }
+}
+
+
+// =====================================================
+// Mobile
+// =====================================================
+
+.media-width(@extremum, @break)
+when (@extremum = 'max')
+and (@break = @screen__m) {
+
+    .catalog-category-view {
+        .sidebar,
+        .sidebar-main,
+        .sidebar-additional {
+            .block.block-compare,
+            .block.block-wishlist {
+                border: 1px solid @halloween-border;
+                border-radius: @border-radius__base;
+
+                background: @halloween-black-soft;
+
+                color: @halloween-white;
+
+                .block-title {
+                    border-color: @halloween-border;
+
+                    strong {
+                        color: @halloween-orange;
+                    }
+                }
+
+                .block-content {
+                    color: @halloween-muted;
+
+                    .empty {
+                        color: @halloween-muted;
+                    }
+
+                    a {
+                        color: @halloween-white;
+
+                        &:visited {
+                            color: @halloween-white;
+                        }
+
+                        &:hover {
+                            color: @halloween-orange-light;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

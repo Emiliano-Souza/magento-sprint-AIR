@@ -1,0 +1,23 @@
+<?php
+/**
+ * Haunted checkout message displayed on the admin order view.
+ *
+ * @var \Webjump\HauntedCheckout\Block\Adminhtml\Order\View\HauntedMessage $block
+ */
+
+$message = $block->getHauntedMessage();
+?>
+
+<?php if ($message !== ''): ?>
+    <section class="admin__page-section">
+        <div class="admin__page-section-title">
+            <span class="title">
+                <?= $block->escapeHtml(__('Haunted message for the package')) ?>
+            </span>
+        </div>
+
+        <div class="admin__page-section-content">
+            <?= $block->escapeHtml($message) ?>
+        </div>
+    </section>
+<?php endif; ?>

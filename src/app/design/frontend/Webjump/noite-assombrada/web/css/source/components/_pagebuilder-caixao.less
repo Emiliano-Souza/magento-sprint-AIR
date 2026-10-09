@@ -1,0 +1,169 @@
+// =====================================================
+// Page Builder — Caixão de Ofertas
+// =====================================================
+
+[data-content-type='webjump_caixao'] {
+    box-sizing: border-box;
+
+    &.webjump-caixao {
+        display: grid;
+        grid-template-columns: minmax(220px, 360px) minmax(0, 1fr);
+        gap: 32px;
+        align-items: center;
+
+        overflow: hidden;
+
+        width: 100%;
+        max-width: 1180px;
+        margin: 32px auto;
+        padding: 24px;
+
+        border: 1px solid fade(@halloween-orange, 28%);
+        border-radius: @halloween-radius-large;
+
+        background:
+            linear-gradient(
+                135deg,
+                @halloween-black-soft 0%,
+                @halloween-black 55%,
+                @halloween-brown 100%
+            );
+
+        color: @halloween-white;
+
+        box-shadow:
+            0 16px 36px rgba(0, 0, 0, .30),
+            inset 0 0 30px fade(@halloween-orange, 4%);
+    }
+
+    .webjump-caixao__image {
+        overflow: hidden;
+
+        border-radius: @border-radius__base;
+
+        background: @halloween-black-deep;
+
+        img {
+            display: block;
+
+            width: 100%;
+            height: 320px;
+
+            object-fit: cover;
+
+            transition: transform .3s ease;
+        }
+    }
+
+    .webjump-caixao__content {
+        min-width: 0;
+        padding: 8px 12px;
+    }
+
+    .webjump-caixao__title {
+        margin: 0 0 14px;
+
+        color: @halloween-white;
+
+        font-family: @halloween-accent-font-family;
+        font-size: 32px;
+        font-weight: 400;
+        line-height: 1.2;
+    }
+
+    .webjump-caixao__text {
+        max-width: 620px;
+        margin: 0 0 24px;
+
+        color: @halloween-muted;
+
+        font-size: 16px;
+        line-height: 1.6;
+    }
+
+    .webjump-caixao__link {
+        display: inline-block;
+
+        padding: 12px 22px;
+
+        border: 1px solid @halloween-orange;
+        border-radius: @border-radius__base;
+
+        background: @halloween-orange;
+        color: @halloween-black;
+
+        font-weight: 700;
+        text-decoration: none;
+
+        transition:
+            background .2s ease,
+            border-color .2s ease,
+            transform .2s ease;
+
+        &:hover,
+        &:focus {
+            border-color: @halloween-orange-light;
+
+            background: @halloween-orange-light;
+            color: @halloween-black;
+
+            text-decoration: none;
+
+            transform: translateY(-1px);
+        }
+    }
+
+    &:hover {
+        .webjump-caixao__image img {
+            transform: scale(1.025);
+        }
+    }
+}
+
+
+// =====================================================
+// Mobile
+// =====================================================
+
+.media-width(@extremum, @break)
+when (@extremum = 'max')
+and (@break = @screen__m) {
+
+    [data-content-type='webjump_caixao'] {
+
+        &.webjump-caixao {
+            display: block;
+
+            width: auto;
+            margin: 24px 14px;
+            padding: 18px;
+        }
+
+        .webjump-caixao__image {
+            margin-bottom: 20px;
+
+            img {
+                height: auto;
+                max-height: 360px;
+
+                object-fit: cover;
+            }
+        }
+
+        .webjump-caixao__content {
+            padding: 0;
+        }
+
+        .webjump-caixao__title {
+            font-size: 26px;
+        }
+
+        .webjump-caixao__link {
+            box-sizing: border-box;
+
+            width: 100%;
+
+            text-align: center;
+        }
+    }
+}

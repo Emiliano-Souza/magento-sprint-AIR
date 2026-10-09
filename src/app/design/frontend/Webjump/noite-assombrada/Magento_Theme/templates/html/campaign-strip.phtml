@@ -1,5 +1,7 @@
 <?php
 /** @var \Magento\Framework\View\Element\Template $block */
+
+$countdownHtml = $block->getChildHtml('countdown');
 ?>
 
 <div class="halloween-campaign-strip">
@@ -8,4 +10,10 @@
             __('Noite Assombrada — ofertas especiais até 31 de outubro')
         ) ?>
     </span>
+
+    <?php if ($countdownHtml): ?>
+        <div class="halloween-campaign-strip__countdown">
+            <?= /* @noEscape */ $countdownHtml ?>
+        </div>
+    <?php endif; ?>
 </div>

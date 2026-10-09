@@ -178,3 +178,80 @@
         }
     }
 }
+
+// =====================================================
+// Responsive
+// =====================================================
+
+// =====================================================
+// Desktop
+// =====================================================
+
+.media-width(@extremum, @break)
+when (@extremum = 'min')
+and (@break = @screen__m) {
+
+    .halloween-campaign-strip {
+        width: calc(~'100% - 80px');
+        max-width: 1380px;
+        min-height: 58px;
+
+        margin:
+            @indent__base
+            auto
+            (@indent__base * 2);
+
+        padding: @indent__s (@indent__base * 2);
+
+        border-radius: @border-radius__base;
+
+        font-size: 14px;
+        line-height: 1.5;
+        letter-spacing: .07em;
+
+        span {
+            &::before,
+            &::after {
+                width: 70px;
+                margin: 0 @indent__base;
+            }
+        }
+    }
+}
+
+// =====================================================
+// Mobile
+// =====================================================
+
+.media-width(@extremum, @break)
+when (@extremum = 'max')
+and (@break = @screen__m) {
+
+    .halloween-campaign-strip {
+        min-height: 0;
+
+        margin-bottom: @indent__xs;
+        padding: @indent__s @indent__base;
+
+        font-size: 12px;
+        line-height: 1.4;
+        letter-spacing: .04em;
+
+        span {
+            display: block;
+
+            width: 100%;
+            max-width: 300px;
+
+            margin: 0 auto;
+
+            text-align: center;
+            text-wrap: balance;
+
+            &::before,
+            &::after {
+                display: none;
+            }
+        }
+    }
+}

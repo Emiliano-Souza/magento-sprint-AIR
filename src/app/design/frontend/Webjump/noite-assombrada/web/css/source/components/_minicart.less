@@ -1,0 +1,165 @@
+// =====================================================
+// Minicart — Noite Assombrada
+// =====================================================
+
+.minicart-wrapper {
+    .block-minicart {
+        border: 1px solid fade(@halloween-orange, 35%);
+
+        background:
+            linear-gradient(
+                135deg,
+                @halloween-black-soft 0%,
+                @halloween-brown 100%
+            );
+
+        color: @halloween-white;
+
+        box-shadow:
+            0 10px 30px rgba(0, 0, 0, .45);
+
+        &::before {
+            border-bottom-color: fade(@halloween-orange, 35%);
+        }
+
+        &::after {
+            border-bottom-color: @halloween-black-soft;
+        }
+    }
+
+    // -------------------------------------------------
+    // Haunted message
+    // -------------------------------------------------
+
+    .haunted-minicart-message {
+        margin: 0 18px 12px;
+        padding: 8px 10px;
+
+        border: 1px solid fade(@halloween-orange, 35%);
+        border-radius: @border-radius__base;
+
+        background: fade(@halloween-black-deep, 65%);
+
+        color: @halloween-orange-light;
+
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 1.4;
+        text-align: center;
+    }
+
+    // -------------------------------------------------
+    // Text
+    // -------------------------------------------------
+
+    .block-title,
+    .items-total,
+    .subtotal,
+    .subtitle,
+    .product-item-details,
+    .details-qty {
+        color: @halloween-white;
+    }
+
+    .subtotal {
+        .label {
+            color: @halloween-muted;
+        }
+
+        .price {
+            color: @halloween-orange-light;
+        }
+    }
+
+    .product-item-name {
+        a {
+            color: @halloween-white;
+
+            &:visited {
+                color: @halloween-white;
+            }
+
+            &:hover {
+                color: @halloween-orange-light;
+            }
+        }
+    }
+
+    .product-item-pricing {
+        .price {
+            color: @halloween-orange-light;
+        }
+    }
+
+    // -------------------------------------------------
+    // Quantity
+    // -------------------------------------------------
+
+    .details-qty {
+        .label {
+            color: @halloween-muted;
+        }
+
+        input {
+            border-color: @halloween-border;
+
+            background: @halloween-surface-light;
+
+            color: @halloween-black;
+        }
+    }
+
+    // -------------------------------------------------
+    // Actions
+    // -------------------------------------------------
+
+    .action.close {
+        &::before {
+            color: @halloween-muted;
+        }
+
+        &:hover::before {
+            color: @halloween-orange-light;
+        }
+    }
+
+    .action.viewcart {
+        color: @halloween-orange-light;
+
+        &:visited {
+            color: @halloween-orange-light;
+        }
+
+        &:hover {
+            color: @halloween-white;
+        }
+    }
+
+    .minicart-items-wrapper {
+        border-color: @halloween-border;
+    }
+}
+
+
+// =====================================================
+// Mobile
+// =====================================================
+
+.media-width(@extremum, @break)
+when (@extremum = 'max')
+and (@break = @screen__m) {
+
+    .minicart-wrapper {
+        .block-minicart {
+            width: calc(~'100vw - 30px');
+            max-width: 360px;
+        }
+
+        .haunted-minicart-message {
+            margin-right: 12px;
+            margin-left: 12px;
+
+            font-size: 11px;
+        }
+    }
+}
