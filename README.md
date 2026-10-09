@@ -996,6 +996,61 @@ O binding foi escolhido em vez de um componente completo porque o efeito represe
 
 ---
 
+---
+
+## ✅ 17.6 — Seção própria de customer-data
+
+Foi criado o módulo:
+
+```text
+Webjump_HauntedCustomerData
+```
+
+para manter um contador individual de sustos por sessão utilizando `customer-data`.
+
+Principais entregas:
+
+- seção própria `haunted-scares`;
+- registro da seção no `di.xml`;
+- implementação de `SectionSourceInterface`;
+- contador armazenado na sessão do visitante;
+- ação `haunted/scare/increment`;
+- invalidação da seção através de `sections.xml`;
+- leitura do valor por componente Knockout;
+- atualização do contador sem recarregar a página;
+- integração com o `Modo Assombrado`;
+- jumpscare exibido ao ativar o modo;
+- valores independentes entre visitantes;
+- nenhum dado individual impresso diretamente pelo PHP;
+- integração do contador ao header no desktop;
+- painel movido para a navegação no mobile.
+
+Fluxo:
+
+```text
+Modo Assombrado
+      ↓
+Jumpscare
+      ↓
+POST haunted/scare/increment
+      ↓
+Sessão +1
+      ↓
+sections.xml
+      ↓
+haunted-scares
+      ↓
+customer-data
+      ↓
+Knockout
+      ↓
+Contador atualizado sem reload
+```
+
+📄 [Documentação do 17.6](docs/17.6-customer-data-section.md)
+
+---
+
 # 📁 Documentação
 
 ```text
@@ -1019,6 +1074,7 @@ docs/
 ├── 17.3-haunted-checkout-message.md
 ├── 17.4-coffin-offers-page-builder.md
 ├── 17.5-custom-knockout-binding.md
+├── 17.6-customer-data-section.md
 └── images/
     ├── 12.1/
     ├── 12.2/
@@ -1036,7 +1092,8 @@ docs/
     ├── 17.2/
     ├── 17.3/
     ├── 17.4/
-    └── 17.5/
+    ├── 17.5/
+    └── 17.6/
 ```
 
 O `README.md` apresenta uma visão geral das entregas, enquanto os arquivos em `docs/` concentram as decisões técnicas, validações e evidências.
@@ -1097,5 +1154,6 @@ Sprint 8
 ├── 17.2 — Modo Assombrado e minicart          ✅
 ├── 17.3 — Mensagem Assombrada no checkout     ✅
 ├── 17.4 — Caixão de Ofertas no Page Builder   ✅
-└── 17.5 — Binding próprio do Knockout         ✅
+├── 17.5 — Binding próprio do Knockout         ✅
+└── 17.6 — Seção própria de customer-data      ✅
 ```
