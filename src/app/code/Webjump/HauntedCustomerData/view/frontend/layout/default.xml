@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+
+    <body>
+        <referenceContainer name="halloween.haunted.mode.panel">
+            <block class="Magento\Framework\View\Element\Template"
+                   name="webjump.haunted.scare.counter"
+                   template="Webjump_HauntedCustomerData::scare-counter.phtml"
+                   after="halloween.haunted.mode.toggle"/>
+        </referenceContainer>
+    </body>
+</page>

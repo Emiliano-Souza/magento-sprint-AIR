@@ -25,11 +25,17 @@
               destination="header-wrapper"
               after="top.search"/>
 
-        <referenceContainer name="header-wrapper">
-            <block class="Magento\Framework\View\Element\Template"
-                   name="halloween.haunted.mode.toggle"
-                   after="minicart"
-                   template="Magento_Theme::html/haunted-mode-toggle.phtml"/>
+       <referenceContainer name="header-wrapper">
+            <container name="halloween.haunted.mode.panel"
+                    htmlTag="div"
+                    htmlClass="haunted-mode-panel"
+                    after="minicart">
+
+                <block class="Magento\Framework\View\Element\Template"
+                    name="halloween.haunted.mode.toggle"
+                    template="Magento_Theme::html/haunted-mode-toggle.phtml"/>
+
+            </container>
         </referenceContainer>
 
         <referenceBlock name="logo">

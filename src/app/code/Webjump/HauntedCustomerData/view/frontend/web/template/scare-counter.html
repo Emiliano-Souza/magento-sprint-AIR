@@ -1,0 +1,33 @@
+<div class="haunted-scare-counter__content">
+    <span class="haunted-scare-counter__label">
+        Sustos nesta sessão:
+    </span>
+
+    <strong class="haunted-scare-counter__total"
+            data-bind="text: total">
+    </strong>
+</div>
+
+<div class="haunted-jumpscare"
+     data-bind="visible: isJumpscareVisible"
+     role="dialog"
+     aria-modal="true"
+     aria-label="Susto da campanha">
+
+    <div class="haunted-jumpscare__backdrop"></div>
+
+    <div class="haunted-jumpscare__card">
+        <span class="haunted-jumpscare__ghost"
+              aria-hidden="true">
+            👻
+        </span>
+
+        <strong class="haunted-jumpscare__title">
+            Boo!
+        </strong>
+
+        <span class="haunted-jumpscare__text">
+            Você acordou um fantasma.
+        </span>
+    </div>
+</div>

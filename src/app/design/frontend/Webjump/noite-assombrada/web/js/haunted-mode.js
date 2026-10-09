@@ -3,6 +3,8 @@ define([], function () {
 
     var storageKey = 'oak-barrel-haunted-mode';
     var activeClass = 'haunted-mode-active';
+    var scareEvent = 'haunted-mode:enabled';
+    var mobileMedia = window.matchMedia('(max-width: 767px)');
 
     function isEnabled() {
         return window.localStorage.getItem(storageKey) === '1';
@@ -31,14 +33,82 @@ define([], function () {
         );
     }
 
+    function dispatchScareEvent() {
+        window.dispatchEvent(
+            new CustomEvent(scareEvent)
+        );
+    }
+
+    function setupResponsivePanel(panel) {
+        var navigation = document.querySelector(
+            '.nav-sections .navigation'
+        );
+
+        var originalParent;
+        var placeholder;
+
+        if (!panel || !navigation) {
+            return;
+        }
+
+        originalParent = panel.parentNode;
+        placeholder = document.createComment(
+            'haunted-mode-panel-position'
+        );
+
+        originalParent.insertBefore(
+            placeholder,
+            panel
+        );
+
+        function updatePanelPosition() {
+            if (mobileMedia.matches) {
+                if (panel.parentNode !== navigation.parentNode) {
+                    navigation.parentNode.insertBefore(
+                        panel,
+                        navigation
+                    );
+                }
+
+                return;
+            }
+
+            if (
+                placeholder.parentNode &&
+                panel.parentNode !== originalParent
+            ) {
+                placeholder.parentNode.insertBefore(
+                    panel,
+                    placeholder.nextSibling
+                );
+            }
+        }
+
+        updatePanelPosition();
+
+        if (typeof mobileMedia.addEventListener === 'function') {
+            mobileMedia.addEventListener(
+                'change',
+                updatePanelPosition
+            );
+        } else {
+            mobileMedia.addListener(updatePanelPosition);
+        }
+    }
+
     function initialize() {
         var enabled = isEnabled();
         var button = document.querySelector(
             '[data-haunted-mode-toggle]'
         );
 
+        var panel = document.querySelector(
+            '.haunted-mode-panel'
+        );
+
         applyMode(enabled);
         updateToggle(button, enabled);
+        setupResponsivePanel(panel);
 
         if (!button) {
             return;
@@ -49,6 +119,10 @@ define([], function () {
 
             applyMode(enabled);
             updateToggle(button, enabled);
+
+            if (enabled) {
+                dispatchScareEvent();
+            }
         });
     }
 
