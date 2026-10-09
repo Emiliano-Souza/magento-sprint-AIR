@@ -18,7 +18,13 @@
 </div>
 
 <div class="haunted-minicart-message"
-     text="hauntedMessage">
+     data-bind="
+         text: hauntedMessage,
+         shake: {
+             intensity: 9,
+             duration: 550
+         }
+     ">
 </div>
 
 <div class="block-content">
